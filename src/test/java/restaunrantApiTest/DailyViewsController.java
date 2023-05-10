@@ -32,13 +32,7 @@ public class DailyViewsController {
     private static final Logger LOG = LogManager.getLogger (TestPostRequests.class);
     private static final String URL = "https://mughalsignandprint.co.uk/restaurant";
 
-    public class User {
-        private int id;
-        private String name;
-        private String token;
 
-        // getters and setters
-    }
     public String  getToken() throws JsonProcessingException {
 
         String response =   given().contentType(ContentType.JSON)
@@ -59,15 +53,24 @@ public class DailyViewsController {
 
     }
     @Test
+    @Description("Test all cases of the Laravel API for storing a forget password token")
+    @Story("Execute Post requests using Rest Assured")
     public void testStoreDailyViews() throws JsonProcessingException {
       String token =  this.getToken();
-        given().contentType(ContentType.JSON)
+      String response =  given().contentType(ContentType.JSON)
                .header("Authorization", "Bearer " + token)
                 .body("{\"view_date\": \"2023-05-08\", \"daily_views\": \"1\"}")
                 .when()
                 .post(URL + "/api/dailyviews/1")
                 .then()
-                .statusCode(200);
+                .statusCode(200)
+              .extract()
+              .response()
+              .body()
+              .asString();
+
+
+
     }
     @Test
     public void testStoreDailyViewsUnauthorized() {
