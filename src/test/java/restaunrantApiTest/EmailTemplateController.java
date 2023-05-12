@@ -25,34 +25,16 @@ import java.util.*;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
+import static restaunrantApiTest.Util.URL;
+import static restaunrantApiTest.Util.getToken;
 
 public class EmailTemplateController {
 
     private static final Logger LOG = LogManager.getLogger (TestPostRequests.class);
-    private static final String URL = "https://mughalsignandprint.co.uk/restaurant";
 
-    public String  getToken() throws JsonProcessingException {
-
-        String response =   given().contentType(ContentType.JSON)
-
-                .body("{\"email\": \"superman@g.c\", \"password\": \"12345678\"}")
-                .when()
-                .post(URL + "/api/auth")
-                .then()
-                .extract()
-                .response()
-                .body()
-                .asString();
-
-        String token = JsonPath.from(response).getString("token");
-        System.out.println("Token: " + token);
-
-        return token;
-
-    }
     @Test
     public void testCreateEmailTemplate() throws JsonProcessingException {
-        String token = this.getToken();
+        String token = getToken();
 
         Map<String, Object> requestBody = new HashMap<>();
         requestBody.put("type", "email_verification_mail");
@@ -77,7 +59,7 @@ public class EmailTemplateController {
     }
     @Test
     public void testUpdateEmailTemplate() throws JsonProcessingException {
-        String token = this.getToken();
+        String token = getToken();
 
         Map<String, Object> requestBody = new HashMap<>();
         requestBody.put("id", 1);
@@ -104,7 +86,7 @@ public class EmailTemplateController {
 
     @Test
     public void testGetEmailTemplates() throws JsonProcessingException {
-        String token = this.getToken();
+        String token = getToken();
         int perPage = 6;
 
         String response = given()
@@ -127,7 +109,7 @@ public class EmailTemplateController {
 
     @Test
     public void testGetEmailTemplateTypes() throws JsonProcessingException {
-        String token = this.getToken();
+        String token = getToken();
 
         String response = given()
                 .contentType("application/json")
@@ -147,7 +129,7 @@ public class EmailTemplateController {
     }
     @Test
     public void testGetEmailTemplateById() throws JsonProcessingException {
-        String token = this.getToken();
+        String token = getToken();
         int id = 1; // Specify the ID of the email template you want to retrieve
 
         String response = given()

@@ -26,34 +26,19 @@ import java.util.Random;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
+import static restaunrantApiTest.Util.URL;
+import static restaunrantApiTest.Util.getToken;
+
 public class DashboardWidgetController {
 
     private static final Logger LOG = LogManager.getLogger (TestPostRequests.class);
-    private static final String URL = "https://mughalsignandprint.co.uk/restaurant";
 
-    public String  getToken() throws JsonProcessingException {
 
-        String response =   given().contentType(ContentType.JSON)
 
-                .body("{\"email\": \"superman@g.c\", \"password\": \"12345678\"}")
-                .when()
-                .post(URL + "/api/auth")
-                .then()
-                .extract()
-                .response()
-                .body()
-                .asString();
-
-        String token = JsonPath.from(response).getString("token");
-        System.out.println("Token: " + token);
-
-        return token;
-
-    }
 
     @Test
     public void testCreateDashboardWidget() throws JsonProcessingException {
-        String token = this.getToken();
+        String token = getToken();
         String response = given()
                 .contentType(ContentType.JSON)
                 .header("Authorization", "Bearer " + token)
@@ -74,7 +59,7 @@ public class DashboardWidgetController {
 
     @Test
     public void testUpdateDashboardWidget() throws JsonProcessingException {
-        String token = this.getToken();
+        String token = getToken();
         String response = given()
                 .contentType(ContentType.JSON)
                 .header("Authorization", "Bearer " + token)
@@ -93,7 +78,7 @@ public class DashboardWidgetController {
 
     @Test
     public void testGetDashboardWidget() throws JsonProcessingException {
-        String token = this.getToken();
+        String token = getToken();
         String response = given()
                 .contentType(ContentType.JSON)
                 .header("Authorization", "Bearer " + token)
@@ -112,7 +97,7 @@ public class DashboardWidgetController {
 
     @Test
     public void testGetDashboardWidgetById() throws JsonProcessingException {
-        String token = this.getToken();
+        String token = getToken();
         String id = "1"; // The ID of the widget you want to retrieve
         String response = given()
                 .contentType(ContentType.JSON)
