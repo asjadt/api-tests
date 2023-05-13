@@ -28,7 +28,7 @@ import static org.hamcrest.Matchers.notNullValue;
 
 public class Util {
     private static final Logger LOG = LogManager.getLogger (TestPostRequests.class);
-    public static final String URL = "https://britanniagreen.co.uk/restaurant";
+    public static final String URL = "https://quickreview.app/restaurant";
 
     public static String  getToken() throws JsonProcessingException {
 

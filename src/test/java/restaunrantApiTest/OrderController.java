@@ -56,7 +56,7 @@ public class OrderController {
     @Test
     public void testStoreByUserAPI() throws JsonProcessingException {
 
-
+this.testEditOrderAPI();
         String token = getToken();
         int restaurantId = 1; // Specify the ID of the restaurant
         String requestBody = "{\n" +
