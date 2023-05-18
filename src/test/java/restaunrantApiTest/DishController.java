@@ -491,6 +491,23 @@ public class DishController {
                 .asString());
 
     }
+    @Test
+    public void testDeleteDishAPI() throws JsonProcessingException {
+        String dishId = "1"; // Replace with the actual dish ID
 
+        given()
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .header("Authorization", "Bearer " + getToken()) // Replace with the actual access token
+                .pathParam("dishId", dishId)
+                .when()
+                .delete(URL +"/api/dishes/{dishId}")
+                .then()
+                .statusCode(200)
+                // Additional assertions for the response data can be added here
+                .extract()
+                .response()
+                .asString();
+    }
 
 }

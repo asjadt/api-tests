@@ -251,5 +251,22 @@ public class MenuController {
 
         System.out.println(response.getBody().asString());
     }
+    @Test
+    public void testDeleteMenuAPI() throws JsonProcessingException {
+        String menuId = "1"; // Replace with the actual menu ID
 
+        given()
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .header("Authorization", "Bearer " + getToken())
+                .pathParam("menuId", menuId)
+                .when()
+                .delete(URL +"/api/menu/{menuId}")
+                .then()
+                .statusCode(200)
+                // Additional assertions for the response data can be added here
+                .extract()
+                .response()
+                .asString();
+    }
 }

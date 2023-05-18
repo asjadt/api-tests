@@ -148,4 +148,23 @@ public class EmailTemplateController {
 
 
     }
+
+    @Test
+    public void testDeleteEmailTemplateByIdAPI() throws JsonProcessingException {
+        String templateId = "1"; // Replace with the actual template ID
+
+        given()
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .header("Authorization", "Bearer " + getToken()) // Replace with the actual access token
+                .pathParam("id", templateId)
+                .when()
+                .delete(URL +"/api/v1.0/email-templates/{id}")
+                .then()
+                .statusCode(200)
+                // Additional assertions for the response data can be added here
+                .extract()
+                .response()
+                .asString();
+    }
 }

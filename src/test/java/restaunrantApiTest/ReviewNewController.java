@@ -21,10 +21,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static io.restassured.RestAssured.given;
 import static org.testng.AssertJUnit.assertNotNull;
@@ -346,9 +343,450 @@ public class ReviewNewController {
         System.out.println(response);
         // Additional assertions for the response data can be added here
     }
+    @Test
+    public void testGetQuestionAPI() throws JsonProcessingException {
+        String response =  given()
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .header("Authorization", "Bearer " + getToken()) // Set the authorization header
+                .queryParam("restaurant_id", "123") // Set the restaurant ID as a query parameter (optional)
+                .when()
+                .get(URL + "/api/review-new/get/questions")
+                .then()
+                .statusCode(200)
+                // Additional assertions for the response data can be added here
+                .extract()
+                .response()
+                .asString();
+        System.out.println(response);
+    }
 
 
+    @Test
+    public void getQuestionAllUnauthorized() throws JsonProcessingException {
+        String response =  given()
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .header("Authorization", "Bearer " + getToken())
+                .queryParam("restaurant_id", "1") // Set the restaurant ID as a query parameter (optional)
+                .when()
+                .get(URL + "/api/review-new/get/questions-all/customer")
+                .then()
+                .statusCode(200)
+                // Additional assertions for the response data can be added here
+                .extract()
+                .response()
+                .asString();
+        System.out.println(response);
+    }
+    @Test
+    public void testGetAllQuestionsAPI() throws JsonProcessingException {
+        String response = given()
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .header("Authorization", "Bearer " + getToken())
+                .queryParam("restaurant_id", "1") // Set the restaurant ID as a query parameter (optional)
+                .when()
+                .get(URL + "/api/review-new/get/questions-all")
+                .then()
+                .statusCode(200)
+                // Additional assertions for the response data can be added here
+                .extract()
+                .response()
+                .asString();
+        System.out.println(response);
 
+    }
+    @Test
+    public void testGetAllQuestionsReportAPI() throws JsonProcessingException {
+        String response =    given()
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .header("Authorization", "Bearer " + getToken())
+                .queryParam("restaurant_id", "1") // Set the restaurant ID as a query parameter (optional)
+                .queryParam("start_date", "2023-06-29") // Set the start date as a query parameter (optional)
+                .queryParam("end_date", "2023-06-29") // Set the end date as a query parameter (optional)
+                .when()
+                .get(URL + "/api/review-new/get/questions-all-report")
+                .then()
+                .statusCode(200)
+                // Additional assertions for the response data can be added here
+                .extract()
+                .response()
+                .asString();
+        System.out.println(response);
+        System.out.println(response);
+    }
+    @Test
+    public void testGetQuestionByIdAPI() throws JsonProcessingException {
+        String response =  given()
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .header("Authorization", "Bearer " + getToken())
+                .pathParam("id", 1) // Set the question ID as a path parameter
+                .when()
+                .get(URL + "/api/review-new/get/questions/{id}")
+                .then()
+                .statusCode(200)
+                // Additional assertions for the response data can be added here
+                .extract()
+                .response()
+                .asString();
+        System.out.println(response);
+    }
 
+    @Test
+    public void testGetQuestionById2API() throws JsonProcessingException {
+        String response =   given()
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .header("Authorization", "Bearer " + getToken())
+                .pathParam("id", 1) // Set the question ID as a path parameter
+                .when()
+                .get(URL + "/api/review-new/get/questions/{id}")
+                .then()
+                .statusCode(200)
+                // Additional assertions for the response data can be added here
+                .extract()
+                .response()
+                .asString();
+        System.out.println(response);
+    }
 
+    @Test
+    public void testDeleteQuestionByIdAPI() throws JsonProcessingException {
+        String response =    given()
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .header("Authorization", "Bearer " + getToken())
+                .pathParam("id", 1) // Set the question ID as a path parameter
+                .when()
+                .delete(URL + "/api/review-new/delete/questions/{id}")
+                .then()
+                .statusCode(200)
+                // Additional assertions for the response data can be added here
+                .extract()
+                .response()
+                .asString();
+        System.out.println(response);
+    }
+
+    @Test
+    public void testStoreTagAPI() throws JsonProcessingException {
+        Map<String, Object> requestBody = new HashMap<>();
+        requestBody.put("tag", "How was this?");
+        requestBody.put("restaurant_id", 1);
+
+        String response =    given()
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .header("Authorization", "Bearer " + getToken())
+                .body(requestBody)
+                .when()
+                .post(URL + "/api/review-new/create/tags")
+                .then()
+                .statusCode(201)
+                // Additional assertions for the response data can be added here
+                .extract()
+                .response()
+                .asString();
+        System.out.println(response);
+    }
+    @Test
+    public void testStoreMultipleTagsAPI() throws JsonProcessingException {
+        List<String> tags = Arrays.asList(("tag1" + Math.random()), ("tag2" + Math.random()));
+        Map<String, Object> requestBody = new HashMap<>();
+        requestBody.put("tags", tags);
+
+        String response =   given()
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .header("Authorization", "Bearer " + getToken())
+                .body(requestBody)
+                .when()
+                .post(URL + "/api/review-new/create/tags/multiple/1")
+                .then()
+                .statusCode(201)
+                // Additional assertions for the response data can be added here
+                .extract()
+                .response()
+                .asString();
+        System.out.println(response);
+    }
+
+    @Test
+    public void testUpdateTagAPI() throws JsonProcessingException {
+        Map<String, Object> requestBody = new HashMap<>();
+        requestBody.put("tag", "How was this?");
+        requestBody.put("id", 1);
+
+        String response =    given()
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .header("Authorization", "Bearer " + getToken())
+                .body(requestBody)
+                .when()
+                .put(URL + "/api/review-new/update/tags")
+                .then()
+                .statusCode(200)
+                // Additional assertions for the response data can be added here
+                .extract()
+                .response()
+                .asString();
+        System.out.println(response);
+    }
+    @Test
+    public void testGetTagsAPI() throws JsonProcessingException {
+        String response =   given()
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .header("Authorization", "Bearer " + getToken())
+                .when()
+                .get(URL + "/api/review-new/get/tags")
+                .then()
+                .statusCode(200)
+                // Additional assertions for the response data can be added here
+                .extract()
+                .response()
+                .asString();
+        System.out.println(response);
+    }
+
+    @Test
+    public void testGetTagByIdAPI() throws JsonProcessingException {
+        int tagId = 1; // Replace with the actual tag ID
+
+        String response =   given()
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .header("Authorization", "Bearer " + getToken())
+                .pathParam("id", tagId)
+                .when()
+                .get(URL + "/api/review-new/get/tags/{id}")
+                .then()
+                .statusCode(200)
+                // Additional assertions for the response data can be added here
+                .extract()
+                .response()
+                .asString();
+        System.out.println(response);
+    }
+
+    @Test
+    public void testGetTagById2API() throws JsonProcessingException {
+        int tagId = 1; // Replace with the actual tag ID
+        int restaurantId = 1; // Replace with the actual restaurant ID
+
+        String response =   given()
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .header("Authorization", "Bearer " + getToken())
+                .pathParam("id", tagId)
+                .pathParam("restaurantId", restaurantId)
+                .when()
+                .get(URL + "/api/review-new/get/tags/{id}/{restaurantId}")
+                .then()
+                .statusCode(200)
+                // Additional assertions for the response data can be added here
+                .extract()
+                .response()
+                .asString();
+        System.out.println(response);
+    }
+
+    @Test
+    public void testDeleteTagByIdAPI() throws JsonProcessingException {
+        int tagId = 1; // Replace with the actual tag ID
+
+        String response =   given()
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .header("Authorization", "Bearer " + getToken())
+                .pathParam("id", tagId)
+                .when()
+                .delete(URL + "/api/review-new/delete/tags/{id}")
+                .then()
+                .statusCode(200)
+                // Additional assertions for the response data can be added here
+                .extract()
+                .response()
+                .asString();
+        System.out.println(response);
+    }
+    @Test
+    public void testStoreOwnerQuestionAPI() throws JsonProcessingException {
+        int questionId = 1; // Replace with the actual question ID
+        String starId = "2"; // Replace with the actual star ID
+
+        Map<String, Object> tag1 = new HashMap<>();
+        tag1.put("tag_id", "2");
+
+        Map<String, Object> tag2 = new HashMap<>();
+        tag2.put("tag_id", "2");
+
+        Map<String, Object> star = new HashMap<>();
+        star.put("star_id", starId);
+        star.put("tags", Arrays.asList(tag1, tag2));
+
+        Map<String, Object> requestBody = new HashMap<>();
+        requestBody.put("question_id", questionId);
+        requestBody.put("stars", Collections.singletonList(star));
+
+        String response =   given()
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .header("Authorization", "Bearer " + getToken())
+                .body(requestBody)
+                .when()
+                .post(URL + "/api/review-new/owner/create/questions")
+                .then()
+                .statusCode(201)
+                // Additional assertions for the response data can be added here
+                .extract()
+                .response()
+                .asString();
+        System.out.println(response);
+    }
+    @Test
+    public void testUpdateOwnerQuestionAPI() throws JsonProcessingException {
+        int questionId = 1; // Replace with the actual question ID
+        String starId = "2"; // Replace with the actual star ID
+
+        Map<String, Object> tag1 = new HashMap<>();
+        tag1.put("tag_id", "2");
+
+        Map<String, Object> tag2 = new HashMap<>();
+        tag2.put("tag_id", "2");
+
+        Map<String, Object> star = new HashMap<>();
+        star.put("star_id", starId);
+        star.put("tags", Arrays.asList(tag1, tag2));
+
+        Map<String, Object> requestBody = new HashMap<>();
+        requestBody.put("question_id", questionId);
+        requestBody.put("stars", Collections.singletonList(star));
+
+        String response =   given()
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .header("Authorization", "Bearer " + getToken())
+                .queryParam("_method", "PATCH")
+                .body(requestBody)
+                .when()
+                .post(URL + "/api/review-new/owner/update/questions")
+                .then()
+                .statusCode(201)
+                // Additional assertions for the response data can be added here
+                .extract()
+                .response()
+                .asString();
+        System.out.println(response);
+    }
+
+    @Test
+    public void testGetQuestionAllReportGuestAPI() throws JsonProcessingException {
+        String restaurantId = "1"; // Replace with the actual restaurant ID
+        String startDate = "2023-06-29"; // Replace with the actual start date
+        String endDate = "2023-06-29"; // Replace with the actual end date
+
+    String response =    given()
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .header("Authorization", "Bearer " + getToken())
+                .queryParam("restaurant_id", restaurantId)
+                .queryParam("start_date", startDate)
+                .queryParam("end_date", endDate)
+                .when()
+                .get(URL + "/api/review-new/get/questions-all-report/guest")
+                .then()
+            .statusCode(200)
+                // Additional assertions for the response data can be added here
+                .extract()
+                .response()
+                .asString();
+        System.out.println(response);
+
+    }
+    @Test
+    public void testGetQuestionAllReportUnauthorizedAPI() {
+        String restaurantId = "1"; // Replace with the actual restaurant ID
+
+        String response =   given()
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .queryParam("restaurant_id", restaurantId)
+                .when()
+                .get(URL + "/api/review-new/get/questions-all-report/unauthorized")
+                .then()
+                .statusCode(200)
+                // Additional assertions for the response data can be added here
+                .extract()
+                .response()
+                .asString();
+        System.out.println(response);
+    }
+    @Test
+    public void testGetQuestionAllReportGuestUnauthorizedAPI() {
+        String restaurantId = "1"; // Replace with the actual restaurant ID
+
+        String response =   given()
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .queryParam("restaurant_id", restaurantId)
+                .when()
+                .get(URL + "/api/review-new/get/questions-all-report/guest/unauthorized")
+                .then()
+                .statusCode(200)
+                // Additional assertions for the response data can be added here
+                .extract()
+                .response()
+                .asString();
+        System.out.println(response);
+    }
+
+    @Test
+    public void testGetQuestionAllReportGuestQuantumAPI() throws JsonProcessingException {
+        String restaurantId = "1"; // Replace with the actual restaurant ID
+        String quantum = "daily"; // Replace with the desired quantum value
+
+     String response =   given()
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+             .header("Authorization", "Bearer " + getToken()) // Replace with the actual access token
+                .queryParam("restaurant_id", restaurantId)
+                .queryParam("quantum", quantum)
+                .when()
+                .get(URL + "/api/review-new/get/questions-all-report/guest/quantum")
+                .then()
+
+                // Additional assertions for the response data can be added here
+                .extract()
+                .response()
+                .asString();
+        System.out.println(response);
+        System.out.println(response);
+    }
+    @Test
+    public void testGetQuestionAllReportQuantumAPI() throws JsonProcessingException {
+        String restaurantId = "1"; // Replace with the actual restaurant ID
+        String quantum = "daily"; // Replace with the desired quantum value
+        String period = "30"; // Replace with the desired period value
+
+        String response =    given()
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .header("Authorization", "Bearer " + getToken()) // Replace with the actual access token
+                .queryParam("restaurant_id", restaurantId)
+                .queryParam("quantum", quantum)
+                .queryParam("period", period)
+                .when()
+                .get("/api/review-new/get/questions-all-report/quantum")
+                .then()
+                .statusCode(200)
+                // Additional assertions for the response data can be added here
+                .extract()
+                .response()
+                .asString();
+        System.out.println(response);
+    }
 }

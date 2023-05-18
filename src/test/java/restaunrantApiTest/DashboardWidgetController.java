@@ -116,7 +116,42 @@ public class DashboardWidgetController {
 
     }
 
+    @Test
+    public void testDeleteWidgetByIdAPI() throws JsonProcessingException {
+        String widgetId = "1"; // Replace with the actual widget ID
 
+        given()
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .header("Authorization", "Bearer " + getToken()) // Replace with the actual access token
+                .pathParam("id", widgetId)
+                .when()
+                .delete(URL +"/api/superadmin/dashboard-widget/delete/{id}")
+                .then()
+                .statusCode(200)
+                // Additional assertions for the response data can be added here
+                .extract()
+                .response()
+                .asString();
+    }
+    @Test
+    public void testDeleteUserDashboardByIdAPI() throws JsonProcessingException {
+        String dashboardId = "1"; // Replace with the actual dashboard ID
+
+        given()
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .header("Authorization", "Bearer " + getToken()) // Replace with the actual access token
+                .pathParam("id", dashboardId)
+                .when()
+                .delete(URL+ "/api/user-dashboard/delete/{id}")
+                .then()
+                .statusCode(200)
+                // Additional assertions for the response data can be added here
+                .extract()
+                .response()
+                .asString();
+    }
 
 
 

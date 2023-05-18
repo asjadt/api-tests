@@ -231,4 +231,22 @@ public class RestaurantController {
 
         System.out.println(response);
     }
+    @Test
+    public void testDeleteRestaurantAPI() throws JsonProcessingException {
+        String restaurantId = "1"; // Replace with the actual restaurant ID
+
+        given()
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .header("Authorization", "Bearer " + getToken())
+                .pathParam("id", restaurantId)
+                .when()
+                .delete(URL +"/api/restaurant/delete/{id}")
+                .then()
+                .statusCode(200)
+                // Additional assertions for the response data can be added here
+                .extract()
+                .response()
+                .asString();
+    }
 }

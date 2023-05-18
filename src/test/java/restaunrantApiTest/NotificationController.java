@@ -82,4 +82,24 @@ public class NotificationController {
                 .extract()
                 .response();
     }
+    @Test
+    public void testDeleteNotificationAPI() throws JsonProcessingException {
+        String notificationId = "1"; // Replace with the actual notification ID
+
+        given()
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .header("Authorization", "Bearer " + getToken())
+                .pathParam("notificationId", notificationId)
+                .when()
+                .delete(URL +"/api/notification/{notificationId}")
+                .then()
+                .statusCode(200)
+                // Additional assertions for the response data can be added here
+                .extract()
+                .response()
+                .asString();
+    }
+
+
 }

@@ -723,6 +723,23 @@ this.testEditOrderAPI();
 
         System.out.println("response" + response);
     }
+    @Test
+    public void testDeleteOrderAPI() throws JsonProcessingException {
+        String orderId = "1"; // Replace with the actual order ID
 
+        given()
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .header("Authorization", "Bearer " + getToken())
+                .pathParam("orderId", orderId)
+                .when()
+                .delete(URL +"/api/order/{orderId}")
+                .then()
+                .statusCode(200)
+                // Additional assertions for the response data can be added here
+                .extract()
+                .response()
+                .asString();
+    }
 
 }
