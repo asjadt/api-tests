@@ -31,14 +31,14 @@ import static restaunrantApiTest.Util.getToken;
 public class ReviewNewController {
     @Test
     public void testGetReviewValuesAPI() throws JsonProcessingException {
-        String token = getToken();
+
         int restaurantId = 1;
         int rate = 1;
 
         String response = given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .header("Authorization", "Bearer " + token)
+                .header("Authorization", "Bearer " + getToken())
                 .pathParam("restaurantId", restaurantId)
                 .pathParam("rate", rate)
                 .when()
