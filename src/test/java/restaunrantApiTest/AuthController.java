@@ -28,7 +28,7 @@ import static org.hamcrest.Matchers.notNullValue;
 @Feature("Performing different API Tests using Rest-Assured")
 public class AuthController {
 
-    private static final Logger LOG = LogManager.getLogger (TestPostRequests.class);
+
     private static final String URL = "https://mughalsignandprint.co.uk/restaurant";
 
 
@@ -101,16 +101,18 @@ public class AuthController {
     }
     @Test
     public void loginWithValidCredentialsShouldReturn200() {
-        final String success =   given().contentType(ContentType.JSON)
-                .body("{\"email\": \"rifat72@gmail.com\", \"password\": \"yourPassword\"}")
+        final String success =    given()
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .body("{\"email\": \"superman@g.c\", \"password\": \"12345678\"}")
                 .when()
                 .post(URL + "/api/auth")
                 .then()
                 .extract()
                 .response()
-                .body()
+
                 .asString();
-        System.out.println("Missing email response: " + success);
+        System.out.println(" response: " + success);
     }
 
     @Test
