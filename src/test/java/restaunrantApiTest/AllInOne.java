@@ -39,6 +39,7 @@ public class AllInOne {
                 .when()
                 .post(URL + "/api/auth")
                 .then()
+                .statusCode(500)
                 .extract()
                 .response()
                 .asString();
