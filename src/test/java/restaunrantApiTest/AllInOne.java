@@ -37,9 +37,9 @@ public class AllInOne {
                 .accept(ContentType.JSON)
                 .body("{\"email\": \"superman@g.c\", \"password\": \"12345678\"}")
                 .when()
-                .post(URL + "/api/autha")
+                .post(URL + "/api/auth")
                 .then()
-                .statusCode(500)
+                .statusCode(200)
                 .extract()
                 .response()
                 .asString();
