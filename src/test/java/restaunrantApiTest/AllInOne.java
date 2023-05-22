@@ -93,7 +93,7 @@ public class AllInOne {
 
 
 
-        restaurantController.testDeleteRestaurantAPI(restaurantId);
+        restaurantController.testDeleteRestaurantForceDeleteAPI(restaurantId);
     }
 
 
