@@ -26,7 +26,7 @@ import java.util.*;
 import static io.restassured.RestAssured.given;
 import static org.testng.AssertJUnit.assertNotNull;
 import static restaunrantApiTest.Util.URL;
-import static restaunrantApiTest.Util.getToken;
+import static restaunrantApiTest.Util.getSuperadminToken;
 
 
 public class VariationController {
@@ -43,7 +43,7 @@ public class VariationController {
         String response = given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .header("Authorization", "Bearer " + getToken()) // Set the authorization header
+                .header("Authorization", "Bearer " + getSuperadminToken()) // Set the authorization header
                 .body(requestBodyJson)
                 .when()
                 .post(URL + "/api/variation/variation_type")
@@ -65,7 +65,7 @@ public class VariationController {
         String response = given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .header("Authorization", "Bearer " + getToken()) // Set the authorization header
+                .header("Authorization", "Bearer " + getSuperadminToken()) // Set the authorization header
                 .when()
                 .delete(URL + "/api/variation/variation_type/" + variationTypeId)
                 .then()
@@ -101,7 +101,7 @@ public class VariationController {
         String response = given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .header("Authorization", "Bearer " + getToken()) // Set the authorization header
+                .header("Authorization", "Bearer " + getSuperadminToken()) // Set the authorization header
                 .body(requestBodyJson)
                 .when()
                 .post(URL + "/api/variation/variation_type/multiple/" + restaurantId)
@@ -140,7 +140,7 @@ public class VariationController {
         String response = given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .header("Authorization", "Bearer " + getToken()) // Set the authorization header
+                .header("Authorization", "Bearer " + getSuperadminToken()) // Set the authorization header
                 .body(requestBodyJson)
                 .when()
                 .patch(URL + "/api/variation/variation_type/multiple")
@@ -181,7 +181,7 @@ public class VariationController {
         String response = given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .header("Authorization", "Bearer " + getToken()) // Set the authorization header
+                .header("Authorization", "Bearer " + getSuperadminToken()) // Set the authorization header
                 .body(requestBodyJson)
                 .when()
                 .patch(URL + "/api/variation/variation/multiple")
@@ -206,7 +206,7 @@ public class VariationController {
         String response = given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .header("Authorization", "Bearer " + getToken()) // Set the authorization header
+                .header("Authorization", "Bearer " + getSuperadminToken()) // Set the authorization header
                 .body(requestBodyJson)
                 .when()
                 .patch(URL + "/api/variation/variationtype")
@@ -232,7 +232,7 @@ public class VariationController {
         String response = given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .header("Authorization", "Bearer " + getToken()) // Set the authorization header
+                .header("Authorization", "Bearer " + getSuperadminToken()) // Set the authorization header
                 .body(requestBodyJson)
                 .when()
                 .post(URL + "/api/variation")
@@ -274,7 +274,7 @@ public class VariationController {
         String response = given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .header("Authorization", "Bearer " + getToken()) // Set the authorization header
+                .header("Authorization", "Bearer " + getSuperadminToken()) // Set the authorization header
                 .body(requestBodyJson)
                 .when()
                 .post(URL + "/api/variation/multiple/varations")
@@ -300,7 +300,7 @@ public class VariationController {
         String response = given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .header("Authorization", "Bearer " + getToken()) // Set the authorization header
+                .header("Authorization", "Bearer " + getSuperadminToken()) // Set the authorization header
                 .body(requestBodyJson)
                 .when()
                 .patch(URL + "/api/variation")
@@ -327,7 +327,7 @@ public class VariationController {
         String response = given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .header("Authorization", "Bearer " + getToken()) // Set the authorization header
+                .header("Authorization", "Bearer " + getSuperadminToken()) // Set the authorization header
                 .body(requestBodyJson)
                 .when()
                 .post(URL + "/api/variation/dish_variation")
@@ -367,7 +367,7 @@ public class VariationController {
         String response = given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .header("Authorization", "Bearer " + getToken()) // Set the authorization header
+                .header("Authorization", "Bearer " + getSuperadminToken()) // Set the authorization header
                 .body(requestBodyJson)
                 .when()
                 .post(URL + "/api/variation/multiple/dish_variation/" + DISH_ID)
@@ -387,7 +387,7 @@ public class VariationController {
         String response = given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .header("Authorization", "Bearer " + getToken()) // Set the authorization header
+                .header("Authorization", "Bearer " + getSuperadminToken()) // Set the authorization header
                 .when()
                 .get(URL + "/api/variation/dish_variation/" + DISH_ID)
                 .then()
@@ -412,7 +412,7 @@ public class VariationController {
         String response = given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .header("Authorization", "Bearer " + getToken()) // Set the authorization header
+                .header("Authorization", "Bearer " + getSuperadminToken()) // Set the authorization header
                 .body(requestBody)
                 .when()
                 .patch(URL + "/api/variation/dish_variation")
@@ -435,7 +435,7 @@ public class VariationController {
         String response = given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .header("Authorization", "Bearer " + getToken()) // Set the authorization header
+                .header("Authorization", "Bearer " + getSuperadminToken()) // Set the authorization header
                 .body(requestBody)
                 .when()
                 .patch(URL + "/api/variation/dish_variation/multiple/" + dishId)
@@ -455,7 +455,7 @@ public class VariationController {
         String response = given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .header("Authorization", "Bearer " + getToken()) // Set the authorization header
+                .header("Authorization", "Bearer " + getSuperadminToken()) // Set the authorization header
                 .when()
                 .get(URL + "/api/variation/" + restaurantId)
                 .then()
@@ -473,7 +473,7 @@ public class VariationController {
         String response = given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .header("Authorization", "Bearer " + getToken()) // Set the authorization header
+                .header("Authorization", "Bearer " + getSuperadminToken()) // Set the authorization header
                 .when()
                 .get(URL + "/api/variation-type/" + id)
                 .then()
@@ -492,7 +492,7 @@ public class VariationController {
         String response = given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .header("Authorization", "Bearer " + getToken()) // Set the authorization header
+                .header("Authorization", "Bearer " + getSuperadminToken()) // Set the authorization header
                 .when()
                 .get(URL + "/api/variation2/" + restaurantId)
                 .then()
@@ -510,7 +510,7 @@ public class VariationController {
         String response = given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .header("Authorization", "Bearer " + getToken()) // Set the authorization header
+                .header("Authorization", "Bearer " + getSuperadminToken()) // Set the authorization header
                 .when()
                 .get(URL + "/api/variation/type/count/" + typeId)
                 .then()
@@ -528,7 +528,7 @@ public class VariationController {
         String response = given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .header("Authorization", "Bearer " + getToken()) // Set the authorization header
+                .header("Authorization", "Bearer " + getSuperadminToken()) // Set the authorization header
                 .when()
                 .get(URL + "/api/variation/by-restaurant-id/" + restaurantId)
                 .then()
@@ -547,7 +547,7 @@ public class VariationController {
         String response = given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .header("Authorization", "Bearer " + getToken()) // Set the authorization header
+                .header("Authorization", "Bearer " + getSuperadminToken()) // Set the authorization header
                 .when()
                 .delete(URL + "/api/variation/unlink/" + typeId + "/" + dishId)
                 .then()

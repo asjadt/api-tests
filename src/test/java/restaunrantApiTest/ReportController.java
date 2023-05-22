@@ -24,13 +24,13 @@ import org.testng.annotations.DataProvider;
 import static io.restassured.RestAssured.given;
 import static org.testng.AssertJUnit.assertNotNull;
 import static restaunrantApiTest.Util.URL;
-import static restaunrantApiTest.Util.getToken;
+import static restaunrantApiTest.Util.getSuperadminToken;
 
 
 public class ReportController {
     @Test
     public void testCustomerDashboardReportAPI() throws JsonProcessingException {
-        String token = getToken();
+        String token = getSuperadminToken();
         String customerId = "0";
 
         String response =    given()
@@ -52,7 +52,7 @@ public class ReportController {
 
     @Test
     public void testRestaurantDashboardReportAPI() throws JsonProcessingException {
-        String token = getToken();
+        String token = getSuperadminToken();
         String restaurantId = "0";
 
         String response =   given()
@@ -74,7 +74,7 @@ public class ReportController {
 
     @Test
     public void testGetTableReportAPI() throws JsonProcessingException {
-        String token = getToken();
+        String token = getSuperadminToken();
         String restaurantId = "1";
 
     String response =    given()
@@ -97,7 +97,7 @@ public class ReportController {
 
     @Test
     public void testGetDashboardReportAPI() throws JsonProcessingException {
-        String token = getToken();
+        String token = getSuperadminToken();
         String restaurantId = "0";
 
         String response =    given()
@@ -118,7 +118,7 @@ public class ReportController {
     }
     @Test
     public void testGetRestaurantReportAPI() throws JsonProcessingException {
-        String token = getToken();
+        String token = getSuperadminToken();
 
         String response =    given()
                 .contentType(ContentType.JSON)
@@ -137,7 +137,7 @@ public class ReportController {
     }
     @Test
     public void testGetDashboardReport2API() throws JsonProcessingException {
-        String token = getToken();
+        String token = getSuperadminToken();
         String restaurantId = "1"; // Provide the desired restaurant ID
 
         String response =    given()
@@ -159,7 +159,7 @@ public class ReportController {
 
     @Test
     public void testCustomerDishReportAPI() throws JsonProcessingException {
-        String token = getToken();
+        String token = getSuperadminToken();
         String phone = "1234567890"; // Provide the desired phone number
         String restaurantId = "1"; // Provide the desired restaurant ID
 
@@ -182,7 +182,7 @@ public class ReportController {
     }
     @Test
     public void testCustomerDishReportByCustomerIdAPI() throws JsonProcessingException {
-        String token = getToken();
+        String token = getSuperadminToken();
         String customerId = "1"; // Provide the desired customer ID
         String restaurantId = "0"; // Provide the desired restaurant ID
 

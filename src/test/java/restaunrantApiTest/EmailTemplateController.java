@@ -26,7 +26,7 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
 import static restaunrantApiTest.Util.URL;
-import static restaunrantApiTest.Util.getToken;
+import static restaunrantApiTest.Util.getSuperadminToken;
 
 public class EmailTemplateController {
 
@@ -34,7 +34,7 @@ public class EmailTemplateController {
 
     @Test
     public void testCreateEmailTemplate() throws JsonProcessingException {
-        String token = getToken();
+        String token = getSuperadminToken();
 
         Map<String, Object> requestBody = new HashMap<>();
         requestBody.put("type", "email_verification_mail");
@@ -59,7 +59,7 @@ public class EmailTemplateController {
     }
     @Test
     public void testUpdateEmailTemplate() throws JsonProcessingException {
-        String token = getToken();
+        String token = getSuperadminToken();
 
         Map<String, Object> requestBody = new HashMap<>();
         requestBody.put("id", 1);
@@ -86,7 +86,7 @@ public class EmailTemplateController {
 
     @Test
     public void testGetEmailTemplates() throws JsonProcessingException {
-        String token = getToken();
+        String token = getSuperadminToken();
         int perPage = 6;
 
         String response = given()
@@ -109,7 +109,7 @@ public class EmailTemplateController {
 
     @Test
     public void testGetEmailTemplateTypes() throws JsonProcessingException {
-        String token = getToken();
+        String token = getSuperadminToken();
 
         String response = given()
                 .contentType("application/json")
@@ -129,7 +129,7 @@ public class EmailTemplateController {
     }
     @Test
     public void testGetEmailTemplateById() throws JsonProcessingException {
-        String token = getToken();
+        String token = getSuperadminToken();
         int id = 1; // Specify the ID of the email template you want to retrieve
 
         String response = given()
@@ -156,7 +156,7 @@ public class EmailTemplateController {
         given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .header("Authorization", "Bearer " + getToken()) // Replace with the actual access token
+                .header("Authorization", "Bearer " + getSuperadminToken()) // Replace with the actual access token
                 .pathParam("id", templateId)
                 .when()
                 .delete(URL +"/api/v1.0/email-templates/{id}")

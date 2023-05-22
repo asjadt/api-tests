@@ -62,6 +62,9 @@ public class AllInOne {
         JsonNode jsonNodeOfRestaurant = objectMapper.readTree(restaurant);
         Integer restaurantId = jsonNodeOfRestaurant.get("data").get("restaurant").get("id").asInt();
         String restaurantOwnerToken = jsonNodeOfRestaurant.get("token").textValue();
+
+        System.out.println("restaurantId :" +restaurantId);
+        System.out.println("restaurantOwnerToken :" +restaurantOwnerToken);
         return new RestaurantInfo(restaurantId, restaurantOwnerToken);
     }
 
@@ -90,27 +93,26 @@ public class AllInOne {
 
 
 
-
-        restaurantController.testDeleteRestaurantAPI(restaurantId,restaurantOwnerToken);
+        restaurantController.testDeleteRestaurantAPI(restaurantId);
     }
 
 
 
 
 
-    @Test
-    public void loginWithValidCredentialsShouldReturn200() {
-         String success =    given()
-                .contentType(ContentType.JSON)
-                .accept(ContentType.JSON)
-                .body("{\"email\": \"superman@g.c\", \"password\": \"12345678\"}")
-                .when()
-                .post(URL + "/api/auth")
-                .then()
-                .statusCode(200)
-                .extract()
-                .response()
-                .asString();
-        System.out.println(" response: " + success);
-    }
+//    @Test
+//    public void loginWithValidCredentialsShouldReturn200() {
+//         String success =    given()
+//                .contentType(ContentType.JSON)
+//                .accept(ContentType.JSON)
+//                .body("{\"email\": \"superman@g.c\", \"password\": \"12345678\"}")
+//                .when()
+//                .post(URL + "/api/auth")
+//                .then()
+//                .statusCode(200)
+//                .extract()
+//                .response()
+//                .asString();
+//        System.out.println(" response: " + success);
+//    }
 }

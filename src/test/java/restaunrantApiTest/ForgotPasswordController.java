@@ -26,7 +26,7 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
 import static restaunrantApiTest.Util.URL;
-import static restaunrantApiTest.Util.getToken;
+import static restaunrantApiTest.Util.getSuperadminToken;
 
 
 public class ForgotPasswordController {
@@ -50,7 +50,7 @@ public class ForgotPasswordController {
     }
     @Test
     public void testChangePassword() throws JsonProcessingException {
-        String token = getToken(); // Replace with the actual token
+        String token = getSuperadminToken(); // Replace with the actual token
 
         String requestBody = "{ \"password\": \"12345678\", \"cpassword\": \"12345678\" }";
 
@@ -69,7 +69,7 @@ public class ForgotPasswordController {
     }
     @Test
     public void testChangePasswordBySuperAdmin() throws JsonProcessingException {
-        String token = getToken(); // Replace with the actual token
+        String token = getSuperadminToken(); // Replace with the actual token
 
         String requestBody = "{ \"password\": \"12345678\", \"user_id\": 1 }"; // Replace user_id with the actual user ID
 
@@ -88,7 +88,7 @@ public class ForgotPasswordController {
     }
     @Test
     public void testChangeEmailBySuperAdmin() throws JsonProcessingException {
-        String token = getToken(); // Replace with the actual token
+        String token = getSuperadminToken(); // Replace with the actual token
 
         String requestBody = "{ \"email\": \"rifat@gmail.com\", \"user_id\": 1 }"; // Replace user_id with the actual user ID
 

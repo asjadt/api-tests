@@ -27,7 +27,7 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
 import static restaunrantApiTest.Util.URL;
-import static restaunrantApiTest.Util.getToken;
+import static restaunrantApiTest.Util.getSuperadminToken;
 
 public class NotificationController {
     @Test
@@ -40,7 +40,7 @@ public class NotificationController {
 
         given()
                 .contentType(ContentType.JSON)
-                .header("Authorization", "Bearer " + getToken())
+                .header("Authorization", "Bearer " + getSuperadminToken())
                 .body(requestBody)
                 .when()
                 .post(URL + "/api/notification")
@@ -60,7 +60,7 @@ public class NotificationController {
 
         given()
                 .contentType(ContentType.JSON)
-                .header("Authorization", "Bearer " + getToken())
+                .header("Authorization", "Bearer " + getSuperadminToken())
                 .body(requestBody)
                 .when()
                 .patch(URL + "/api/notification/{notificationId}", 1) // Replace 1 with the actual notification ID
@@ -73,7 +73,7 @@ public class NotificationController {
     @Test
     public void testGetNotification() throws JsonProcessingException {
         given()
-                .header("Authorization", "Bearer " + getToken())
+                .header("Authorization", "Bearer " + getSuperadminToken())
                 .when()
                 .get(URL + "/api/notification")
                 .then()
@@ -89,7 +89,7 @@ public class NotificationController {
         given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .header("Authorization", "Bearer " + getToken())
+                .header("Authorization", "Bearer " + getSuperadminToken())
                 .pathParam("notificationId", notificationId)
                 .when()
                 .delete(URL +"/api/notification/{notificationId}")

@@ -26,7 +26,7 @@ import java.util.*;
 import static io.restassured.RestAssured.given;
 import static org.testng.AssertJUnit.assertNotNull;
 import static restaunrantApiTest.Util.URL;
-import static restaunrantApiTest.Util.getToken;
+import static restaunrantApiTest.Util.getSuperadminToken;
 
 public class UserController {
     @Test
@@ -37,7 +37,7 @@ public class UserController {
       String response =  given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .header("Authorization", "Bearer " + getToken())
+                .header("Authorization", "Bearer " + getSuperadminToken())
                 .pathParam("perPage", perPage)
                 .queryParam("search_term", searchTerm)
                 .when()
@@ -57,7 +57,7 @@ public class UserController {
         String response = given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .header("Authorization", "Bearer " + getToken())
+                .header("Authorization", "Bearer " + getSuperadminToken())
                 .pathParam("perPage", perPage)
                 .queryParam("search_term", searchTerm)
                 .when()
@@ -77,7 +77,7 @@ public class UserController {
         String response =  given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .header("Authorization", "Bearer " + getToken())
+                .header("Authorization", "Bearer " + getSuperadminToken())
                 .pathParam("id", id)
                 .when()
                 .delete(URL +"/api/superadmin/user-delete/{id}")

@@ -24,14 +24,14 @@ import org.testng.annotations.DataProvider;
 import static io.restassured.RestAssured.given;
 import static org.testng.AssertJUnit.assertNotNull;
 import static restaunrantApiTest.Util.URL;
-import static restaunrantApiTest.Util.getToken;
+import static restaunrantApiTest.Util.getSuperadminToken;
 
 
 public class OwnerController {
 
     @Test
     public void testGetRoleAPI() throws JsonProcessingException {
-        String token = getToken();
+        String token = getSuperadminToken();
 
         String response = given()
                 .contentType("application/json")
@@ -52,7 +52,7 @@ public class OwnerController {
 
     @Test
     public void testCreateUser2API() throws JsonProcessingException {
-        String token = getToken();
+        String token = getSuperadminToken();
         String requestBody = "{\"email\": \"test" + Math.random() + "@gmail.com\", \"password\": \"12345678\", \"first_Name\": \"Rifat\", \"phone\": \"Rifat\", \"type\": \"customer\"}";
 
         String response = given()
@@ -74,7 +74,7 @@ public class OwnerController {
     }
     @Test
     public void testCreateUserWithRestaurantAPI() throws JsonProcessingException {
-        String token = getToken();
+        String token = getSuperadminToken();
         String requestBody = "{\"email\": \"rifat" + Math.random()  +"@gmail.com\", \"password\": \"12345678\", \"first_Name\": \"Rifat\", \"last_Name\": \"Rifat\", \"phone\": \"Rifat\", \"restaurant_name\": \"restaurant_name\", \"restaurant_address\": \"restaurant_address\", \"restaurant_postcode\": \"restaurant_postcode\", \"restaurant_enable_question\": \"0\", \"restaurant_EmailAddress\": \"0\", \"restaurant_GoogleMapApi\": \"0\", \"restaurant_totalTables\": \"0\", \"restaurant_homeText\": \"0\", \"restaurant_AdditionalInformation\": \"0\", \"restaurant_Webpage\": \"0\", \"restaurant_PhoneNumber\": \"0\", \"restaurant_About\": \"0\", \"restaurant_Layout\": \"0\", \"is_eat_in\": \"0\", \"is_delivery\": \"0\", \"is_take_away\": \"0\", \"is_customer_order\": \"0\", \"review_type\": \"emoji\", \"Is_guest_user\": false, \"is_review_silder\": false, \"review_only\": true}";
 
         String response = given()
@@ -120,7 +120,7 @@ public class OwnerController {
     }
     @Test
     public void testCheckEmailAPI() throws JsonProcessingException {
-        String token = getToken();
+        String token = getSuperadminToken();
         String requestBody = "{\"email\": \"test@g.c\"}";
 
         String response = given()
@@ -142,7 +142,7 @@ public class OwnerController {
     }
     @Test
     public void testCreateGuestUserAPI() throws JsonProcessingException {
-        String token = getToken();
+        String token = getSuperadminToken();
         String requestBody = "{\"email\": \"test" + Math.random() + "@g.c\", \"first_Name\": \"Rifat\", \"phone\": \"12345678\"}";
 
         String response = given()
@@ -165,7 +165,7 @@ public class OwnerController {
 
     @Test
     public void testCreateStaffUserAPI() throws JsonProcessingException {
-        String token = getToken();
+        String token = getSuperadminToken();
         String restaurantId = "1";
         String requestBody = "{\"email\": \"test" + Math.random() +  "@g.c\", \"first_Name\": \"Rifat\", \"phone\": \"12345678\", \"password\": \"Rifat\"}";
 
@@ -263,7 +263,7 @@ public class OwnerController {
 
     @Test
     public void testUpdateUserAPI() throws JsonProcessingException {
-        String token = getToken();
+        String token = getSuperadminToken();
         String requestBody = "{\"id\": \"1\", \"first_Name\": \"John\", \"last_Name\": \"Doe\", \"phone\": \"1234567890\", \"Address\": \"123 Main St\", \"post_code\": \"12345\", \"password\": \"newPassword\", \"old_password\": \"oldPassword\"}";
 
     String response =    given()
@@ -284,7 +284,7 @@ public class OwnerController {
     }
     @Test
     public void testUpdateUserByUserAPI() throws JsonProcessingException {
-        String token = getToken();
+        String token = getSuperadminToken();
         String requestBody = "{\"first_Name\": \"John\", \"last_Name\": \"Doe\", \"phone\": \"1234567890\", \"Address\": \"123 Main St\", \"post_code\": \"12345\", \"password\": \"newPassword\", \"old_password\": \"oldPassword\"}";
 
      String response =   given()

@@ -24,13 +24,13 @@ import org.testng.annotations.DataProvider;
 import static io.restassured.RestAssured.given;
 import static org.testng.AssertJUnit.assertNotNull;
 import static restaunrantApiTest.Util.URL;
-import static restaunrantApiTest.Util.getToken;
+import static restaunrantApiTest.Util.getSuperadminToken;
 
 
 public class RestaurantController {
     @Test
     public void testStoreRestaurantAPI() throws JsonProcessingException {
-        String token = getToken();
+        String token = getSuperadminToken();
 
         String requestBody = "{\n" +
                 "    \"Name\": \"Sample Restaurant\",\n" +
@@ -62,7 +62,7 @@ public class RestaurantController {
 
     @Test
     public void testStoreRestaurantByOwnerIdAPI() throws JsonProcessingException {
-        String token = getToken();
+        String token = getSuperadminToken();
 
         String requestBody = "{\n" +
                 "    \"Name\": \"Sample Restaurant\",\n" +
@@ -95,7 +95,7 @@ public class RestaurantController {
 
     @Test
     public void testUpdateRestaurantDetailsAPI() throws JsonProcessingException {
-        String token = getToken();
+        String token = getSuperadminToken();
         Integer restaurantId = 1;
         String requestBody = "{\n" +
                 "    \"Name\": \"Updated Restaurant\",\n" +
@@ -143,7 +143,7 @@ public class RestaurantController {
 
     @Test
     public void testGetRestaurantByIdAPI() throws JsonProcessingException {
-        String token = getToken();
+        String token = getSuperadminToken();
         String restaurantId = "1";
 
         String response =   given()
@@ -165,7 +165,7 @@ public class RestaurantController {
 
     @Test
     public void testGetAllRestaurantsAPI() throws JsonProcessingException {
-        String token = getToken();
+        String token = getSuperadminToken();
         String searchKey = "restaurant name";
 
         String response =    given()
@@ -187,7 +187,7 @@ public class RestaurantController {
 
     @Test
     public void testGetRestaurantsAPI() throws JsonProcessingException {
-        String token = getToken();
+        String token = getSuperadminToken();
         int perPage = 10;
         String searchKey = "restaurant name";
 
@@ -211,7 +211,7 @@ public class RestaurantController {
 
     @Test
     public void testGetRestaurantTableByRestaurantIdAPI() throws JsonProcessingException {
-        String token = getToken();
+        String token = getSuperadminToken();
         int restaurantId = 1;
 
         String response =   given()
@@ -232,13 +232,13 @@ public class RestaurantController {
         System.out.println(response);
     }
     @Test
-    public void testDeleteRestaurantAPI(Integer restaurantId,String restaurantOwnerToken) throws JsonProcessingException {
+    public void testDeleteRestaurantAPI(Integer restaurantId) throws JsonProcessingException {
 
 
      String response =   given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .header("Authorization", "Bearer " + restaurantOwnerToken)
+                .header("Authorization", "Bearer " + getSuperadminToken())
                 .pathParam("id", restaurantId)
                 .when()
                 .delete(URL +"/api/restaurant/delete/{id}")

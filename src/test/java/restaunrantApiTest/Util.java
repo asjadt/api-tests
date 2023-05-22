@@ -27,10 +27,10 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
 
 public class Util {
-    private static final Logger LOG = LogManager.getLogger (TestPostRequests.class);
+
     public static final String URL = "https://quickreview.app/restaurant";
 
-    public static String  getToken() throws JsonProcessingException {
+    public static String  getSuperadminToken() throws JsonProcessingException {
 
         String response =   given().contentType(ContentType.JSON)
 
@@ -44,7 +44,7 @@ public class Util {
                 .asString();
 
         String token = JsonPath.from(response).getString("token");
-        System.out.println("Token: " + token);
+        System.out.println("superadmin token : " + token);
 
         return token;
 

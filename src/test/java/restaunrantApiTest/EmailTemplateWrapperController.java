@@ -27,12 +27,12 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
 import static restaunrantApiTest.Util.URL;
-import static restaunrantApiTest.Util.getToken;
+import static restaunrantApiTest.Util.getSuperadminToken;
 
 public class EmailTemplateWrapperController {
     @Test
     public void testUpdateEmailTemplateWrapper() throws JsonProcessingException {
-        String token = getToken();
+        String token = getSuperadminToken();
 
         Map<String, Object> requestBody = new HashMap<>();
         requestBody.put("id", 1); // Specify the ID of the email template wrapper you want to update
@@ -60,7 +60,7 @@ public class EmailTemplateWrapperController {
 
     @Test
     public void testGetEmailTemplateWrappers() throws JsonProcessingException {
-        String token = getToken();
+        String token = getSuperadminToken();
         int perPage = 6; // Specify the number of results per page
 
         Map<String, Object> queryParams = new HashMap<>();
@@ -83,7 +83,7 @@ public class EmailTemplateWrapperController {
     }
     @Test
     public void testGetEmailTemplateWrapperById() throws JsonProcessingException {
-        String token = getToken();
+        String token = getSuperadminToken();
         int id = 6; // Specify the ID of the email template wrapper
 
         Response response = given()

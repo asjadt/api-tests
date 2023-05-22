@@ -27,7 +27,7 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
 import static restaunrantApiTest.Util.URL;
-import static restaunrantApiTest.Util.getToken;
+import static restaunrantApiTest.Util.getSuperadminToken;
 
 public class DashboardWidgetController {
 
@@ -38,7 +38,7 @@ public class DashboardWidgetController {
 
     @Test
     public void testCreateDashboardWidget() throws JsonProcessingException {
-        String token = getToken();
+        String token = getSuperadminToken();
         String response = given()
                 .contentType(ContentType.JSON)
                 .header("Authorization", "Bearer " + token)
@@ -59,7 +59,7 @@ public class DashboardWidgetController {
 
     @Test
     public void testUpdateDashboardWidget() throws JsonProcessingException {
-        String token = getToken();
+        String token = getSuperadminToken();
         String response = given()
                 .contentType(ContentType.JSON)
                 .header("Authorization", "Bearer " + token)
@@ -78,7 +78,7 @@ public class DashboardWidgetController {
 
     @Test
     public void testGetDashboardWidget() throws JsonProcessingException {
-        String token = getToken();
+        String token = getSuperadminToken();
         String response = given()
                 .contentType(ContentType.JSON)
                 .header("Authorization", "Bearer " + token)
@@ -97,7 +97,7 @@ public class DashboardWidgetController {
 
     @Test
     public void testGetDashboardWidgetById() throws JsonProcessingException {
-        String token = getToken();
+        String token = getSuperadminToken();
         String id = "1"; // The ID of the widget you want to retrieve
         String response = given()
                 .contentType(ContentType.JSON)
@@ -123,7 +123,7 @@ public class DashboardWidgetController {
         given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .header("Authorization", "Bearer " + getToken()) // Replace with the actual access token
+                .header("Authorization", "Bearer " + getSuperadminToken()) // Replace with the actual access token
                 .pathParam("id", widgetId)
                 .when()
                 .delete(URL +"/api/superadmin/dashboard-widget/delete/{id}")
@@ -141,7 +141,7 @@ public class DashboardWidgetController {
         given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .header("Authorization", "Bearer " + getToken()) // Replace with the actual access token
+                .header("Authorization", "Bearer " + getSuperadminToken()) // Replace with the actual access token
                 .pathParam("id", dashboardId)
                 .when()
                 .delete(URL+ "/api/user-dashboard/delete/{id}")

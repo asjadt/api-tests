@@ -24,12 +24,12 @@ import org.testng.annotations.DataProvider;
 import static io.restassured.RestAssured.given;
 import static org.testng.AssertJUnit.assertNotNull;
 import static restaunrantApiTest.Util.URL;
-import static restaunrantApiTest.Util.getToken;
+import static restaunrantApiTest.Util.getSuperadminToken;
 
 public class OrderController {
     @Test
     public void testStoreOrderAPI() throws JsonProcessingException {
-        String token = getToken();
+        String token = getSuperadminToken();
         int restaurantId = 1; // Specify the ID of the restaurant
         String requestBody = "{\"amount\": 50, \"customer_id\": 1, \"customer_name\": \"test\", \"remarks\": \"test\", \"table_number\": \"5\", \"type\": \"test\", \"phone\": \"0111\", \"address\": \"test\", \"post_code\": \"post_code\", \"discount\": \"10\", \"cash\": \"10\", \"card\": \"10\", \"dishes\": [{\"qty\": 10, \"dish_id\": 1, \"variation_ids\": [1, 2]}, {\"qty\": 10, \"meal_id\": 1, \"meal_dishes\": [{\"dish_id\": \"1\", \"variation_ids\": [1, 2]}]}], \"request_object\": \"{}\"}";
 
@@ -57,7 +57,7 @@ public class OrderController {
     public void testStoreByUserAPI() throws JsonProcessingException {
 
 this.testEditOrderAPI();
-        String token = getToken();
+        String token = getSuperadminToken();
         int restaurantId = 1; // Specify the ID of the restaurant
         String requestBody = "{\n" +
                 "  \"amount\": 50,\n" +
@@ -116,7 +116,7 @@ this.testEditOrderAPI();
     public void testOrderCompleteAPI() throws JsonProcessingException {
        // Replace with the base URL of your API
 
-        String token = getToken();
+        String token = getSuperadminToken();
         int orderId = 2; // Specify the ID of the order
         String requestBody = "{\n" +
                 "  \"card\": 50,\n" +
@@ -146,7 +146,7 @@ this.testEditOrderAPI();
     public void testUpdateStatusAPI() throws JsonProcessingException {
          // Replace with the base URL of your API
 
-        String token = getToken();
+        String token = getSuperadminToken();
         int orderId = 2; // Specify the ID of the order
         String requestBody = "{\n" +
                 "  \"status\": \"active\"\n" +
@@ -175,7 +175,7 @@ this.testEditOrderAPI();
     public void testEditOrderAPI() throws JsonProcessingException {
 
 
-        String token = getToken();
+        String token = getSuperadminToken();
         int orderId = 2; // Specify the ID of the order
         String requestBody = "{\n" +
                 "  \"amount\": 50,\n" +
@@ -232,7 +232,7 @@ this.testEditOrderAPI();
     public void testGetOrderByIdAPI() throws JsonProcessingException {
 
 
-        String token = getToken();
+        String token = getSuperadminToken();
         int orderId = 2; // Specify the ID of the order
 
       String response =  given()
@@ -255,7 +255,7 @@ this.testEditOrderAPI();
     public void testGetOrderById2API() throws JsonProcessingException {
         RestAssured.baseURI = "http://localhost:8000"; // Replace with the base URL of your API
 
-        String token = getToken();
+        String token = getSuperadminToken();
         int orderId = 1; // Specify the ID of the order
         int restaurantId = 1; // Specify the ID of the restaurant
 
@@ -280,7 +280,7 @@ this.testEditOrderAPI();
     public void testGetOrderByCustomerIdAPI() throws JsonProcessingException {
 
 
-        String token = getToken();
+        String token = getSuperadminToken();
         int customerId = 1; // Specify the ID of the customer
 
     String response =    given()
@@ -303,7 +303,7 @@ this.testEditOrderAPI();
     public void testGetTodaysOrderByStatusAPI() throws JsonProcessingException {
        // Replace with the base URL of your API
 
-        String token = getToken();
+        String token = getSuperadminToken();
         int status = 1; // Specify the status
 
       String  response = given()
@@ -327,7 +327,7 @@ this.testEditOrderAPI();
     public void testGetAllOrderAPI() throws JsonProcessingException {
         RestAssured.baseURI = "http://localhost:8000"; // Replace with the base URL of your API
 
-        String token = getToken();
+        String token = getSuperadminToken();
 
       String response =  given()
                 .contentType(ContentType.JSON)
@@ -350,7 +350,7 @@ this.testEditOrderAPI();
         RestAssured.baseURI = "http://localhost:8000"; // Replace with the base URL of your API
         String restaurantId = "1"; // Replace with the actual restaurant ID
 
-        String token = getToken();
+        String token = getSuperadminToken();
 
       String response =  given()
                 .contentType(ContentType.JSON)
@@ -384,7 +384,7 @@ this.testEditOrderAPI();
         String types = "type1,type2,type3"; // Replace with the desired types (comma-separated)
         String statuses = "status1,status2,status3"; // Replace with the desired statuses (comma-separated)
 
-        String token = getToken();
+        String token = getSuperadminToken();
 
     String response =    given()
                 .contentType(ContentType.JSON)
@@ -451,7 +451,7 @@ this.testEditOrderAPI();
 
         String type = "eat-----in"; // Replace with the actual type
 
-        String token = getToken();
+        String token = getSuperadminToken();
 
         String response =     given()
                 .contentType(ContentType.JSON)
@@ -478,7 +478,7 @@ this.testEditOrderAPI();
         String type = "eat-----in"; // Replace with the actual type
         int restaurantId = 1; // Replace with the actual restaurant ID
 
-        String token = getToken();
+        String token = getSuperadminToken();
 
         String response =     given()
                 .contentType(ContentType.JSON)
@@ -504,7 +504,7 @@ this.testEditOrderAPI();
 
         int restaurantId = 1; // Replace with the actual restaurant ID
 
-        String token = getToken();
+        String token = getSuperadminToken();
 
         String response =   given()
                 .contentType(ContentType.JSON)
@@ -530,7 +530,7 @@ this.testEditOrderAPI();
         int restaurantId = 1; // Replace with the actual restaurant ID
         int perPage = 10; // Replace with the desired number of items per page
 
-        String token = getToken();
+        String token = getSuperadminToken();
 
         String response =    given()
                 .contentType(ContentType.JSON)
@@ -556,7 +556,7 @@ this.testEditOrderAPI();
 
         int restaurantId = 1; // Replace with the actual restaurant ID
 
-        String token = getToken();
+        String token = getSuperadminToken();
 
         String response =    given()
                 .contentType(ContentType.JSON)
@@ -579,7 +579,7 @@ this.testEditOrderAPI();
     public void testGetDailyOrderReportAPI() throws JsonProcessingException {
 
 
-        String token = getToken();
+        String token = getSuperadminToken();
 
         String response =   given()
                 .contentType(ContentType.JSON)
@@ -604,7 +604,7 @@ this.testEditOrderAPI();
     public void testGetOrderReportAPI() throws JsonProcessingException {
 
 
-        String token = getToken();
+        String token = getSuperadminToken();
         String min = "0";
         String max = "99";
         String fromDate = "2019-06-29";
@@ -638,7 +638,7 @@ this.testEditOrderAPI();
     public void testGetOrderReportByRestaurantIdAPI() throws JsonProcessingException {
 
 
-        String token = getToken();
+        String token = getSuperadminToken();
         String restaurantId = "1";
         String min = "0";
         String max = "99";
@@ -674,7 +674,7 @@ this.testEditOrderAPI();
     public void testGetOrderReportByRestaurantId2API() throws JsonProcessingException {
 
 
-        String token = getToken();
+        String token = getSuperadminToken();
         String restaurantId = "1";
         String fromDate = "2019-06-29";
         String toDate = "2023-06-29";
@@ -705,7 +705,7 @@ this.testEditOrderAPI();
     @Test
     public void testGetOrderByUserAPI() throws JsonProcessingException {
 
-        String token = getToken();
+        String token = getSuperadminToken();
 
         String response =    given()
                 .contentType(ContentType.JSON)
@@ -730,7 +730,7 @@ this.testEditOrderAPI();
         given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .header("Authorization", "Bearer " + getToken())
+                .header("Authorization", "Bearer " + getSuperadminToken())
                 .pathParam("orderId", orderId)
                 .when()
                 .delete(URL +"/api/order/{orderId}")

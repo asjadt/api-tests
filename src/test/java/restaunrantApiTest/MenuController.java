@@ -27,7 +27,7 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
 import static restaunrantApiTest.Util.URL;
-import static restaunrantApiTest.Util.getToken;
+import static restaunrantApiTest.Util.getSuperadminToken;
 
 public class MenuController {
     @Test
@@ -258,7 +258,7 @@ public class MenuController {
         given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .header("Authorization", "Bearer " + getToken())
+                .header("Authorization", "Bearer " + getSuperadminToken())
                 .pathParam("menuId", menuId)
                 .when()
                 .delete(URL +"/api/menu/{menuId}")

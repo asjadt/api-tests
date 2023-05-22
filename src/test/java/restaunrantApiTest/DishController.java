@@ -26,7 +26,7 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
 import static restaunrantApiTest.Util.URL;
-import static restaunrantApiTest.Util.getToken;
+import static restaunrantApiTest.Util.getSuperadminToken;
 
 public class DishController {
 
@@ -37,7 +37,7 @@ public class DishController {
 
     @Test
     public void testStoreDish() throws JsonProcessingException {
-        String token = getToken();
+        String token = getSuperadminToken();
         String menuId = "1"; // The ID of the menu where you want to store the dish
         Response response = given()
                 .contentType(ContentType.JSON)
@@ -498,7 +498,7 @@ public class DishController {
         given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .header("Authorization", "Bearer " + getToken()) // Replace with the actual access token
+                .header("Authorization", "Bearer " + getSuperadminToken()) // Replace with the actual access token
                 .pathParam("dishId", dishId)
                 .when()
                 .delete(URL +"/api/dishes/{dishId}")

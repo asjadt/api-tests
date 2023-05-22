@@ -27,7 +27,7 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
 import static restaunrantApiTest.Util.URL;
-import static restaunrantApiTest.Util.getToken;
+import static restaunrantApiTest.Util.getSuperadminToken;
 
 public class DailyViewsController {
 
@@ -38,7 +38,7 @@ public class DailyViewsController {
 
     @Test
     public void testStoreDailyViews() throws JsonProcessingException {
-      String token =  getToken();
+      String token =  getSuperadminToken();
       String response =  given().contentType(ContentType.JSON)
               .header("Authorization", "Bearer " + token)
               .contentType(ContentType.JSON)
@@ -113,7 +113,7 @@ public class DailyViewsController {
     }
     @Test
     public void testCreateDailyViews() throws JsonProcessingException {
-        String token =  getToken();
+        String token =  getSuperadminToken();
         String requestBody = "{\"view_date\": \"2023-05-08\", \"daily_views\": \"5\"}";
         given().contentType(ContentType.JSON)
                 .accept(ContentType.JSON)

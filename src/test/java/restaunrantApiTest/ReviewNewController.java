@@ -25,8 +25,7 @@ import java.util.*;
 
 import static io.restassured.RestAssured.given;
 import static org.testng.AssertJUnit.assertNotNull;
-import static restaunrantApiTest.Util.URL;
-import static restaunrantApiTest.Util.getToken;
+import static restaunrantApiTest.Util.*;
 
 public class ReviewNewController {
     @Test
@@ -38,7 +37,7 @@ public class ReviewNewController {
         String response = given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .header("Authorization", "Bearer " + getToken())
+                .header("Authorization", "Bearer " + getSuperadminToken())
                 .pathParam("restaurantId", restaurantId)
                 .pathParam("rate", rate)
                 .when()
@@ -56,7 +55,7 @@ public class ReviewNewController {
     }
     @Test
     public void testGetAverageAPI() throws JsonProcessingException {
-        String token = getToken();
+        String token = getSuperadminToken();
         int restaurantId = 1;
         String startDate = "2019-06-29";
         String endDate = "2026-06-29";
@@ -84,7 +83,7 @@ public class ReviewNewController {
 
     @Test
     public void testFilterReviewAPI() throws JsonProcessingException {
-        String token = getToken();
+        String token = getSuperadminToken();
         int restaurantId = 1;
         int rate = 1;
         String startDate = "2019-06-29";
@@ -115,7 +114,7 @@ public class ReviewNewController {
 
     @Test
     public void testGetReviewByRestaurantIdAPI() throws JsonProcessingException {
-        String token = getToken();
+        String token = getSuperadminToken();
         int restaurantId = 1;
 
         String response = given()
@@ -139,7 +138,7 @@ public class ReviewNewController {
 
     @Test
     public void testGetCustomerReviewAPI() throws JsonProcessingException {
-        String token = getToken();
+        String token = getSuperadminToken();
         int restaurantId = 1;
         String startDate = "2019-06-29";
         String endDate = "2026-06-29";
@@ -167,7 +166,7 @@ public class ReviewNewController {
 
     @Test
     public void testStoreReviewAPI() throws JsonProcessingException {
-        String token = getToken();
+        String token = getSuperadminToken();
         int restaurantId = 1;
 
         // Prepare the request body
@@ -236,7 +235,7 @@ public class ReviewNewController {
         String requestBodyJson = new ObjectMapper().writeValueAsString(requestBody);
 
         String response = given()
-                .header("Authorization", "Bearer " + getToken())
+                .header("Authorization", "Bearer " + getSuperadminToken())
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
                 .pathParam("restaurantId", restaurantId)
@@ -267,7 +266,7 @@ public class ReviewNewController {
         String requestBodyJson = new ObjectMapper().writeValueAsString(requestBody);
 
         String response = given()
-                .header("Authorization", "Bearer " + getToken())
+                .header("Authorization", "Bearer " + getSuperadminToken())
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
                 .body(requestBodyJson)
@@ -299,7 +298,7 @@ public class ReviewNewController {
         String response = given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .header("Authorization", "Bearer " + getToken()) // Set the authorization header
+                .header("Authorization", "Bearer " + getSuperadminToken()) // Set the authorization header
                 .body(requestBodyJson)
                 .when()
                 .put(URL + "/api/review-new/update/questions")
@@ -328,7 +327,7 @@ public class ReviewNewController {
         String response = given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .header("Authorization", "Bearer " + getToken()) // Set the authorization header
+                .header("Authorization", "Bearer " + getSuperadminToken()) // Set the authorization header
                 .body(requestBodyJson)
                 .when()
                 .put(URL + "/api/review-new/update/active_state/questions")
@@ -348,7 +347,7 @@ public class ReviewNewController {
         String response =  given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .header("Authorization", "Bearer " + getToken()) // Set the authorization header
+                .header("Authorization", "Bearer " + getSuperadminToken()) // Set the authorization header
                 .queryParam("restaurant_id", "123") // Set the restaurant ID as a query parameter (optional)
                 .when()
                 .get(URL + "/api/review-new/get/questions")
@@ -367,7 +366,7 @@ public class ReviewNewController {
         String response =  given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .header("Authorization", "Bearer " + getToken())
+                .header("Authorization", "Bearer " + getSuperadminToken())
                 .queryParam("restaurant_id", "1") // Set the restaurant ID as a query parameter (optional)
                 .when()
                 .get(URL + "/api/review-new/get/questions-all/customer")
@@ -384,7 +383,7 @@ public class ReviewNewController {
         String response = given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .header("Authorization", "Bearer " + getToken())
+                .header("Authorization", "Bearer " + getSuperadminToken())
                 .queryParam("restaurant_id", "1") // Set the restaurant ID as a query parameter (optional)
                 .when()
                 .get(URL + "/api/review-new/get/questions-all")
@@ -402,7 +401,7 @@ public class ReviewNewController {
         String response =    given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .header("Authorization", "Bearer " + getToken())
+                .header("Authorization", "Bearer " + getSuperadminToken())
                 .queryParam("restaurant_id", "1") // Set the restaurant ID as a query parameter (optional)
                 .queryParam("start_date", "2023-06-29") // Set the start date as a query parameter (optional)
                 .queryParam("end_date", "2023-06-29") // Set the end date as a query parameter (optional)
@@ -422,7 +421,7 @@ public class ReviewNewController {
         String response =  given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .header("Authorization", "Bearer " + getToken())
+                .header("Authorization", "Bearer " + getSuperadminToken())
                 .pathParam("id", 1) // Set the question ID as a path parameter
                 .when()
                 .get(URL + "/api/review-new/get/questions/{id}")
@@ -440,7 +439,7 @@ public class ReviewNewController {
         String response =   given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .header("Authorization", "Bearer " + getToken())
+                .header("Authorization", "Bearer " + getSuperadminToken())
                 .pathParam("id", 1) // Set the question ID as a path parameter
                 .when()
                 .get(URL + "/api/review-new/get/questions/{id}")
@@ -458,7 +457,7 @@ public class ReviewNewController {
         String response =    given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .header("Authorization", "Bearer " + getToken())
+                .header("Authorization", "Bearer " + getSuperadminToken())
                 .pathParam("id", 1) // Set the question ID as a path parameter
                 .when()
                 .delete(URL + "/api/review-new/delete/questions/{id}")
@@ -480,7 +479,7 @@ public class ReviewNewController {
         String response =    given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .header("Authorization", "Bearer " + getToken())
+                .header("Authorization", "Bearer " + getSuperadminToken())
                 .body(requestBody)
                 .when()
                 .post(URL + "/api/review-new/create/tags")
@@ -501,7 +500,7 @@ public class ReviewNewController {
         String response =   given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .header("Authorization", "Bearer " + getToken())
+                .header("Authorization", "Bearer " + getSuperadminToken())
                 .body(requestBody)
                 .when()
                 .post(URL + "/api/review-new/create/tags/multiple/1")
@@ -523,7 +522,7 @@ public class ReviewNewController {
         String response =    given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .header("Authorization", "Bearer " + getToken())
+                .header("Authorization", "Bearer " + getSuperadminToken())
                 .body(requestBody)
                 .when()
                 .put(URL + "/api/review-new/update/tags")
@@ -540,7 +539,7 @@ public class ReviewNewController {
         String response =   given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .header("Authorization", "Bearer " + getToken())
+                .header("Authorization", "Bearer " + getSuperadminToken())
                 .when()
                 .get(URL + "/api/review-new/get/tags")
                 .then()
@@ -559,7 +558,7 @@ public class ReviewNewController {
         String response =   given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .header("Authorization", "Bearer " + getToken())
+                .header("Authorization", "Bearer " + getSuperadminToken())
                 .pathParam("id", tagId)
                 .when()
                 .get(URL + "/api/review-new/get/tags/{id}")
@@ -580,7 +579,7 @@ public class ReviewNewController {
         String response =   given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .header("Authorization", "Bearer " + getToken())
+                .header("Authorization", "Bearer " + getSuperadminToken())
                 .pathParam("id", tagId)
                 .pathParam("restaurantId", restaurantId)
                 .when()
@@ -601,7 +600,7 @@ public class ReviewNewController {
         String response =   given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .header("Authorization", "Bearer " + getToken())
+                .header("Authorization", "Bearer " + getSuperadminToken())
                 .pathParam("id", tagId)
                 .when()
                 .delete(URL + "/api/review-new/delete/tags/{id}")
@@ -635,7 +634,7 @@ public class ReviewNewController {
         String response =   given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .header("Authorization", "Bearer " + getToken())
+                .header("Authorization", "Bearer " + getSuperadminToken())
                 .body(requestBody)
                 .when()
                 .post(URL + "/api/review-new/owner/create/questions")
@@ -669,7 +668,7 @@ public class ReviewNewController {
         String response =   given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .header("Authorization", "Bearer " + getToken())
+                .header("Authorization", "Bearer " + getSuperadminToken())
                 .queryParam("_method", "PATCH")
                 .body(requestBody)
                 .when()
@@ -692,7 +691,7 @@ public class ReviewNewController {
     String response =    given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .header("Authorization", "Bearer " + getToken())
+                .header("Authorization", "Bearer " + getSuperadminToken())
                 .queryParam("restaurant_id", restaurantId)
                 .queryParam("start_date", startDate)
                 .queryParam("end_date", endDate)
@@ -752,7 +751,7 @@ public class ReviewNewController {
      String response =   given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-             .header("Authorization", "Bearer " + getToken()) // Replace with the actual access token
+             .header("Authorization", "Bearer " + getSuperadminToken()) // Replace with the actual access token
                 .queryParam("restaurant_id", restaurantId)
                 .queryParam("quantum", quantum)
                 .when()
@@ -775,7 +774,7 @@ public class ReviewNewController {
         String response =    given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .header("Authorization", "Bearer " + getToken()) // Replace with the actual access token
+                .header("Authorization", "Bearer " + getSuperadminToken()) // Replace with the actual access token
                 .queryParam("restaurant_id", restaurantId)
                 .queryParam("quantum", quantum)
                 .queryParam("period", period)
