@@ -232,13 +232,13 @@ public class RestaurantController {
         System.out.println(response);
     }
     @Test
-    public void testDeleteRestaurantAPI() throws JsonProcessingException {
-        String restaurantId = "1"; // Replace with the actual restaurant ID
+    public void testDeleteRestaurantAPI(Integer restaurantId,String restaurantOwnerToken) throws JsonProcessingException {
 
-        given()
+
+     String response =   given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .header("Authorization", "Bearer " + getToken())
+                .header("Authorization", "Bearer " + restaurantOwnerToken)
                 .pathParam("id", restaurantId)
                 .when()
                 .delete(URL +"/api/restaurant/delete/{id}")
@@ -248,5 +248,7 @@ public class RestaurantController {
                 .extract()
                 .response()
                 .asString();
+
+        System.out.println("restaunrat daleted" +response);
     }
 }

@@ -24,8 +24,7 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
 
 
-@Epic("Rest Assured POC - Example Tests")
-@Feature("Performing different API Tests using Rest-Assured")
+
 public class AuthController {
 
 
@@ -35,8 +34,7 @@ public class AuthController {
 
 
     @Test
-    @Description("Test all cases of the Laravel API for storing a forget password token")
-    @Story("Execute Post requests using Rest Assured")
+
     public void resendEmailVerifyToken() {
         final String validEmailResponse = given().contentType(ContentType.JSON)
                 .body("{\"email\": \"rifat@gmail.com\"}")
@@ -63,8 +61,7 @@ public class AuthController {
         System.out.println("User not found response: " + userNotFoundResponse);
     }
     @Test
-    @Description("Test all cases of the Laravel API for storing a forget password token")
-    @Story("Execute Post requests using Rest Assured")
+
     public void register() {
         Random rand = new Random();
         int randomNumber = rand.nextInt(100);

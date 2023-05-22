@@ -26,56 +26,85 @@ import java.util.Random;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
+import static restaunrantApiTest.Util.URL;
+import static restaunrantApiTest.Util.getToken;
 
 public class DailyViewsController {
 
-    private static final Logger LOG = LogManager.getLogger (TestPostRequests.class);
-    private static final String URL = "https://mughalsignandprint.co.uk/restaurant";
 
 
-    public String  getToken() throws JsonProcessingException {
 
-        String response =   given().contentType(ContentType.JSON)
 
-                .body("{\"email\": \"superman@g.c\", \"password\": \"12345678\"}")
+
+    @Test
+    public void testStoreDailyViews() throws JsonProcessingException {
+      String token =  getToken();
+      String response =  given().contentType(ContentType.JSON)
+              .header("Authorization", "Bearer " + token)
+              .contentType(ContentType.JSON)
+              .accept(ContentType.JSON)
+                .body("{\"view_date\": \"2023-05-08\", \"daily_views\": \"1\"}")
                 .when()
-                .post(URL + "/api/auth")
+                .post(URL + "/api/dailyviews/1")
+                .then()
+
+              .extract()
+              .response()
+              .body()
+              .asString();
+
+        System.out.println(response);
+
+    }
+
+      public  String  testStoreDailyViewsGetString(Integer restaurantId,String restaurantOwnerToken) throws JsonProcessingException {
+
+        String response =  given().contentType(ContentType.JSON)
+                .header("Authorization", "Bearer " + restaurantOwnerToken)
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .body("{\"view_date\": \"2023-05-08\", \"daily_views\": \"1\"}")
+                .when()
+                .post(URL + "/api/dailyviews/" + restaurantId)
+                .then()
+
+                .extract()
+                .response()
+                .body()
+                .asString();
+
+        System.out.println(response);
+        return response;
+
+    }
+    @Test
+    public void testUpdateDailyViews(Integer restaurantId, String restaurantOwnerToken) throws JsonProcessingException {
+
+
+
+        String requestBody = "{\"view_date\": \"2019-06-29\"}";
+
+        String response = given()
+                .contentType(ContentType.JSON)
+                .header("Authorization", "Bearer " + restaurantOwnerToken)
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .body(requestBody)
+                .when()
+                .patch(URL + "/api/dailyviews/update/" + restaurantId)
                 .then()
                 .extract()
                 .response()
                 .body()
                 .asString();
 
-        String token = JsonPath.from(response).getString("token");
-        System.out.println("Token: " + token);
-
-        return token;
-
-    }
-    @Test
-    @Description("Test all cases of the Laravel API for storing a forget password token")
-    @Story("Execute Post requests using Rest Assured")
-    public void testStoreDailyViews() throws JsonProcessingException {
-      String token =  this.getToken();
-      String response =  given().contentType(ContentType.JSON)
-               .header("Authorization", "Bearer " + token)
-                .body("{\"view_date\": \"2023-05-08\", \"daily_views\": \"1\"}")
-                .when()
-                .post(URL + "/api/dailyviews/1")
-                .then()
-                .statusCode(200)
-              .extract()
-              .response()
-              .body()
-              .asString();
-
-
-
+        System.out.println(response);
     }
     @Test
     public void testStoreDailyViewsUnauthorized() {
         given().contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
+
                 .body("{\"view_date\": \"2023-05-08\", \"daily_views\": \"1\"}")
                 .when()
                 .post(URL + "/api/dailyviews/1")
@@ -84,9 +113,10 @@ public class DailyViewsController {
     }
     @Test
     public void testCreateDailyViews() throws JsonProcessingException {
-        String token =  this.getToken();
+        String token =  getToken();
         String requestBody = "{\"view_date\": \"2023-05-08\", \"daily_views\": \"5\"}";
         given().contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
                 .header("Authorization", "Bearer " + token)
                 .body(requestBody)
                 .when()
@@ -96,4 +126,6 @@ public class DailyViewsController {
                 .body("view_date", equalTo("2023-05-08"))
            ;
     }
+
+
 }
