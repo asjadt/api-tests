@@ -36,6 +36,7 @@ import java.util.Random;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
+import static restaunrantApiTest.Util.getSuperadminToken;
 
 
 public class AllInOne {
@@ -45,7 +46,7 @@ public class AllInOne {
     private OwnerController ownerController;
 
     private RestaurantController restaurantController;
-
+    private DashboardWidgetController dashboardWidgetController;
 
     private ObjectMapper objectMapper;
     @BeforeClass
@@ -54,6 +55,8 @@ public class AllInOne {
         ownerController = new OwnerController();
         restaurantController = new RestaurantController();
         objectMapper = new ObjectMapper();
+
+        dashboardWidgetController = new DashboardWidgetController();
     }
 
 
@@ -95,6 +98,34 @@ public class AllInOne {
 
         restaurantController.testDeleteRestaurantForceDeleteAPI(restaurantId);
     }
+
+    @Test
+    public void DashboardWidget() throws JsonProcessingException {
+        String superadminToken = getSuperadminToken();
+
+
+
+
+        String dashboardWidget  = dashboardWidgetController.testCreateDashboardWidgetGetString(superadminToken);
+        JsonNode jsonNodeOfDailyView = objectMapper.readTree(dashboardWidget);
+        Integer dashboardWidgetId = jsonNodeOfDailyView.get("id").asInt();
+        System.out.println("dashboard widget id: " + dashboardWidgetId);
+
+        dashboardWidgetController.testUpdateDashboardWidget(superadminToken,dashboardWidgetId);
+
+        dashboardWidgetController.testGetDashboardWidget(superadminToken);
+
+        dashboardWidgetController.testGetDashboardWidgetById(superadminToken,dashboardWidgetId);
+
+        dashboardWidgetController.testDeleteWidgetByIdAPI(superadminToken,dashboardWidgetId);
+
+
+
+
+
+
+    }
+
 
 
 

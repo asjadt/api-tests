@@ -1,30 +1,13 @@
 package restaunrantApiTest;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import data.reqres.PostData;
 import in.reqres.TestPostRequests;
-import io.qameta.allure.*;
-import io.restassured.RestAssured;
-import io.restassured.config.SSLConfig;
 import io.restassured.http.ContentType;
-import io.restassured.path.json.JsonPath;
-import io.restassured.response.Response;
-import io.restassured.response.ResponseBody;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Random;
-
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
 import static restaunrantApiTest.Util.URL;
 import static restaunrantApiTest.Util.getSuperadminToken;
@@ -51,19 +34,34 @@ public class DashboardWidgetController {
                 .response()
                 .body()
                 .asString();
+    }
+    public String testCreateDashboardWidgetGetString(String superadmintoken) throws JsonProcessingException {
 
+        String response = given()
+                .contentType(ContentType.JSON)
+                .header("Authorization", "Bearer " + superadmintoken)
+                .body("{\"name\": \"test\", \"description\": \"12345678\", \"user_type\": \"admin\"}")
+                .when()
+                .post(URL +"/api/superadmin/dashboard-widget/create")
+                .then()
+                .statusCode(200)
+                .extract()
+                .response()
+                .body()
+                .asString();
 
-
+        System.out.println(response);
+        return response;
     }
 
 
     @Test
-    public void testUpdateDashboardWidget() throws JsonProcessingException {
-        String token = getSuperadminToken();
+    public void testUpdateDashboardWidget(String superadmintoken,Integer dashboardWidgetId) throws JsonProcessingException {
+
         String response = given()
                 .contentType(ContentType.JSON)
-                .header("Authorization", "Bearer " + token)
-                .body("{\"id\": \"1\", \"name\": \"test\", \"description\": \"12345678\", \"user_type\": \"admin\"}")
+                .header("Authorization", "Bearer " + superadmintoken)
+                .body("{\"id\": \""+dashboardWidgetId+"\", \"name\": \"test\", \"description\": \"12345678\", \"user_type\": \"admin\"}")
                 .when()
                 .put(URL  + "/api/superadmin/dashboard-widget/update")
                 .then()
@@ -72,16 +70,16 @@ public class DashboardWidgetController {
                 .response()
                 .body()
                 .asString();
-
+        System.out.println(response);
 
     }
 
     @Test
-    public void testGetDashboardWidget() throws JsonProcessingException {
-        String token = getSuperadminToken();
+    public void testGetDashboardWidget(String superadmintoken) throws JsonProcessingException {
+
         String response = given()
                 .contentType(ContentType.JSON)
-                .header("Authorization", "Bearer " + token)
+                .header("Authorization", "Bearer " + superadmintoken)
                 .when()
                 .get(URL +"/api/superadmin/dashboard-widget/get")
                 .then()
@@ -90,18 +88,18 @@ public class DashboardWidgetController {
                 .response()
                 .body()
                 .asString();
-
+        System.out.println(response);
 
 
     }
 
     @Test
-    public void testGetDashboardWidgetById() throws JsonProcessingException {
-        String token = getSuperadminToken();
-        String id = "1"; // The ID of the widget you want to retrieve
+    public void testGetDashboardWidgetById(String superadmintoken,Integer id) throws JsonProcessingException {
+
+
         String response = given()
                 .contentType(ContentType.JSON)
-                .header("Authorization", "Bearer " + token)
+                .header("Authorization", "Bearer " + superadmintoken)
                 .pathParam("id", id)
                 .when()
                 .get(URL +"/api/superadmin/dashboard-widget/get/{id}")
@@ -112,18 +110,18 @@ public class DashboardWidgetController {
                 .body()
                 .asString();
 
-
+        System.out.println(response);
 
     }
 
     @Test
-    public void testDeleteWidgetByIdAPI() throws JsonProcessingException {
-        String widgetId = "1"; // Replace with the actual widget ID
+    public void testDeleteWidgetByIdAPI(String superadmintoken,Integer widgetId) throws JsonProcessingException {
 
-        given()
+
+      String response =  given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .header("Authorization", "Bearer " + getSuperadminToken()) // Replace with the actual access token
+                .header("Authorization", "Bearer " + superadmintoken) // Replace with the actual access token
                 .pathParam("id", widgetId)
                 .when()
                 .delete(URL +"/api/superadmin/dashboard-widget/delete/{id}")
@@ -133,6 +131,7 @@ public class DashboardWidgetController {
                 .extract()
                 .response()
                 .asString();
+        System.out.println(response);
     }
     @Test
     public void testDeleteUserDashboardByIdAPI() throws JsonProcessingException {
