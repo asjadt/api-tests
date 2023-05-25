@@ -57,6 +57,31 @@ public class EmailTemplateController {
         System.out.println(response);
 
     }
+    public String testCreateEmailTemplateGetString(String superadmintoken) throws JsonProcessingException {
+
+
+        Map<String, Object> requestBody = new HashMap<>();
+        requestBody.put("type", "email_verification_mail");
+        requestBody.put("template", "html template goes here");
+        requestBody.put("is_active", true);
+
+        String response = given()
+                .contentType("application/json")
+                .header("Authorization", "Bearer " + superadmintoken)
+                .body(requestBody)
+                .when()
+                .post(URL + "/api/v1.0/email-templates")
+                .then()
+                .statusCode(200)
+                .extract()
+                .response()
+                .body()
+                .asString();
+
+        System.out.println(response);
+        return response;
+
+    }
     @Test
     public void testUpdateEmailTemplate() throws JsonProcessingException {
         String token = getSuperadminToken();

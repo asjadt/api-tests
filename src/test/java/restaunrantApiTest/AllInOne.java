@@ -47,6 +47,8 @@ public class AllInOne {
 
     private RestaurantController restaurantController;
     private DashboardWidgetController dashboardWidgetController;
+    private EmailTemplateController emailTemplateController;
+    private MenuController menuController;
 
     private ObjectMapper objectMapper;
     @BeforeClass
@@ -54,9 +56,12 @@ public class AllInOne {
         dailyViewsController = new DailyViewsController();
         ownerController = new OwnerController();
         restaurantController = new RestaurantController();
-        objectMapper = new ObjectMapper();
-
         dashboardWidgetController = new DashboardWidgetController();
+        emailTemplateController = new EmailTemplateController();
+        menuController = new MenuController();
+
+
+        objectMapper = new ObjectMapper();
     }
 
 
@@ -119,15 +124,76 @@ public class AllInOne {
 
         dashboardWidgetController.testDeleteWidgetByIdAPI(superadminToken,dashboardWidgetId);
 
-
-
-
-
-
     }
 
 
+    
+    @Test
+    public void Menu() throws JsonProcessingException {
+        RestaurantInfo restaurantInfo = getRestaurantInfo();
+        Integer restaurantId = restaurantInfo.getRestaurantId();
+        String restaurantOwnerToken = restaurantInfo.getRestaurantOwnerToken();
 
+
+
+
+
+
+    //   String menu =  menuController.testStoreMenuGetString(restaurantOwnerToken,restaurantId);
+    String menu = menuController.testStoreMultipleMenu(restaurantId);
+    
+        JsonNode jsonNodeOfMenu = objectMapper.readTree(menu);
+        Integer menuId = jsonNodeOfMenu.get(0).get("id").asInt();
+        String menuName = jsonNodeOfMenu.get(0).get("name").asText();
+        System.out.println("Menu ID: " + menuId);
+
+        menuController.testCheckMenu(restaurantOwnerToken,restaurantId,menuName);
+        menuController.testUpdateMenu(restaurantOwnerToken,menuId);
+
+        menuController.testGetMenuById(menuId);
+        menuController.testGetMenuById2(restaurantId,menuId);
+        menuController.testGetMenuByRestaurantId(restaurantId);
+        menuController.testGetMenuByRestaurantIdWithPagination(restaurantId);
+        
+        menuController.testStoreMultipleMenu(restaurantId);
+        menuController.testUpdateMultipleMenu(restaurantId,menuId);
+        menuController.testUpdateMenu2(menuId);
+        menuController.testDeleteMenuAPI(restaurantOwnerToken,menuId);
+        
+        
+        // dailyViewsController.testUpdateDailyViews(restaurantId,restaurantOwnerToken);
+
+
+
+
+
+
+
+        restaurantController.testDeleteRestaurantForceDeleteAPI(restaurantId);
+    }
+
+    // @Test
+    // public void EmailTemplate() throws JsonProcessingException {
+    //     String superadminToken = getSuperadminToken();
+
+
+
+
+    //     String emailTemplate  = emailTemplateController.testCreateEmailTemplateGetString(superadminToken);
+    //     JsonNode jsonNodeOfDailyView = objectMapper.readTree(emailTemplate);
+    //     Integer emailTemplateId = jsonNodeOfDailyView.get("id").asInt();
+    //     System.out.println("dashboard widget id: " + emailTemplateId);
+
+    //     // dashboardWidgetController.testUpdateDashboardWidget(superadminToken,dashboardWidgetId);
+
+    //     // dashboardWidgetController.testGetDashboardWidget(superadminToken);
+
+    //     // dashboardWidgetController.testGetDashboardWidgetById(superadminToken,dashboardWidgetId);
+
+    //     // dashboardWidgetController.testDeleteWidgetByIdAPI(superadminToken,dashboardWidgetId);
+
+    // }
+    
 
 
 
@@ -147,3 +213,11 @@ public class AllInOne {
 //        System.out.println(" response: " + success);
 //    }
 }
+
+
+
+
+// remainingsssssssssssssssss
+// Deal is under Dish enitity
+// Dish is under Menu Entity
+// DishVariation is under Dish Entity 
