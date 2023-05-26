@@ -132,7 +132,7 @@ public class AllInOne {
 
     
     @Test
-    public void Menu() throws JsonProcessingException {
+    public void MenuToDish() throws JsonProcessingException {
         String superadminToken = getSuperadminToken();
         RestaurantInfo restaurantInfo = getRestaurantInfo();
         Integer restaurantId = restaurantInfo.getRestaurantId();
