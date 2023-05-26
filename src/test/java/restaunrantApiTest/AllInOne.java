@@ -49,6 +49,8 @@ public class AllInOne {
     private DashboardWidgetController dashboardWidgetController;
     private EmailTemplateController emailTemplateController;
     private MenuController menuController;
+    private DishController dishController;
+    
 
     private ObjectMapper objectMapper;
     @BeforeClass
@@ -59,7 +61,7 @@ public class AllInOne {
         dashboardWidgetController = new DashboardWidgetController();
         emailTemplateController = new EmailTemplateController();
         menuController = new MenuController();
-
+        dishController = new DishController();
 
         objectMapper = new ObjectMapper();
     }
@@ -78,6 +80,7 @@ public class AllInOne {
 
     @Test
     public void DailyView() throws JsonProcessingException {
+        String superadminToken = getSuperadminToken();
         RestaurantInfo restaurantInfo = getRestaurantInfo();
         Integer restaurantId = restaurantInfo.getRestaurantId();
         String restaurantOwnerToken = restaurantInfo.getRestaurantOwnerToken();
@@ -101,7 +104,7 @@ public class AllInOne {
 
 
 
-        restaurantController.testDeleteRestaurantForceDeleteAPI(restaurantId);
+        restaurantController.testDeleteRestaurantForceDeleteAPI(superadminToken,restaurantId);
     }
 
     @Test
@@ -130,6 +133,7 @@ public class AllInOne {
     
     @Test
     public void Menu() throws JsonProcessingException {
+        String superadminToken = getSuperadminToken();
         RestaurantInfo restaurantInfo = getRestaurantInfo();
         Integer restaurantId = restaurantInfo.getRestaurantId();
         String restaurantOwnerToken = restaurantInfo.getRestaurantOwnerToken();
@@ -158,18 +162,56 @@ public class AllInOne {
         menuController.testStoreMultipleMenu(restaurantId);
         menuController.testUpdateMultipleMenu(restaurantId,menuId);
         menuController.testUpdateMenu2(menuId);
-        menuController.testDeleteMenuAPI(restaurantOwnerToken,menuId);
+        
+//    String dish =   dishController.testStoreDish(restaurantOwnerToken,menuId);
+String dish =   dishController.testStoreMultipleDishGetString(restaurantId,menuId);
+
+        JsonNode jsonNodeOfDish = objectMapper.readTree(dish);
+        Integer dishId = jsonNodeOfDish.get(0).get("id").asInt();
+        String dishName = jsonNodeOfDish.get(0).get("name").asText();
+        System.out.println("Dish ID: " + dishId);
+
+
+      String deal =    dishController.testStoreMultipleDealDish(restaurantId,menuId,dishId);
+     
+        JsonNode jsonNodeOfDeal = objectMapper.readTree(deal);
+      
+        Integer dealId = jsonNodeOfDeal.get("dishes").get(0).get("id").asInt();
+       
+        String dealName = jsonNodeOfDeal.get("dishes").get(0).get("name").asText();
+        System.out.println("deal ID: " + dealId);
+
+
+        
+
+
+        dishController.testGetAllDishes(restaurantId);
+        dishController.testGetAllDishesWithPagination(restaurantId);
+        dishController.testGetDishByMenuId(menuId);
+        dishController.testGetDishByMenuIdAndRestaurantId(restaurantId,menuId);
+        dishController.testGetDealDishByMenuIdAndRestaurantId(restaurantId,menuId);
+        dishController.testGetDishByDealId(dishId);
+        dishController.testGetDishByDealId2(restaurantId,dealId);
+        dishController.testGetDishById(dishId);
+        dishController.testGetDishById2(restaurantId,dishId);
+        dishController.testGetAllDishesWithDeals();
+
+        dishController.testUpdateMultipleDealDish(dealId,dishId);
+        
+        dishController.testUpdateMultipleDish(dishId);
+        dishController.testUpdateDish2(dishId);
         
         
         // dailyViewsController.testUpdateDailyViews(restaurantId,restaurantOwnerToken);
 
 
 
-
-
-
-
-        restaurantController.testDeleteRestaurantForceDeleteAPI(restaurantId);
+        
+        
+        dishController.testDeleteDishAPI(restaurantOwnerToken,dealId);
+        dishController.testDeleteDishAPI(restaurantOwnerToken,dishId);
+        menuController.testDeleteMenuAPI(restaurantOwnerToken,menuId);
+        restaurantController.testDeleteRestaurantForceDeleteAPI(superadminToken,restaurantId);
     }
 
     // @Test

@@ -252,13 +252,13 @@ public class RestaurantController {
         System.out.println("restaunrat daleted" +response);
     }
     @Test
-    public void testDeleteRestaurantForceDeleteAPI(Integer restaurantId) throws JsonProcessingException {
+    public void testDeleteRestaurantForceDeleteAPI(String superadminToken,Integer restaurantId) throws JsonProcessingException {
 
 
         String response =   given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .header("Authorization", "Bearer " + getSuperadminToken())
+                .header("Authorization", "Bearer " + superadminToken)
                 .pathParam("id", restaurantId)
                 .when()
                 .delete(URL +"/api/restaurant/delete/force-delete/{id}")

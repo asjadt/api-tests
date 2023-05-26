@@ -55,9 +55,50 @@ public class DishController {
         System.out.println(response.body()
                 .asString());
     }
+    public String testStoreDish(String restaurantOwnerToken,Integer menuId) throws JsonProcessingException {
+        
+      
+        String response = given()
+                .contentType(ContentType.JSON)
+                .header("Authorization", "Bearer " + restaurantOwnerToken)
+                .pathParam("menuId", menuId)
+                .body("{\"name\": \"test\", \"price\": \"12345678\", \"restaurant_id\": \"1\", \"take_away\": \"1\", \"delivery\": \"0\", \"description\": \"description\", \"ingredients\": \"ingredients\", \"calories\": \"calories\"}")
+                .when()
+                .post(URL +"/api/dishes/{menuId}")
+                .then()
+                .statusCode(200)
+                .extract()
+                .response()
+                .body()
+                .asString()
+               ;
+
+        System.out.println(response);
+
+        return response;
+    }
     @Test
     public void testGetAllDishes() {
         String restaurantId = "1"; // The ID of the restaurant for which you want to get all dishes
+
+        Response response = given()
+                .contentType("application/json")
+                .pathParam("restaurantId", restaurantId)
+                .when()
+                .get(URL +"/api/dishes/All/dishes/{restaurantId}")
+                .then()
+                .statusCode(200)
+                .extract()
+                .response()
+              ;
+
+        System.out.println(response.body()
+                .asString());
+
+    }
+    @Test
+    public void testGetAllDishes(Integer restaurantId) {
+   
 
         Response response = given()
                 .contentType("application/json")
@@ -95,6 +136,26 @@ public class DishController {
                 .asString());
 
     }
+    @Test
+    public void testGetAllDishesWithPagination( Integer restaurantId) {
+       String perPage = "10"; // The number of items per page
+
+        Response response = given()
+                .contentType("application/json")
+                .pathParam("restaurantId", restaurantId)
+                .pathParam("perPage", perPage)
+                .when()
+                .get(URL +"/api/dishes/All/dishes/{restaurantId}/{perPage}")
+                .then()
+                .statusCode(200)
+                .extract()
+                .response()
+               ;
+
+        System.out.println(response.body()
+                .asString());
+
+    }
 
     @Test
     public void testGetDishByMenuId() {
@@ -115,11 +176,49 @@ public class DishController {
                 .asString());
 
     }
+    @Test
+    public void testGetDishByMenuId(Integer menuId ) {
+     
+        Response response = given()
+                .contentType("application/json")
+                .pathParam("menuId", menuId)
+                .when()
+                .get(URL + "/api/dishes/{menuId}")
+                .then()
+                .statusCode(200)
+                .extract()
+                .response()
+              ;
+
+        System.out.println(response.body()
+                .asString());
+
+    }
 
     @Test
     public void testGetDishByMenuIdAndRestaurantId() {
         String menuId = "1"; // The ID of the menu to retrieve dishes for
         String restaurantId = "1"; // The ID of the restaurant to filter dishes by
+
+        Response response = given()
+                .contentType("application/json")
+                .pathParam("menuId", menuId)
+                .pathParam("restaurantId", restaurantId)
+                .when()
+                .get(URL +"/api/dishes/by-restaurant/{menuId}/{restaurantId}")
+                .then()
+                .statusCode(200)
+                .extract()
+                .response()
+                ;
+
+        System.out.println(response.body()
+                .asString());
+
+    }
+    @Test
+    public void testGetDishByMenuIdAndRestaurantId(Integer restaurantId, Integer menuId) {
+       
 
         Response response = given()
                 .contentType("application/json")
@@ -159,6 +258,26 @@ public class DishController {
 
     }
     @Test
+    public void testGetDealDishByMenuIdAndRestaurantId(Integer restaurantId,  Integer menuId) {
+      
+
+        Response response = given()
+                .contentType("application/json")
+                .pathParam("menuId", menuId)
+                .pathParam("restaurantId", restaurantId)
+                .when()
+                .get(URL +"/api/deal-dishes/by-restaurant/{menuId}/{restaurantId}")
+                .then()
+                .statusCode(200)
+                .extract()
+                .response()
+            ;
+
+        System.out.println(response.body()
+                .asString());
+
+    }
+    @Test
     public void testGetDishByDealId() {
         String dealId = "1"; // The ID of the deal to retrieve dishes for
 
@@ -175,7 +294,25 @@ public class DishController {
 
         System.out.println(response.body()
                 .asString());
+    }
+    @Test
+    public void testGetDishByDealId(Integer dealId) {
+        
 
+        String response = given()
+                .contentType("application/json")
+                .pathParam("dealId", dealId)
+                .when()
+                .get(URL + "/api/dishes/getdealsdishes/{dealId}")
+                .then()
+                .statusCode(200)
+                .extract()
+                .response()
+                .body()
+                .asString()
+              ;
+
+        System.out.println(response);
     }
 
     @Test
@@ -200,8 +337,47 @@ public class DishController {
 
     }
     @Test
+    public void testGetDishByDealId2(Integer restaurantId,Integer dealId) {
+       
+
+        Response response = given()
+                .contentType("application/json")
+                .pathParam("dealId", dealId)
+                .pathParam("restaurantId", restaurantId)
+                .when()
+                .get(URL +"/api/dishes/getdealsdishes/{dealId}/{restaurantId}")
+                .then()
+                .statusCode(200)
+                .extract()
+                .response()
+               ;
+
+        System.out.println(response.body()
+                .asString());
+
+    }
+    @Test
     public void testGetDishById() {
         String dishId = "1"; // The ID of the dish to retrieve
+
+        Response response = given()
+                .contentType("application/json")
+                .pathParam("dishId", dishId)
+                .when()
+                .get(URL + "/api/dishes/by-dishid/{dishId}")
+                .then()
+                .statusCode(200)
+                .extract()
+                .response()
+             ;
+
+        System.out.println(response.body()
+                .asString());
+
+    }
+    @Test
+    public void testGetDishById(Integer dishId) {
+      
 
         Response response = given()
                 .contentType("application/json")
@@ -241,6 +417,27 @@ public class DishController {
     }
 
     @Test
+    public void testGetDishById2(Integer restaurantId,Integer dishId) {
+        
+
+        Response response = given()
+                .contentType("application/json")
+                .pathParam("dishId", dishId)
+                .pathParam("restaurantId", restaurantId)
+                .when()
+                .get(URL +"/api/dishes/by-dishid/{dishId}/{restaurantId}")
+                .then()
+                .statusCode(200)
+                .extract()
+                .response()
+               ;
+
+        System.out.println(response.body()
+                .asString());
+
+    }
+
+    @Test
     public void testGetAllDishesWithDeals() {
         Response response = given()
                 .contentType("application/json")
@@ -255,6 +452,7 @@ public class DishController {
         System.out.println(response.body()
                 .asString());
     }
+    
 
     @Test
     public void testStoreMultipleDish() {
@@ -262,7 +460,7 @@ public class DishController {
         List<Map<String, Object>> dishes = new ArrayList<>();
 
         Map<String, Object> dish1 = new HashMap<>();
-        dish1.put("name", "hggggg");
+        dish1.put("name", "dish");
         dish1.put("price", 555);
         dish1.put("take_away", 1);
         dish1.put("delivery", 0);
@@ -301,6 +499,55 @@ public class DishController {
                 .asString());
 
     }
+    public String testStoreMultipleDishGetString(Integer restaurantId,Integer menuId) {
+        // Create an example request body
+        List<Map<String, Object>> dishes = new ArrayList<>();
+
+        Map<String, Object> dish1 = new HashMap<>();
+        dish1.put("name", ("dish" + Math.random()));
+        dish1.put("price", 555);
+        dish1.put("take_away", 1);
+        dish1.put("delivery", 0);
+        dish1.put("description", "fffffffffff");
+        dish1.put("ingredients", "hgggxrth srthdhh thgg");
+        dish1.put("calories", "cfgt trfgh s rth");
+        dish1.put("menu_id", menuId);
+        
+
+        // Map<String, Object> dish2 = new HashMap<>();
+        // dish2.put("name", "hggggg");
+        // dish2.put("price", 555);
+        // dish2.put("take_away", 1);
+        // dish2.put("delivery", 0);
+        // dish2.put("restaurant_id", 56);
+        // dish2.put("description", "fffffffffff");
+        // dish2.put("ingredients", "hgggxrth srthdhh thgg");
+        // dish2.put("calories", "cfgt trfgh s rth");
+
+        dishes.add(dish1);
+        // dishes.add(dish2);
+
+        Map<String, Object> requestBody = new HashMap<>();
+        requestBody.put("dishes", dishes);
+
+        // Send the POST request
+        String response = given()
+                .contentType("application/json")
+                .body(requestBody)
+                .when()
+                .post(URL+"/api/dishes/multiple/" + restaurantId)
+                .then()
+                .statusCode(201)
+                .extract()
+                .response()
+                .body()
+                .asString();
+        System.out.println("testStoreMultipleDishGetString " + response);
+
+                return response;
+
+    }
+    
     @Test
     public void testStoreMultipleDealDish() {
         // Create an example request body
@@ -359,6 +606,65 @@ public class DishController {
                 .asString());
     }
 
+    public String testStoreMultipleDealDish(Integer restaurantId,Integer menuId,Integer dishId) {
+        // Create an example request body
+        Map<String, Object> requestBody = new HashMap<>();
+
+        List<Map<String, Object>> dishes = new ArrayList<>();
+
+        Map<String, Object> dish1 = new HashMap<>();
+        dish1.put("name", "hggggg");
+        dish1.put("price", 555);
+        dish1.put("take_away", 1);
+        dish1.put("delivery", 0);
+        dish1.put("restaurant_id", restaurantId);
+        dish1.put("description", "fffffffffff");
+        dish1.put("ingredients", "hgggxrth srthdhh thgg");
+        dish1.put("calories", "cfgt trfgh s rth");
+
+        List<Map<String, Object>> selected1 = new ArrayList<>();
+        Map<String, Object> selectedDish1 = new HashMap<>();
+        selectedDish1.put("dish_id", "1");
+        selected1.add(selectedDish1);
+        dish1.put("selected", selected1);
+
+        // Map<String, Object> dish2 = new HashMap<>();
+        // dish2.put("name", "hggggg");
+        // dish2.put("price", 555);
+        // dish2.put("take_away", 1);
+        // dish2.put("delivery", 0);
+        // dish2.put("restaurant_id", 56);
+        // dish2.put("description", "fffffffffff");
+        // dish2.put("ingredients", "hgggxrth srthdhh thgg");
+        // dish2.put("calories", "cfgt trfgh s rth");
+
+        // List<Map<String, Object>> selected2 = new ArrayList<>();
+        // Map<String, Object> selectedDish2 = new HashMap<>();
+        // selectedDish2.put("dish_id", "1");
+        // selected2.add(selectedDish2);
+        // dish2.put("selected", selected2);
+
+        dishes.add(dish1);
+        // dishes.add(dish2);
+
+        requestBody.put("dishes", dishes);
+
+        // Send the POST request
+        String response = given()
+                .contentType("application/json")
+                .body(requestBody)
+                .when()
+                .post(URL +"/api/dishes/multiple/deal/" + menuId)
+                .then()
+                .statusCode(201)
+                .extract()
+                .response()
+                .body()
+                .asString();
+        System.out.println("testStoreMultipleDealDish" + response);
+
+        return response;
+    }
     @Test
     public void testUpdateMultipleDealDish() {
         // Create an example request body
@@ -402,6 +708,66 @@ public class DishController {
 
         dishes.add(dish1);
         dishes.add(dish2);
+
+        requestBody.put("dishes", dishes);
+
+        // Send the PATCH request
+        Response response = given()
+                .contentType("application/json")
+                .body(requestBody)
+                .when()
+                .patch(URL + "/api/dishes/multiple/deal/1")
+                .then()
+                .statusCode(201)
+                .extract()
+                .response();
+
+        System.out.println(response.body()
+                .asString());
+    }
+    @Test
+    public void testUpdateMultipleDealDish(Integer dealId,Integer dishId) {
+        // Create an example request body
+        Map<String, Object> requestBody = new HashMap<>();
+
+        List<Map<String, Object>> dishes = new ArrayList<>();
+
+        Map<String, Object> dish1 = new HashMap<>();
+        dish1.put("id", dealId);
+        dish1.put("name", "hggggg");
+        dish1.put("price", 555);
+        dish1.put("take_away", 1);
+        dish1.put("delivery", 0);
+        dish1.put("restaurant_id", 56);
+        dish1.put("description", "fffffffffff");
+        dish1.put("ingredients", "hgggxrth srthdhh thgg");
+        dish1.put("calories", "cfgt trfgh s rth");
+
+        List<Map<String, Object>> selected1 = new ArrayList<>();
+        Map<String, Object> selectedDish1 = new HashMap<>();
+        selectedDish1.put("dish_id", dishId);
+        selected1.add(selectedDish1);
+        dish1.put("selected", selected1);
+
+        // Map<String, Object> dish2 = new HashMap<>();
+        // dish2.put("id", 2);
+        // dish2.put("name", "hggggg");
+        // dish2.put("price", 555);
+        // dish2.put("take_away", 1);
+        // dish2.put("delivery", 0);
+        // dish2.put("restaurant_id", 56);
+        // dish2.put("description", "fffffffffff");
+        // dish2.put("ingredients", "hgggxrth srthdhh thgg");
+        // dish2.put("calories", "cfgt trfgh s rth");
+
+        // List<Map<String, Object>> selected2 = new ArrayList<>();
+        // Map<String, Object> selectedDish2 = new HashMap<>();
+        // selectedDish2.put("dish_id", "1");
+        // selected2.add(selectedDish2);
+        // dish2.put("selected", selected2);
+
+        dishes.add(dish1);
+        // dishes.add(dish2);
 
         requestBody.put("dishes", dishes);
 
@@ -467,6 +833,53 @@ public class DishController {
                 .asString());
     }
     @Test
+    public void testUpdateMultipleDish(Integer dishId ) {
+        // Create an example request body
+        Map<String, Object> requestBody = new HashMap<>();
+
+        List<Map<String, Object>> dishes = new ArrayList<>();
+
+        Map<String, Object> dish1 = new HashMap<>();
+        dish1.put("id", dishId);
+        dish1.put("name", "aaaaa");
+        dish1.put("price", 555);
+        dish1.put("take_away", 1);
+        dish1.put("delivery", 0);
+        dish1.put("description", "fffffffffff");
+        dish1.put("ingredients", "hgggxrth srthdhh thgg");
+        dish1.put("calories", "cfgt trfgh s rth");
+
+        dishes.add(dish1);
+
+        // Map<String, Object> dish2 = new HashMap<>();
+        // dish2.put("id", 2);
+        // dish2.put("name", "aaaaa");
+        // dish2.put("price", 555);
+        // dish2.put("take_away", 1);
+        // dish2.put("delivery", 0);
+        // dish2.put("description", "fffffffffff");
+        // dish2.put("ingredients", "hgggxrth srthdhh thgg");
+        // dish2.put("calories", "cfgt trfgh s rth");
+
+        // dishes.add(dish2);
+
+        requestBody.put("dishes", dishes);
+
+        // Send the PATCH request
+        Response response = given()
+                .contentType("application/json")
+                .body(requestBody)
+                .when()
+                .patch(URL+"/api/dishes/Edit/multiple")
+                .then()
+                .statusCode(200)
+                .extract()
+                .response();
+
+        System.out.println(response.body()
+                .asString());
+    }
+    @Test
     public void testUpdateDish2() {
         // Create an example request body
         Map<String, Object> requestBody = new HashMap<>();
@@ -492,13 +905,38 @@ public class DishController {
 
     }
     @Test
-    public void testDeleteDishAPI() throws JsonProcessingException {
-        String dishId = "1"; // Replace with the actual dish ID
+    public void testUpdateDish2(Integer dishId) {
+        // Create an example request body
+        Map<String, Object> requestBody = new HashMap<>();
+        requestBody.put("name", "aaaa");
+        requestBody.put("price", "10");
+        requestBody.put("description", "Rifat");
+        requestBody.put("id", dishId);
+
+        // Send the PATCH request
+        Response response = given()
+                .contentType("application/json")
+                .body(requestBody)
+                .when()
+                .patch(URL +"/api/dishes/Updatedish")
+                .then()
+                .statusCode(200)
+                .extract()
+                .response()
+                ;
+
+        System.out.println(response.body()
+                .asString());
+
+    }
+    @Test
+    public void testDeleteDishAPI(String restaurantOwnerToken,Integer dishId) throws JsonProcessingException {
+    
 
         given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .header("Authorization", "Bearer " + getSuperadminToken()) // Replace with the actual access token
+                .header("Authorization", "Bearer " + restaurantOwnerToken) // Replace with the actual access token
                 .pathParam("dishId", dishId)
                 .when()
                 .delete(URL +"/api/dishes/{dishId}")
