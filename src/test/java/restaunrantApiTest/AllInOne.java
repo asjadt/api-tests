@@ -50,7 +50,7 @@ public class AllInOne {
     private EmailTemplateController emailTemplateController;
     private MenuController menuController;
     private DishController dishController;
-    
+    private VariationController variationController;
 
     private ObjectMapper objectMapper;
     @BeforeClass
@@ -62,6 +62,7 @@ public class AllInOne {
         emailTemplateController = new EmailTemplateController();
         menuController = new MenuController();
         dishController = new DishController();
+        variationController = new VariationController();
 
         objectMapper = new ObjectMapper();
     }
@@ -144,8 +145,7 @@ public class AllInOne {
 
 
     //   String menu =  menuController.testStoreMenuGetString(restaurantOwnerToken,restaurantId);
-    String menu = menuController.testStoreMultipleMenu(restaurantId);
-    
+       String menu = menuController.testStoreMultipleMenu(restaurantId);
         JsonNode jsonNodeOfMenu = objectMapper.readTree(menu);
         Integer menuId = jsonNodeOfMenu.get(0).get("id").asInt();
         String menuName = jsonNodeOfMenu.get(0).get("name").asText();
@@ -153,19 +153,16 @@ public class AllInOne {
 
         menuController.testCheckMenu(restaurantOwnerToken,restaurantId,menuName);
         menuController.testUpdateMenu(restaurantOwnerToken,menuId);
-
         menuController.testGetMenuById(menuId);
         menuController.testGetMenuById2(restaurantId,menuId);
         menuController.testGetMenuByRestaurantId(restaurantId);
         menuController.testGetMenuByRestaurantIdWithPagination(restaurantId);
-        
         menuController.testStoreMultipleMenu(restaurantId);
         menuController.testUpdateMultipleMenu(restaurantId,menuId);
         menuController.testUpdateMenu2(menuId);
         
 //    String dish =   dishController.testStoreDish(restaurantOwnerToken,menuId);
-String dish =   dishController.testStoreMultipleDishGetString(restaurantId,menuId);
-
+        String dish =   dishController.testStoreMultipleDishGetString(restaurantId,menuId);
         JsonNode jsonNodeOfDish = objectMapper.readTree(dish);
         Integer dishId = jsonNodeOfDish.get(0).get("id").asInt();
         String dishName = jsonNodeOfDish.get(0).get("name").asText();
@@ -173,16 +170,10 @@ String dish =   dishController.testStoreMultipleDishGetString(restaurantId,menuI
 
 
       String deal =    dishController.testStoreMultipleDealDish(restaurantId,menuId,dishId);
-     
         JsonNode jsonNodeOfDeal = objectMapper.readTree(deal);
-      
         Integer dealId = jsonNodeOfDeal.get("dishes").get(0).get("id").asInt();
-       
         String dealName = jsonNodeOfDeal.get("dishes").get(0).get("name").asText();
         System.out.println("deal ID: " + dealId);
-
-
-        
 
 
         dishController.testGetAllDishes(restaurantId);
@@ -195,19 +186,65 @@ String dish =   dishController.testStoreMultipleDishGetString(restaurantId,menuI
         dishController.testGetDishById(dishId);
         dishController.testGetDishById2(restaurantId,dishId);
         dishController.testGetAllDishesWithDeals();
-
         dishController.testUpdateMultipleDealDish(dealId,dishId);
-        
         dishController.testUpdateMultipleDish(dishId);
         dishController.testUpdateDish2(dishId);
-        
-        
         // dailyViewsController.testUpdateDailyViews(restaurantId,restaurantOwnerToken);
 
 
+//        String variationType =    variationController.testStoreVariationTypeAPI(restaurantOwnerToken,restaurantId);
+        String variationType =  variationController.testStoreMultipleVariationTypeAPI(restaurantOwnerToken,restaurantId);
+        System.out.println("variationType:" + variationType);
+        JsonNode jsonNodeOfVariationType = objectMapper.readTree(variationType);
+        Integer variationTypeId = jsonNodeOfVariationType.get(0).get("id").asInt();
+        String variationTypeName = jsonNodeOfVariationType.get(0).get("name").asText();
+        System.out.println("variation Type ID: " + variationTypeId);
 
-        
-        
+        variationController.testUpdateMultipleVariationTypeAPI(restaurantOwnerToken,variationTypeId);
+        variationController.testUpdateVariationTypeAPI(restaurantOwnerToken,variationTypeId);
+        variationController.testGetSingleVariationTypeAPI(restaurantOwnerToken,variationTypeId);
+        variationController.testGetAllVariationTypeWithVariationAPI(restaurantOwnerToken,restaurantId);
+        variationController.testGetAllVariationByTypeIdAPI(restaurantOwnerToken,variationTypeId);
+
+
+
+
+//        String variation =  variationController.testStoreVariationAPI(restaurantOwnerToken,variationTypeId);
+        String variation =  variationController.testStoreMultipleVariationAPI(restaurantOwnerToken,restaurantId,variationTypeId);
+        System.out.println("variation:" + variation);
+        JsonNode jsonNodeOfVariation = objectMapper.readTree(variation);
+        Integer variationId = jsonNodeOfVariation.get(0).get("id").asInt();
+        String variationName = jsonNodeOfVariation.get(0).get("name").asText();
+        System.out.println("variation  ID: " + variationId);
+
+        variationController.testUpdateMultipleVariationAPI(restaurantOwnerToken,variationId);
+        variationController.testUpdateVariationAPI(restaurantOwnerToken,variationId);
+        variationController.testGetAllVariationWithDishAPI(restaurantOwnerToken,restaurantId);
+        variationController.testGetAllVariationByRestaurantIdAPI(restaurantOwnerToken,restaurantId);
+
+
+
+
+//        String dishVariation =  variationController.testStoreDishVariationAPI(restaurantOwnerToken,variationTypeId,dishId);
+        String dishVariation =  variationController.testStoreMultipleDishVariationAPI(restaurantOwnerToken,variationTypeId,dishId);
+        System.out.println("dish variation:" + dishVariation);
+        JsonNode jsonNodeOfDishVariation = objectMapper.readTree(dishVariation);
+        Integer dishVariationId = jsonNodeOfDishVariation.get(0).get("id").asInt();
+       
+        System.out.println("dish variation  ID: " + dishVariationId);
+
+        variationController.testGetAllDishVariationAPI(restaurantOwnerToken,dishId);
+        variationController.testGetAllDishVariationAPI(restaurantOwnerToken,dishId);
+        variationController.testUpdateDishVariationAPI(restaurantOwnerToken,variationTypeId,dishId);
+        variationController.testUpdateMultipleDishVariationAPI(restaurantOwnerToken,variationTypeId,dishId);
+
+
+
+
+
+
+        variationController.testDeleteDishVariationAPI(restaurantOwnerToken,variationTypeId,dishId);
+        variationController.testDeleteVariationTypeAPI(restaurantOwnerToken,variationTypeId);
         dishController.testDeleteDishAPI(restaurantOwnerToken,dealId);
         dishController.testDeleteDishAPI(restaurantOwnerToken,dishId);
         menuController.testDeleteMenuAPI(restaurantOwnerToken,menuId);
