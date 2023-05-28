@@ -51,6 +51,7 @@ public class AllInOne {
     private MenuController menuController;
     private DishController dishController;
     private VariationController variationController;
+    private OrderController orderController;
 
     private ObjectMapper objectMapper;
     @BeforeClass
@@ -63,6 +64,7 @@ public class AllInOne {
         menuController = new MenuController();
         dishController = new DishController();
         variationController = new VariationController();
+        orderController = new OrderController();
 
         objectMapper = new ObjectMapper();
     }
@@ -73,10 +75,10 @@ public class AllInOne {
         JsonNode jsonNodeOfRestaurant = objectMapper.readTree(restaurant);
         Integer restaurantId = jsonNodeOfRestaurant.get("data").get("restaurant").get("id").asInt();
         String restaurantOwnerToken = jsonNodeOfRestaurant.get("token").textValue();
-
+        Integer OwnerID = jsonNodeOfRestaurant.get("data").get("restaurant").get("OwnerID").asInt();
         System.out.println("restaurantId :" +restaurantId);
         System.out.println("restaurantOwnerToken :" +restaurantOwnerToken);
-        return new RestaurantInfo(restaurantId, restaurantOwnerToken);
+        return new RestaurantInfo(restaurantId, restaurantOwnerToken,OwnerID);
     }
 
     @Test
@@ -133,12 +135,12 @@ public class AllInOne {
 
     
     @Test
-    public void MenuToDishToVatiations() throws JsonProcessingException {
+    public void MenuToDishToVatiationsToOrder() throws JsonProcessingException {
         String superadminToken = getSuperadminToken();
         RestaurantInfo restaurantInfo = getRestaurantInfo();
         Integer restaurantId = restaurantInfo.getRestaurantId();
         String restaurantOwnerToken = restaurantInfo.getRestaurantOwnerToken();
-
+        Integer restaurantOwnerID = restaurantInfo.getRestaurantOwnerID();
 
 
 
@@ -240,9 +242,38 @@ public class AllInOne {
 
 
 
+        String order =  orderController.testStoreOrderAPI( restaurantOwnerToken,  restaurantId,  restaurantOwnerID,
+                 dishId, variationId, dealId);
+        System.out.println("order:" + order);
+        JsonNode jsonNodeOfOrder = objectMapper.readTree(order);
+        Integer orderId = jsonNodeOfOrder.get("data").get("id").asInt();
+
+        orderController.testStoreByUserAPI(restaurantOwnerToken, restaurantId, restaurantOwnerID, variationId, dealId, dishId);
+        orderController.testOrderCompleteAPI(restaurantOwnerToken,orderId);
+        orderController.testUpdateStatusAPI(restaurantOwnerToken,orderId);
+        orderController.testEditOrderAPI(restaurantOwnerToken,orderId, variationId, dishId, dealId);
+        orderController.testGetOrderByIdAPI(restaurantOwnerToken,orderId);
+        orderController.testGetOrderById2API(restaurantOwnerToken,orderId,restaurantId);
+        orderController.testGetOrderByCustomerIdAPI(restaurantOwnerToken,restaurantOwnerID);
+        orderController.testGetTodaysOrderByStatusAPI(restaurantOwnerToken);
+        orderController.testGetAllOrderAPI(restaurantOwnerToken);
+        orderController.testGetAllOrderTodayAPI(restaurantOwnerToken,restaurantId);
+        orderController.testGetAllOrderEveryDayAPI(restaurantOwnerToken,restaurantId);
+        orderController.testGetOrderByTypeAPI(restaurantOwnerToken);
+        orderController.testGetOrderByType2API(restaurantOwnerToken,restaurantId);
+        orderController.testGetAllPendingOrderAPI(restaurantOwnerToken,restaurantId);
+        orderController.testGetAllPendingOrderWithPaginationAPI(restaurantOwnerToken,restaurantId);
+        orderController.testGetAllAutoPrintOrderAPI(restaurantOwnerToken,restaurantId);
+        orderController.testGetDailyOrderReportAPI(restaurantOwnerToken);
+        orderController.testGetOrderReportAPI(restaurantOwnerToken);
+        orderController.testGetOrderReportByRestaurantIdAPI(restaurantOwnerToken,restaurantId);
+        orderController.testGetOrderReportByRestaurantId2API(restaurantOwnerToken,restaurantId);
+        orderController.testGetOrderByUserAPI(restaurantOwnerToken);
 
 
 
+
+        orderController.testDeleteOrderAPI(restaurantOwnerToken,orderId);
         variationController.testDeleteDishVariationAPI(restaurantOwnerToken,variationTypeId,dishId);
         variationController.testDeleteVariationTypeAPI(restaurantOwnerToken,variationTypeId);
         dishController.testDeleteDishAPI(restaurantOwnerToken,dealId);
