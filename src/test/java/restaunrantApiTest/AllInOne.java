@@ -53,6 +53,8 @@ public class AllInOne {
     private VariationController variationController;
     private OrderController orderController;
 
+    private ReviewNewController reviewNewController;
+
     private ObjectMapper objectMapper;
     @BeforeClass
     public void setup() {
@@ -65,6 +67,7 @@ public class AllInOne {
         dishController = new DishController();
         variationController = new VariationController();
         orderController = new OrderController();
+        reviewNewController = new ReviewNewController();
 
         objectMapper = new ObjectMapper();
     }
@@ -279,6 +282,83 @@ public class AllInOne {
         dishController.testDeleteDishAPI(restaurantOwnerToken,dealId);
         dishController.testDeleteDishAPI(restaurantOwnerToken,dishId);
         menuController.testDeleteMenuAPI(restaurantOwnerToken,menuId);
+        restaurantController.testDeleteRestaurantForceDeleteAPI(superadminToken,restaurantId);
+    }
+
+    @Test
+    public void ReviewCombined() throws JsonProcessingException {
+        String superadminToken = getSuperadminToken();
+        RestaurantInfo restaurantInfo = getRestaurantInfo();
+        Integer restaurantId = restaurantInfo.getRestaurantId();
+        String restaurantOwnerToken = restaurantInfo.getRestaurantOwnerToken();
+
+
+
+       Integer   starId = 1;
+
+
+
+
+
+
+
+        String question =   reviewNewController.testStoreQuestionAPI(restaurantOwnerToken,restaurantId);
+        JsonNode jsonNodeOfQuestion = objectMapper.readTree(question);
+        Integer questionId = jsonNodeOfQuestion.get("id").asInt();
+        System.out.println("question ID: " + questionId);
+
+
+        reviewNewController.testUpdateQuestionAPI(restaurantOwnerToken,questionId);
+        reviewNewController.testUpdateQuestionActiveStateAPI(restaurantOwnerToken,questionId);
+        reviewNewController.testGetQuestionAPI(restaurantOwnerToken,restaurantId);
+        reviewNewController.getQuestionAllUnauthorized(restaurantOwnerToken,restaurantId);
+        reviewNewController.testGetAllQuestionsAPI(restaurantOwnerToken,restaurantId);
+        reviewNewController.testGetAllQuestionsReportAPI(restaurantOwnerToken,restaurantId);
+        reviewNewController.testGetQuestionByIdAPI(restaurantOwnerToken,questionId);
+        reviewNewController.testGetQuestionById2API(restaurantOwnerToken,questionId);
+
+
+        String tag =   reviewNewController.testStoreMultipleTagsAPI(restaurantOwnerToken,restaurantId);
+        JsonNode jsonNodeOfTag = objectMapper.readTree(tag);
+        Integer tagId = jsonNodeOfTag.get("data").get(0).get("id").asInt();
+        System.out.println("question ID: " + tagId);
+
+//        reviewNewController.testStoreTagAPI(restaurantOwnerToken,restaurantId);
+        reviewNewController.testUpdateTagAPI(restaurantOwnerToken,tagId);
+        reviewNewController.testGetTagsAPI(restaurantOwnerToken,restaurantId);
+        reviewNewController.testGetTagByIdAPI(restaurantOwnerToken,tagId);
+        reviewNewController.testGetTagById2API(restaurantOwnerToken,restaurantId,tagId);
+
+
+
+
+        reviewNewController.testStoreOwnerQuestionAPI(restaurantOwnerToken,questionId,tagId,starId);
+        reviewNewController.testUpdateOwnerQuestionAPI(restaurantOwnerToken,questionId,tagId,starId);
+
+
+
+        reviewNewController.testStoreReviewAPI( restaurantOwnerToken, restaurantId, questionId, tagId, starId);
+        reviewNewController.testStoreReviewByGuestAPI( restaurantOwnerToken, restaurantId, questionId, tagId, starId);
+        reviewNewController.testGetReviewValuesAPI(restaurantOwnerToken,restaurantId);
+
+        reviewNewController.testFilterReviewAPI(restaurantOwnerToken,restaurantId);
+        reviewNewController.testGetReviewByRestaurantIdAPI(restaurantOwnerToken,restaurantId);
+        reviewNewController.testGetCustomerReviewAPI(restaurantOwnerToken,restaurantId);
+        reviewNewController.testGetQuestionAllReportGuestAPI(restaurantOwnerToken,restaurantId);
+        reviewNewController.testGetQuestionAllReportUnauthorizedAPI(restaurantOwnerToken,restaurantId);
+//        reviewNewController.testGetQuestionAllReportGuestUnauthorizedAPI(restaurantOwnerToken,restaurantId);
+//       reviewNewController.testGetQuestionAllReportGuestQuantumAPI(restaurantOwnerToken,restaurantId);
+//        reviewNewController.testGetQuestionAllReportQuantumAPI(restaurantOwnerToken,restaurantId);
+
+
+
+
+
+
+
+
+        reviewNewController.testDeleteTagByIdAPI(restaurantOwnerToken,tagId);
+        reviewNewController.testDeleteQuestionByIdAPI(restaurantOwnerToken,questionId);
         restaurantController.testDeleteRestaurantForceDeleteAPI(superadminToken,restaurantId);
     }
 
