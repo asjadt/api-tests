@@ -106,10 +106,12 @@ public class AllInOne {
 
 
             dailyViewsController.testUpdateDailyViews(restaurantId,restaurantOwnerToken);
-
-
-        } finally {
             restaurantController.testDeleteRestaurantForceDeleteAPI(superadminToken,restaurantInfo.getRestaurantEmail());
+
+
+        } catch(Exception e) {
+            restaurantController.testDeleteRestaurantForceDeleteAPI(superadminToken,restaurantInfo.getRestaurantEmail());
+
             Assert.fail("Test failed intentionally");
         }
 
@@ -138,7 +140,8 @@ public class AllInOne {
             dashboardWidgetController.testGetDashboardWidgetById(superadminToken,dashboardWidgetId);
 
             dashboardWidgetController.testDeleteWidgetByIdAPI(superadminToken,dashboardWidgetId);
-        } finally {
+        } catch(Exception e)  {
+
             Assert.fail("Test failed intentionally");
             // Code to run even after test fails
             // Place your additional code here
@@ -299,12 +302,9 @@ public class AllInOne {
             menuController.testDeleteMenuAPI(restaurantOwnerToken,menuId);
             restaurantController.testDeleteRestaurantForceDeleteAPI(superadminToken,restaurantInfo.getRestaurantEmail());
 
-        } finally {
+        } catch(Exception e)  {
             restaurantController.testDeleteRestaurantForceDeleteAPI(superadminToken,restaurantInfo.getRestaurantEmail());
-            // Code to run even after test fails
-            // Place your additional code here
 
-            // Add an assertion to fail the test
             Assert.fail("Test failed intentionally");
         }
 
@@ -388,7 +388,7 @@ public class AllInOne {
             reviewNewController.testDeleteTagByIdAPI(restaurantOwnerToken,tagId);
             reviewNewController.testDeleteQuestionByIdAPI(restaurantOwnerToken,questionId);
 
-        } finally {
+        } catch(Exception e)  {
             restaurantController.testDeleteRestaurantForceDeleteAPI(superadminToken,restaurantInfo.getRestaurantEmail());
 
             Assert.fail("Test failed intentionally");
