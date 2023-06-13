@@ -95,9 +95,9 @@ public class OwnerController {
         System.out.println(response);
     }
 
-    public    String testCreateUserWithRestaurantAPIGetString() throws JsonProcessingException {
+    public    String testCreateUserWithRestaurantAPIGetString(String restaurantEmail) throws JsonProcessingException {
 
-        String requestBody = "{\"email\": \"rifat" + Math.random() + Math.random() + Math.random()  +"@gmail.com\", \"password\": \"12345678\", \"first_Name\": \"Rifat\", \"last_Name\": \"Rifat\", \"phone\": \"Rifat\", \"restaurant_name\": \"restaurant_name\", \"restaurant_address\": \"restaurant_address\", \"restaurant_postcode\": \"restaurant_postcode\", \"restaurant_enable_question\": \"0\", \"restaurant_EmailAddress\": \"0\", \"restaurant_GoogleMapApi\": \"0\", \"restaurant_totalTables\": \"0\", \"restaurant_homeText\": \"0\", \"restaurant_AdditionalInformation\": \"0\", \"restaurant_Webpage\": \"0\", \"restaurant_PhoneNumber\": \"0\", \"restaurant_About\": \"0\", \"restaurant_Layout\": \"0\", \"is_eat_in\": \"0\", \"is_delivery\": \"0\", \"is_take_away\": \"0\", \"is_customer_order\": \"0\", \"review_type\": \"emoji\", \"Is_guest_user\": false, \"is_review_silder\": false, \"review_only\": true}";
+        String requestBody = "{\"email\": \"rifat" + Math.random() + Math.random() + Math.random()  +"@gmail.com\", \"password\": \"12345678\", \"first_Name\": \"Rifat\", \"last_Name\": \"Rifat\", \"phone\": \"Rifat\", \"restaurant_name\": \"restaurant_name\", \"restaurant_address\": \"restaurant_address\", \"restaurant_postcode\": \"restaurant_postcode\", \"restaurant_enable_question\": \"0\", \"restaurant_EmailAddress\": \"" +restaurantEmail+ "\", \"restaurant_GoogleMapApi\": \"0\", \"restaurant_totalTables\": \"0\", \"restaurant_homeText\": \"0\", \"restaurant_AdditionalInformation\": \"0\", \"restaurant_Webpage\": \"0\", \"restaurant_PhoneNumber\": \"0\", \"restaurant_About\": \"0\", \"restaurant_Layout\": \"0\", \"is_eat_in\": \"0\", \"is_delivery\": \"0\", \"is_take_away\": \"0\", \"is_customer_order\": \"0\", \"review_type\": \"emoji\", \"Is_guest_user\": false, \"is_review_silder\": false, \"review_only\": true}";
 
         String response = given()
                 .contentType("application/json")

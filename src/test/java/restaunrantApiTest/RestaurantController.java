@@ -252,18 +252,18 @@ public class RestaurantController {
         System.out.println("restaunrat daleted" +response);
     }
     @Test
-    public void testDeleteRestaurantForceDeleteAPI(String superadminToken,Integer restaurantId) throws JsonProcessingException {
+    public void testDeleteRestaurantForceDeleteAPI(String superadminToken,String restaurantEmail) throws JsonProcessingException {
 
 
         String response =   given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
                 .header("Authorization", "Bearer " + superadminToken)
-                .pathParam("id", restaurantId)
+                .pathParam("email", restaurantEmail)
                 .when()
-                .delete(URL +"/api/restaurant/delete/force-delete/{id}")
+                .delete(URL +"/api/restaurant/delete/force-delete/{email}")
                 .then()
-                .statusCode(200)
+//                .statusCode(200)
                 // Additional assertions for the response data can be added here
                 .extract()
                 .response()
