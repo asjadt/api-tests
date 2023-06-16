@@ -2,6 +2,8 @@ package garageApiTest;
 
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
 
@@ -17,14 +19,17 @@ public class Util {
 
                 .body("{\"email\": \"admin@gmail.com\", \"password\": \"12345678\"}")
                 .when()
-                .post(URL + "/api/auth")
+                .post(URL + "/api/v1.0/login")
                 .then()
                 .extract()
                 .response()
                 .body()
                 .asString();
+        System.out.println(response);
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode jsonNodeOfDailyView = objectMapper.readTree(response);
 
-        String token = JsonPath.from(response).getString("token");
+        String token = jsonNodeOfDailyView.get("data").get("token").asText();
         System.out.println("superadmin token : " + token);
 
         return token;
