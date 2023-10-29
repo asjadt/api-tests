@@ -16,7 +16,7 @@ public class RepairCategoryController {
         // Prepare the request body
         Map<String, Object> requestBody = new HashMap<>();
         requestBody.put("icon", "image.jpg");
-        requestBody.put("name", "Rifat");
+        requestBody.put("name", "aaaaaaaddad");
 
         // Perform the API request
         String response = given()
@@ -136,7 +136,7 @@ public class RepairCategoryController {
     @Test
     public void testDeleteRepairCategoryByIdAPI() throws JsonProcessingException {
         // ID of the repair category to be deleted
-        String categoryId = "39"; // Replace with the ID you want to delete
+        String categoryId = "41"; // Replace with the ID you want to delete
 
         // Perform the API request
         String response = given()

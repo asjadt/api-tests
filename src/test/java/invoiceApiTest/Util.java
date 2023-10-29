@@ -10,7 +10,7 @@ import static io.restassured.RestAssured.given;
 
 public class Util {
 
-    public static final String URL = "https://quickreview.app/invoice-management-system";
+    public static final String URL = "https://quickreview.app/invoice-management-system-test";
 
     public static String  getSuperadminToken() throws JsonProcessingException {
 
