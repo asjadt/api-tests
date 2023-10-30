@@ -34,4 +34,46 @@ public class Util {
         return token;
 
     }
+    public static String  getOtherBusinessOwnerToken() throws JsonProcessingException {
+
+        String response =   given().contentType(ContentType.JSON)
+
+                .body("{\"email\": \"rifatalashwad0.026133453414431074@gmail.com\", \"password\": \"12345678\"}")
+                .when()
+                .post(URL + "/api/v1.0/login")
+                .then()
+                .extract()
+                .response()
+                .body()
+                .asString();
+        System.out.println(response);
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode jsonNodeOfDailyView = objectMapper.readTree(response);
+
+        String token = jsonNodeOfDailyView.get("token").asText();
+        System.out.println("business owner token : " + token);
+
+        return token;
+    }
+    public static String  getPropertyDealerBusinessOwnerToken() throws JsonProcessingException {
+
+        String response =   given().contentType(ContentType.JSON)
+
+                .body("{\"email\": \"rifatalashwad0.7262331127961494@gmail.com\", \"password\": \"12345678\"}")
+                .when()
+                .post(URL + "/api/v1.0/login")
+                .then()
+                .extract()
+                .response()
+                .body()
+                .asString();
+        System.out.println(response);
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode jsonNodeOfDailyView = objectMapper.readTree(response);
+
+        String token = jsonNodeOfDailyView.get("token").asText();
+        System.out.println("business owner token : " + token);
+
+        return token;
+    }
 }
