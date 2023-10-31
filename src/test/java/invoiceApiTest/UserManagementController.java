@@ -19,8 +19,8 @@ public class UserManagementController {
             put("first_Name", "Rifat");
             put("last_Name", "Al-Ashwad");
             put("email", ("rifatalashwad") + Math.random() +("@gmail.com"));
-            put("password", "12345678");
-            put("password_confirmation", "12345678");
+            put("password", "12345678We");
+            put("password_confirmation", "12345678We");
             put("phone", "01771034383");
             put("image", "https://images.unsplash.com/photo-1671410714831-969877d103b1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80");
         }});
