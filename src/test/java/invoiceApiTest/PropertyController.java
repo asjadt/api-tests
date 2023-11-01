@@ -28,7 +28,7 @@ public class PropertyController {
         requestBody.put("long", "90.44707059805279");
         requestBody.put("type", "sample_type");
         requestBody.put("reference_no", ("aaa") + Math.random() +("zzz"));
-        requestBody.put("landlord_id", "527");
+        requestBody.put("landlord_id", "528");
         List<Integer> tenantIds = Arrays.asList(530,531);
         requestBody.put("tenant_ids", tenantIds);
 
