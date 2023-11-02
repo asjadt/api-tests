@@ -54,6 +54,35 @@ public class UserManagementController {
             put("logo", "https://images.unsplash.com/photo-1671410714831-969877d103b1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80");
         }});
 
+
+        List<Map<String, Object>> billItems = new ArrayList<>();
+        Map<String, Object> billItem1 = new HashMap<>();
+        billItem1.put("bill_item_id", 12);
+        billItems.add(billItem1);
+        requestBody.put("bill_items", billItems);
+
+
+
+
+
+        List<Map<String, Object>> saleItems = new ArrayList<>();
+        Map<String, Object> saleItem1 = new HashMap<>();
+        saleItem1.put("sale_id", "");
+        saleItem1.put("item", "item");
+        saleItem1.put("description", "description");
+        saleItem1.put("amount", 10.1);
+        Map<String, Object> saleItem2 = new HashMap<>();
+        saleItem2.put("sale_id", "");
+        saleItem2.put("item", "item");
+        saleItem2.put("description", "description");
+        saleItem2.put("amount", 10.1);
+        saleItems.add(saleItem1);
+        saleItems.add(saleItem2);
+        requestBody.put("sale_items", saleItems);
+
+
+
+
         // Perform the API request
         String response = given()
                 .contentType(ContentType.JSON)
