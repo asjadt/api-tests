@@ -76,4 +76,25 @@ public class Util {
 
         return token;
     }
+    public static String  getBusinessOwnerToken(String email,String password) throws JsonProcessingException {
+
+        String response =   given().contentType(ContentType.JSON)
+
+                .body("{\"email\": \""+ email +"\", \"password\": \""+password+"\"}")
+                .when()
+                .post(URL + "/api/v1.0/login")
+                .then()
+                .extract()
+                .response()
+                .body()
+                .asString();
+        System.out.println(response);
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode jsonNodeOfDailyView = objectMapper.readTree(response);
+
+        String token = jsonNodeOfDailyView.get("token").asText();
+        System.out.println("business owner token : " + token);
+
+        return token;
+    }
 }
