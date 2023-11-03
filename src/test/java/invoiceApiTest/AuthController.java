@@ -7,8 +7,8 @@ import org.junit.Test;
 
 import java.util.*;
 
-import static garageApiTest.Util.URL;
-import static garageApiTest.Util.getSuperadminToken;
+import static invoiceApiTest.Util.URL;
+import static invoiceApiTest.Util.getSuperadminToken;
 import static io.restassured.RestAssured.given;
 
 
