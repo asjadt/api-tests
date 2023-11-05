@@ -127,7 +127,7 @@ public class CommonFlow {
             JsonNode jsonNodeOfBill = objectMapper.readTree(bill);
             Integer billId = jsonNodeOfBill.get("id").asInt();
             String billGeneratedId = jsonNodeOfBill.get("generated_id").asText();
-            billControllerMethods.testUpdateBillAPI(businessOwnerToken,billId,landlordId,propertyId,billItemId1,saleItemId1);
+            billControllerMethods.testUpdateBillAPI(businessOwnerToken,billId,landlordId,propertyId,billItemId1,repairItemId1,saleItemId1);
 
 
 
@@ -154,7 +154,18 @@ public class CommonFlow {
         }
 
     }
-
+//        invoice flow
+//1 admin login
+//2 business register
+//3 repair category create by admin
+//4 landlord create by business owner
+//5 tenant create by business owner
+//6 property create by business owner
+//7 sale item create by business owner
+//8 repair item create by business owner
+//9 invoice create, update, get,get by id,reference, delete by business owner
+//10 business delete by admin
+//11 repair category delete by admin
     @Test
     public void InvoiceFlow() throws JsonProcessingException {
         String superAdminToken = getSuperadminToken();
@@ -169,9 +180,9 @@ public class CommonFlow {
 
 
         try {
-            String billItem1 = billItemControllerMethods.testCreateBillItemAPI(superAdminToken);
-            JsonNode jsonNodeOfBillItem1 = objectMapper.readTree(billItem1);
-            Integer billItemId1 = jsonNodeOfBillItem1.get("id").asInt();
+//            String billItem1 = billItemControllerMethods.testCreateBillItemAPI(superAdminToken);
+//            JsonNode jsonNodeOfBillItem1 = objectMapper.readTree(billItem1);
+//            Integer billItemId1 = jsonNodeOfBillItem1.get("id").asInt();
 
             String repairCategory = repairCategoryControllerMethods.testCreateRepairCategoryAPI(superAdminToken);
             JsonNode jsonNodeOfRepairCategory = objectMapper.readTree(repairCategory);
@@ -201,24 +212,39 @@ public class CommonFlow {
 
 
 
+            String invoice =   invoiceControllerMethods.testCreateInvoiceAPI(businessOwnerToken,landlordId,propertyId,repairItemId1,saleItemId1);
+            JsonNode jsonNodeOfInvoice = objectMapper.readTree(invoice);
+            Integer invoiceId = jsonNodeOfInvoice.get("id").asInt();
+            String invoiceGeneratedId = jsonNodeOfInvoice.get("generated_id").asText();
+            String invoiceReference = jsonNodeOfInvoice.get("invoice_reference").asText();
+
+            invoiceControllerMethods.testUpdateInvoiceAPI(businessOwnerToken,invoiceId,invoiceReference,landlordId,propertyId,repairItemId1,saleItemId1);
+            invoiceControllerMethods.testUpdateInvoiceStatusAPI(businessOwnerToken,invoiceId);
+            invoiceControllerMethods.testMarkInvoiceSendAPI(businessOwnerToken,invoiceId);
+            invoiceControllerMethods.testSendInvoiceAPI(businessOwnerToken,invoiceId);
+            invoiceControllerMethods.testGetInvoicesAPI(businessOwnerToken);
+            invoiceControllerMethods.testGetInvoicesAPI(businessOwnerToken);
+            invoiceControllerMethods.testGetInvoiceById(businessOwnerToken,invoiceGeneratedId);
+            invoiceControllerMethods.testGetInvoiceByReferenceAPI(businessOwnerToken,invoiceReference);
+            invoiceControllerMethods.testDeleteInvoiceById(businessOwnerToken,invoiceId);
 
 
 
 
 
-            String bill =   billControllerMethods.testCreateBillAPI(businessOwnerToken,landlordId,propertyId,billItemId1,repairItemId1,saleItemId1);
-            JsonNode jsonNodeOfBill = objectMapper.readTree(bill);
-            Integer billId = jsonNodeOfBill.get("id").asInt();
-            String billGeneratedId = jsonNodeOfBill.get("generated_id").asText();
-            billControllerMethods.testUpdateBillAPI(businessOwnerToken,billId,landlordId,propertyId,billItemId1,saleItemId1);
-
-
-
-            billControllerMethods.testGetBillsAPI(businessOwnerToken);
-            billControllerMethods.testGetAllBillsAPI(businessOwnerToken);
-
-            billControllerMethods.testGetBillByIdAPI(businessOwnerToken,billGeneratedId);
-            billControllerMethods.testDeleteBillByIdAPI(businessOwnerToken,billId);
+//            String bill =   billControllerMethods.testCreateBillAPI(businessOwnerToken,landlordId,propertyId,billItemId1,repairItemId1,saleItemId1);
+//            JsonNode jsonNodeOfBill = objectMapper.readTree(bill);
+//            Integer billId = jsonNodeOfBill.get("id").asInt();
+//            String billGeneratedId = jsonNodeOfBill.get("generated_id").asText();
+//            billControllerMethods.testUpdateBillAPI(businessOwnerToken,billId,landlordId,propertyId,billItemId1,repairItemId1,saleItemId1);
+//
+//
+//
+//            billControllerMethods.testGetBillsAPI(businessOwnerToken);
+//            billControllerMethods.testGetAllBillsAPI(businessOwnerToken);
+//
+//            billControllerMethods.testGetBillByIdAPI(businessOwnerToken,billGeneratedId);
+//            billControllerMethods.testDeleteBillByIdAPI(businessOwnerToken,billId);
 
 
 
@@ -228,10 +254,10 @@ public class CommonFlow {
 
 
             userManagementControllerMethods.testDeleteUserByIdAPI(superAdminToken,businessId);
-            billItemControllerMethods.testDeleteBillItemByIdAPI(superAdminToken,billItemId1);
+//            billItemControllerMethods.testDeleteBillItemByIdAPI(superAdminToken,billItemId1);
             repairCategoryControllerMethods.testDeleteRepairCategoryByIdAPI(superAdminToken,repairCategoryId);
         } catch(Exception e)  {
-            userManagementControllerMethods.testDeleteUserByIdAPI(superAdminToken,businessId);
+           userManagementControllerMethods.testDeleteUserByIdAPI(superAdminToken,businessId);
 
             Assert.fail("Test failed intentionally");
         }

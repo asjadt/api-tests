@@ -95,7 +95,7 @@ public class BillControllerMethods {
         return response;
     }
 
-    public String testUpdateBillAPI(String businessOwnerToken,Integer id,Integer landlordId,Integer propertyId,Integer billItemId1,Integer saleItemId1) throws JsonProcessingException {
+    public String testUpdateBillAPI(String businessOwnerToken,Integer id,Integer landlordId,Integer propertyId,Integer billItemId1,Integer repairItemId1,Integer saleItemId1) throws JsonProcessingException {
         // Define the request body
         Map<String, Object> requestBody = new HashMap<>();
         requestBody.put("id", id); // Replace with the actual bill ID
@@ -149,17 +149,18 @@ public class BillControllerMethods {
 
         // Define the bill items
         List<Map<String, Object>> repairItems = new ArrayList<>();
-//        Map<String, Object> repairItem1 = new HashMap<>();
-//        repairItem1.put("repair_id", 62);
-//        repairItem1.put("item", "item");
-//        repairItem1.put("description", "description");
-//        repairItem1.put("amount", 10.1);
+        Map<String, Object> repairItem1 = new HashMap<>();
+        repairItem1.put("repair_id", repairItemId1);
+        repairItem1.put("item", "item");
+        repairItem1.put("description", "description");
+        repairItem1.put("amount", 10.1);
+        repairItems.add(repairItem1);
 //        Map<String, Object> repairItem2 = new HashMap<>();
 //        repairItem2.put("repair_id", 63);
 //        repairItem2.put("item", "item");
 //        repairItem2.put("description", "description");
 //        repairItem2.put("amount", 10.1);
-//        repairItems.add(repairItem1);
+//
 //        repairItems.add(repairItem2);
         requestBody.put("repair_items", repairItems);
 

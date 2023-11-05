@@ -98,11 +98,11 @@ public class InvoiceControllerMethods {
 
 
     }
-    @Test
-    public void testUpdateInvoiceAPI() throws JsonProcessingException {
+
+    public String testUpdateInvoiceAPI(String businessOwnerToken,Integer invoiceId,String invoiceReference,Integer landlordId, Integer propertyId,Integer repairItemId1,Integer saleItemId1) throws JsonProcessingException {
         // Prepare the request body
         Map<String, Object> requestBody = new HashMap<>();
-        requestBody.put("id", 3146);
+        requestBody.put("id", invoiceId);
         requestBody.put("name", "Invoice Name");
         requestBody.put("description", "Invoice Description");
         requestBody.put("logo", "https://example.com/invoice_logo.jpg");
@@ -118,7 +118,7 @@ public class InvoiceControllerMethods {
         requestBody.put("sub_total", 900);
         requestBody.put("total_amount", 900);
         requestBody.put("invoice_date", "2019-06-29");
-        requestBody.put("invoice_reference", ("aaa") + Math.random() +("zzz"));
+        requestBody.put("invoice_reference", invoiceReference);
 
         requestBody.put("discount_description", "Discount Description");
         requestBody.put("discount_type", "fixed");
@@ -129,8 +129,8 @@ public class InvoiceControllerMethods {
         requestBody.put("shareable_link", "Shareable Link");
         requestBody.put("note", "Invoice Note");
         requestBody.put("business_type", "property_dealer");
-        requestBody.put("property_id", 1034);
-        requestBody.put("landlord_id", 528);
+        requestBody.put("property_id", propertyId);
+        requestBody.put("landlord_id", landlordId);
 //        requestBody.put("tenant_id", 1);
 //        requestBody.put("client_id", 1);
 
@@ -144,24 +144,26 @@ public class InvoiceControllerMethods {
         item1.put("amount", 300);
         invoiceItems.add(item1);
 
-//        Map<String, Object> item2 = new HashMap<>();
-//        item2.put("name", "Item 2");
-//        item2.put("description", "Item 2 Description");
-//        item2.put("quantity", 1);
-//        item2.put("price", 1.1);
-//        item2.put("tax", 20);
-//        item2.put("amount", 300);
-//        invoiceItems.add(item2);
-//
-//        Map<String, Object> item3 = new HashMap<>();
-//        item3.put("name", "Item 3");
-//        item3.put("description", "Item 3 Description");
-//        item3.put("quantity", 1);
-//        item3.put("price", 1.1);
-//        item3.put("tax", 20);
-//        item3.put("amount", 300);
-//        item3.put("repair_id", 1);
-//        invoiceItems.add(item3);
+        Map<String, Object> item2 = new HashMap<>();
+        item2.put("name", "Item 2");
+        item2.put("description", "Item 2 Description");
+        item2.put("quantity", 1);
+        item2.put("price", 1.1);
+        item2.put("tax", 20);
+        item2.put("amount", 300);
+        item2.put("sale_id", saleItemId1);
+
+        invoiceItems.add(item2);
+
+        Map<String, Object> item3 = new HashMap<>();
+        item3.put("name", "Item 3");
+        item3.put("description", "Item 3 Description");
+        item3.put("quantity", 1);
+        item3.put("price", 1.1);
+        item3.put("tax", 20);
+        item3.put("amount", 300);
+        item3.put("repair_id", repairItemId1);
+        invoiceItems.add(item3);
 
         requestBody.put("invoice_items", invoiceItems);
 
@@ -169,7 +171,7 @@ public class InvoiceControllerMethods {
         String response = given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .header("Authorization", "Bearer " + getPropertyDealerBusinessOwnerToken())
+                .header("Authorization", "Bearer " + businessOwnerToken)
                 .body(requestBody)
                 .when()
                 .put(URL + "/api/v1.0/invoices")
@@ -180,22 +182,23 @@ public class InvoiceControllerMethods {
                 .asString();
 
         System.out.println(response);
+        return response;
 
 
     }
 
-    @Test
-    public void testUpdateInvoiceStatusAPI() throws JsonProcessingException {
+
+    public String testUpdateInvoiceStatusAPI(String businessOwnerToken,Integer invoiceId) throws JsonProcessingException {
         // Prepare the request body
         Map<String, Object> requestBody = new HashMap<>();
-        requestBody.put("id", 3146); // Replace with the actual invoice ID you want to update
+        requestBody.put("id", invoiceId); // Replace with the actual invoice ID you want to update
         requestBody.put("status", "draft"); // Replace with the desired status
 
         // Perform the API request
         String response = given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .header("Authorization", "Bearer " + getPropertyDealerBusinessOwnerToken())
+                .header("Authorization", "Bearer " + businessOwnerToken)
                 .body(requestBody)
                 .when()
                 .put(URL + "/api/v1.0/invoices/change/status")
@@ -206,18 +209,19 @@ public class InvoiceControllerMethods {
                 .asString();
 
         System.out.println(response);
+        return response;
     }
-    @Test
-    public void testMarkInvoiceSendAPI() throws JsonProcessingException {
+
+    public String testMarkInvoiceSendAPI(String businessOwnerToken,Integer invoiceId) throws JsonProcessingException {
         // Prepare the request body
         Map<String, Object> requestBody = new HashMap<>();
-        requestBody.put("id", 3146); // Replace with the actual invoice ID you want to mark as sent
+        requestBody.put("id", invoiceId); // Replace with the actual invoice ID you want to mark as sent
 
         // Perform the API request
         String response = given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .header("Authorization", "Bearer " + getPropertyDealerBusinessOwnerToken())
+                .header("Authorization", "Bearer " + businessOwnerToken)
                 .body(requestBody)
                 .when()
                 .put(URL + "/api/v1.0/invoices/mark/send")
@@ -228,13 +232,14 @@ public class InvoiceControllerMethods {
                 .asString();
 
         System.out.println(response);
+        return response;
     }
 
-    @Test
-    public void testSendInvoiceAPI() throws JsonProcessingException {
+
+    public String testSendInvoiceAPI(String businessOwnerToken,Integer invoiceId) throws JsonProcessingException {
         // Prepare the request body
         Map<String, Object> requestBody = new HashMap<>();
-        requestBody.put("id", 3146); // Replace with the actual invoice ID you want to send
+        requestBody.put("id", invoiceId); // Replace with the actual invoice ID you want to send
         requestBody.put("from", "test@gmail.com");
         List<String> recipients = Arrays.asList("test1@gmail.com", "test2@gmail.com");
         requestBody.put("to", recipients);
@@ -247,7 +252,7 @@ public class InvoiceControllerMethods {
         String response = given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .header("Authorization", "Bearer " + getPropertyDealerBusinessOwnerToken())
+                .header("Authorization", "Bearer " + businessOwnerToken)
                 .body(requestBody)
                 .when()
                 .put(URL + "/api/v1.0/invoices/send")
@@ -258,9 +263,10 @@ public class InvoiceControllerMethods {
                 .asString();
 
         System.out.println(response);
+        return response;
     }
-    @Test
-    public void testGetInvoicesAPI() throws JsonProcessingException {
+
+    public String testGetInvoicesAPI(String businessOwnerToken) throws JsonProcessingException {
         // Define the path parameter values
         String perPage = "6";
 
@@ -283,7 +289,7 @@ public class InvoiceControllerMethods {
         String response = given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .header("Authorization", "Bearer " + getPropertyDealerBusinessOwnerToken())
+                .header("Authorization", "Bearer " + businessOwnerToken)
                 .pathParam("perPage", perPage)
                 .queryParam("start_date", startDate)
                 .queryParam("end_date", endDate)
@@ -307,10 +313,11 @@ public class InvoiceControllerMethods {
                 .asString();
 
         System.out.println(response);
+      return  response;
     }
 
-    @Test
-    public void testGetAllInvoicesAPI() throws JsonProcessingException {
+
+    public String testGetAllInvoicesAPI(String businessOwnerToken) throws JsonProcessingException {
         // Define query parameters
         String startDate = "2019-06-29";
         String endDate = "2030-06-29";
@@ -330,7 +337,7 @@ public class InvoiceControllerMethods {
         String response = given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .header("Authorization", "Bearer " + getPropertyDealerBusinessOwnerToken())
+                .header("Authorization", "Bearer " + businessOwnerToken)
                 .queryParam("start_date", startDate)
                 .queryParam("end_date", endDate)
                 .queryParam("order_by", orderBy)
@@ -353,20 +360,21 @@ public class InvoiceControllerMethods {
                 .asString();
 
         System.out.println(response);
+        return response;
 
     }
 
-    @Test
-    public void testGetInvoiceById() throws Exception {
+
+    public String testGetInvoiceById(String businessOwnerToken,String invoiceId) throws Exception {
         // Define the request parameters
         Map<String, String> pathParams = new HashMap<>();
-        pathParams.put("id", "6EIU3143kOnY"); // Replace with the actual invoice ID
+        pathParams.put("id", invoiceId); // Replace with the actual invoice ID
 
         // Perform the API request
         String response = given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .header("Authorization", "Bearer " + getPropertyDealerBusinessOwnerToken())
+                .header("Authorization", "Bearer " + businessOwnerToken)
                 .pathParams(pathParams)
                 .when()
                 .get(URL + "/api/v1.0/invoices/get/single/{id}")
@@ -377,20 +385,21 @@ public class InvoiceControllerMethods {
                 .asString();
 
         System.out.println(response);
+        return response;
     }
 
 
     @Test
-    public void testGetInvoiceByReferenceAPI() throws JsonProcessingException {
+    public String testGetInvoiceByReferenceAPI(String businessOwnerToken,String invoiceReference) throws JsonProcessingException {
         // Define the request path
-        String reference = "0002"; // Replace with the desired reference
+        String reference = invoiceReference; // Replace with the desired reference
         String requestPath = URL + "/api/v1.0/invoices/get/single-by-reference/" + reference;
 
         // Perform the API request
         String response = given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .header("Authorization", "Bearer " + getPropertyDealerBusinessOwnerToken())
+                .header("Authorization", "Bearer " + businessOwnerToken)
                 .when()
                 .get(requestPath)
                 .then()
@@ -400,22 +409,22 @@ public class InvoiceControllerMethods {
                 .asString();
 
         System.out.println(response);
+        return response;
 
 
     }
 
     @Test
-    public void testDeleteInvoiceById() throws JsonProcessingException {
+    public String testDeleteInvoiceById(String businessOwnerToken,Integer invoiceId) throws JsonProcessingException {
 
 
-        // Set the invoice ID
-        String invoiceId = "3143";
+
 
         // Perform the API request
         String response =   given()
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
-                .header("Authorization", "Bearer " + getPropertyDealerBusinessOwnerToken())
+                .header("Authorization", "Bearer " + businessOwnerToken)
                 .header("pin", "1234")
                 .pathParam("id", invoiceId)
                 .when()
@@ -427,6 +436,7 @@ public class InvoiceControllerMethods {
                 .asString();
 
         System.out.println(response);
+        return response;
     }
 
 
