@@ -5,6 +5,7 @@ package invoiceApiTest.flow;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import invoiceApiTest.InvoiceReminderController;
 import org.testng.annotations.Test;
 
 import org.testng.Assert;
@@ -37,6 +38,10 @@ public class CommonFlow {
 
     private RepairCategoryControllerMethods repairCategoryControllerMethods;
 
+    private InvoiceReminderControllerMethods invoiceReminderControllerMethods;
+
+    private InvoicePaymentControllerMethods invoicePaymentControllerMethods;
+
     private ObjectMapper objectMapper;
 
 
@@ -53,6 +58,8 @@ public class CommonFlow {
         invoiceControllerMethods = new InvoiceControllerMethods();
         repairControllerMethods = new RepairControllerMethods();
         repairCategoryControllerMethods = new RepairCategoryControllerMethods();
+        invoiceReminderControllerMethods = new InvoiceReminderControllerMethods();
+        invoicePaymentControllerMethods = new InvoicePaymentControllerMethods();
         objectMapper = new ObjectMapper(); // Initialize the field, not a local variable
 
     }
@@ -217,7 +224,6 @@ public class CommonFlow {
             Integer invoiceId = jsonNodeOfInvoice.get("id").asInt();
             String invoiceGeneratedId = jsonNodeOfInvoice.get("generated_id").asText();
             String invoiceReference = jsonNodeOfInvoice.get("invoice_reference").asText();
-
             invoiceControllerMethods.testUpdateInvoiceAPI(businessOwnerToken,invoiceId,invoiceReference,landlordId,propertyId,repairItemId1,saleItemId1);
             invoiceControllerMethods.testUpdateInvoiceStatusAPI(businessOwnerToken,invoiceId);
             invoiceControllerMethods.testMarkInvoiceSendAPI(businessOwnerToken,invoiceId);
@@ -226,6 +232,29 @@ public class CommonFlow {
             invoiceControllerMethods.testGetInvoicesAPI(businessOwnerToken);
             invoiceControllerMethods.testGetInvoiceById(businessOwnerToken,invoiceGeneratedId);
             invoiceControllerMethods.testGetInvoiceByReferenceAPI(businessOwnerToken,invoiceReference);
+
+
+            String invoiceReminder =   invoiceReminderControllerMethods.testCreateInvoiceReminderNumberDateConvertAPI(businessOwnerToken,invoiceId);
+            JsonNode jsonNodeOfInvoiceReminder = objectMapper.readTree(invoiceReminder);
+            Integer invoiceReminderId = jsonNodeOfInvoiceReminder.get("id").asInt();
+            invoiceReminderControllerMethods.testUpdateInvoiceReminderAPI(businessOwnerToken,invoiceReminderId);
+            invoiceReminderControllerMethods.testGetInvoiceRemindersAPI(businessOwnerToken);
+            invoiceReminderControllerMethods.testGetInvoiceReminderByIdAPI(businessOwnerToken,invoiceReminderId);
+            invoiceReminderControllerMethods.testDeleteInvoiceReminderByIdAPI(businessOwnerToken,invoiceReminderId);
+
+
+            String invoicePayment =   invoicePaymentControllerMethods.testCreateInvoicePaymentAPI(businessOwnerToken,invoiceId);
+            JsonNode jsonNodeOfInvoicePayment = objectMapper.readTree(invoicePayment);
+            Integer invoicePaymentId = jsonNodeOfInvoicePayment.get("id").asInt();
+            String invoicePaymentGeneratedId = jsonNodeOfInvoicePayment.get("generated_id").asText();
+            invoicePaymentControllerMethods.testUpdateInvoicePaymentAPI(businessOwnerToken,invoiceId,invoicePaymentId);
+            invoicePaymentControllerMethods.testGetInvoicePaymentsAPI(businessOwnerToken);
+            invoicePaymentControllerMethods.testGetInvoicePaymentByIdV2API(businessOwnerToken,invoicePaymentGeneratedId);
+            invoicePaymentControllerMethods.testDeleteInvoicePaymentByIdV2API(businessOwnerToken,invoicePaymentId);
+
+
+
+
             invoiceControllerMethods.testDeleteInvoiceById(businessOwnerToken,invoiceId);
 
 
