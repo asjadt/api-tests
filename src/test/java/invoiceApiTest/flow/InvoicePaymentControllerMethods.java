@@ -2,7 +2,7 @@ package invoiceApiTest.flow;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import io.restassured.http.ContentType;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 import java.util.*;
 
@@ -10,7 +10,7 @@ import static invoiceApiTest.Util.*;
 import static io.restassured.RestAssured.given;
 
 public class InvoicePaymentControllerMethods {
-
+    @Test
     public String testCreateInvoicePaymentAPI(String businessOwnerToken,Integer invoiceId) throws JsonProcessingException {
         // Prepare the request body
         Map<String, Object> requestBody = new HashMap<>();
@@ -39,7 +39,7 @@ public class InvoicePaymentControllerMethods {
         return response;
     }
 
-
+    @Test
     public String testUpdateInvoicePaymentAPI(String businessOwnerToken,Integer invoiceId,Integer invoicePaymentId) throws JsonProcessingException {
         // Prepare the request body
         Map<String, Object> requestBody = new HashMap<>();
@@ -70,7 +70,7 @@ public class InvoicePaymentControllerMethods {
     }
 
 
-
+    @Test
     public String testGetInvoicePaymentsAPI(String businessOwnerToken) throws JsonProcessingException {
         // Define the path parameter value (perPage)
         String perPage = "6"; // Replace with the number of items per page you want
@@ -112,7 +112,7 @@ public class InvoicePaymentControllerMethods {
     }
 
 
-
+    @Test
     public String testGetInvoicePaymentByIdV2API(String businessOwnerToken,String invoicePaymentId) throws JsonProcessingException {
         // Define the path parameter value (invoice payment ID)
 
@@ -135,7 +135,7 @@ public class InvoicePaymentControllerMethods {
         return response;
     }
 
-
+    @Test
     public String testDeleteInvoicePaymentByIdV2API(String businessOwnerToken,Integer invoicePaymentId) throws JsonProcessingException {
         // Define the path parameters (invoice payment ID and invoice ID)
 

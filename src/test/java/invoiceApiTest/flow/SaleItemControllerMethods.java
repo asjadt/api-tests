@@ -3,14 +3,14 @@ package invoiceApiTest.flow;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.restassured.http.ContentType;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 import java.util.*;
 
 import static invoiceApiTest.Util.*;
 import static io.restassured.RestAssured.given;
 public class SaleItemControllerMethods {
-
+    @Test
     public String testCreateSaleItemAPI(String businessOwnerToken) throws JsonProcessingException {
         // Define the request body
         Map<String, Object> requestBody = new HashMap<>();

@@ -3,7 +3,7 @@ package invoiceApiTest.flow;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.restassured.http.ContentType;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 import java.util.*;
 
@@ -15,7 +15,7 @@ public class BillItemControllerMethods {
 
 
 
-
+    @Test
     public String testCreateBillItemAPI(String superAdminToken) throws JsonProcessingException {
 // Prepare the request body
         Map<String, Object> requestBody = new HashMap<>();
@@ -122,7 +122,7 @@ public class BillItemControllerMethods {
         System.out.println(response);
     }
 
-
+    @Test
     public String testDeleteBillItemByIdAPI(String superAdminToken,Integer id) throws JsonProcessingException {
         // Prepare the request path
         String path = URL + "/api/v1.0/bill-items/{id}";

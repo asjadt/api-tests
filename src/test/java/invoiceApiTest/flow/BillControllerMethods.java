@@ -2,7 +2,7 @@ package invoiceApiTest.flow;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.restassured.http.ContentType;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 import java.util.*;
 
@@ -10,7 +10,7 @@ import static invoiceApiTest.Util.*;
 import static io.restassured.RestAssured.given;
 
 public class BillControllerMethods {
-
+    @Test
     public String testCreateBillAPI(String businessOwnerToken,Integer landlordId, Integer propertyId,Integer billItemId1,Integer repairItemId1,Integer saleItemId1) throws JsonProcessingException {
         // Define the request body
         Map<String, Object> requestBody = new HashMap<>();
@@ -95,6 +95,7 @@ public class BillControllerMethods {
         return response;
     }
 
+    @Test
     public String testUpdateBillAPI(String businessOwnerToken,Integer id,Integer landlordId,Integer propertyId,Integer billItemId1,Integer repairItemId1,Integer saleItemId1) throws JsonProcessingException {
         // Define the request body
         Map<String, Object> requestBody = new HashMap<>();
@@ -184,7 +185,7 @@ public class BillControllerMethods {
 
     }
 
-
+    @Test
     public String testGetBillsAPI(String businessOwnerToken) throws JsonProcessingException {
         // Define the request parameters
         Map<String, Object> queryParams = new HashMap<>();
@@ -224,7 +225,7 @@ public class BillControllerMethods {
     }
 
 
-
+    @Test
     public String testGetAllBillsAPI(String businessOwnerToken) throws JsonProcessingException {
         // Define query parameters
         Map<String, Object> queryParams = new HashMap<>();
@@ -261,7 +262,7 @@ public class BillControllerMethods {
         System.out.println(response);
         return response;
     }
-
+    @Test
     public String testGetBillByIdAPI(String businessOwnerToken,String billId) throws JsonProcessingException {
         // Define the ID parameter for the path
 
@@ -284,7 +285,7 @@ public class BillControllerMethods {
         return response;
     }
 
-
+    @Test
     public String testDeleteBillByIdAPI(String businessOwnerToken,Integer billId) throws JsonProcessingException {
 
 

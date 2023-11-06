@@ -1,7 +1,7 @@
 package invoiceApiTest.flow;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import io.restassured.http.ContentType;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 import java.util.*;
 
@@ -11,7 +11,7 @@ import static io.restassured.RestAssured.given;
 
 
 public class RepairCategoryControllerMethods {
-
+    @Test
     public String testCreateRepairCategoryAPI(String superAdminToken) throws JsonProcessingException {
         // Prepare the request body
         Map<String, Object> requestBody = new HashMap<>();
@@ -134,7 +134,7 @@ public class RepairCategoryControllerMethods {
 
         System.out.println(response);
     }
-
+    @Test
     public String testDeleteRepairCategoryByIdAPI(String superAdminToken,Integer repairCategoryId) throws JsonProcessingException {
 
 

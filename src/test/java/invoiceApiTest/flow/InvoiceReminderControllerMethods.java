@@ -2,7 +2,7 @@ package invoiceApiTest.flow;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import io.restassured.http.ContentType;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 import java.util.*;
 
@@ -11,7 +11,7 @@ import static io.restassured.RestAssured.given;
 
 
 public class InvoiceReminderControllerMethods {
-
+    @Test
     public String testCreateInvoiceReminderNumberDateConvertAPI(String businessOwnerToken,Integer invoiceId) throws JsonProcessingException {
         // Prepare the request body
         Map<String, Object> requestBody = new HashMap<>();
@@ -37,7 +37,7 @@ public class InvoiceReminderControllerMethods {
         return response;
     }
 
-
+    @Test
     public String testUpdateInvoiceReminderAPI(String businessOwnerToken,Integer invoiceReminderId) throws JsonProcessingException {
         // Prepare the request body
         Map<String, Object> requestBody = new HashMap<>();
@@ -64,7 +64,7 @@ public class InvoiceReminderControllerMethods {
     }
 
 
-
+    @Test
     public String testGetInvoiceRemindersAPI(String businessOwnerToken) throws JsonProcessingException {
         // Define the query parameters
         Map<String, Object> queryParams = new HashMap<>();
@@ -97,7 +97,7 @@ public class InvoiceReminderControllerMethods {
     }
 
 
-
+    @Test
     public String testGetInvoiceReminderByIdAPI(String businessOwnerToken,Integer invoiceReminderId) throws JsonProcessingException {
         // Define the path parameter
 
@@ -118,7 +118,7 @@ public class InvoiceReminderControllerMethods {
         System.out.println(response);
         return response;
     }
-
+    @Test
     public String testDeleteInvoiceReminderByIdAPI(String businessOwnerToken,Integer invoiceReminderId) throws JsonProcessingException {
         // Define the path parameter
 

@@ -2,7 +2,7 @@ package invoiceApiTest.flow;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.restassured.http.ContentType;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 import java.util.*;
 
@@ -10,7 +10,7 @@ import static invoiceApiTest.Util.*;
 import static io.restassured.RestAssured.given;
 
 public class InvoiceControllerMethods {
-
+    @Test
     public String testCreateInvoiceAPI(String businessOwnerToken,Integer landlordId, Integer propertyId,Integer repairItemId1,Integer saleItemId1) throws JsonProcessingException {
         // Prepare the request body
         Map<String, Object> requestBody = new HashMap<>();
@@ -98,7 +98,7 @@ public class InvoiceControllerMethods {
 
 
     }
-
+    @Test
     public String testUpdateInvoiceAPI(String businessOwnerToken,Integer invoiceId,String invoiceReference,Integer landlordId, Integer propertyId,Integer repairItemId1,Integer saleItemId1) throws JsonProcessingException {
         // Prepare the request body
         Map<String, Object> requestBody = new HashMap<>();
@@ -187,7 +187,7 @@ public class InvoiceControllerMethods {
 
     }
 
-
+    @Test
     public String testUpdateInvoiceStatusAPI(String businessOwnerToken,Integer invoiceId) throws JsonProcessingException {
         // Prepare the request body
         Map<String, Object> requestBody = new HashMap<>();
@@ -211,7 +211,7 @@ public class InvoiceControllerMethods {
         System.out.println(response);
         return response;
     }
-
+    @Test
     public String testMarkInvoiceSendAPI(String businessOwnerToken,Integer invoiceId) throws JsonProcessingException {
         // Prepare the request body
         Map<String, Object> requestBody = new HashMap<>();
@@ -235,7 +235,7 @@ public class InvoiceControllerMethods {
         return response;
     }
 
-
+    @Test
     public String testSendInvoiceAPI(String businessOwnerToken,Integer invoiceId) throws JsonProcessingException {
         // Prepare the request body
         Map<String, Object> requestBody = new HashMap<>();
@@ -265,7 +265,7 @@ public class InvoiceControllerMethods {
         System.out.println(response);
         return response;
     }
-
+    @Test
     public String testGetInvoicesAPI(String businessOwnerToken) throws JsonProcessingException {
         // Define the path parameter values
         String perPage = "6";
@@ -316,7 +316,7 @@ public class InvoiceControllerMethods {
       return  response;
     }
 
-
+    @Test
     public String testGetAllInvoicesAPI(String businessOwnerToken) throws JsonProcessingException {
         // Define query parameters
         String startDate = "2019-06-29";
@@ -364,7 +364,7 @@ public class InvoiceControllerMethods {
 
     }
 
-
+    @Test
     public String testGetInvoiceById(String businessOwnerToken,String invoiceId) throws Exception {
         // Define the request parameters
         Map<String, String> pathParams = new HashMap<>();

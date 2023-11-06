@@ -1,7 +1,7 @@
 package invoiceApiTest.flow;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import io.restassured.http.ContentType;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 import java.util.*;
 
@@ -9,7 +9,7 @@ import static invoiceApiTest.Util.URL;
 import static invoiceApiTest.Util.getSuperadminToken;
 import static io.restassured.RestAssured.given;
 public class UserManagementControllerMethods {
-
+    @Test
     public String testRegisterUserWithBusinessAPI(String superAdminToken,String businessOwnerEmail,String businessOwnerPassword)  {
         // Prepare the request body
         Map<String, Object> requestBody = new HashMap<>();
@@ -185,7 +185,7 @@ public class UserManagementControllerMethods {
         System.out.println(response);
     }
 
-
+    @Test
     public void testDeleteUserByIdAPI(String superAdminToken,Integer id) throws JsonProcessingException {
         // Prepare the request
 

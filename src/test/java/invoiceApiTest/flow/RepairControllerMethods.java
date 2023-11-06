@@ -2,7 +2,7 @@ package invoiceApiTest.flow;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.restassured.http.ContentType;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 import java.util.*;
 
@@ -10,11 +10,11 @@ import static invoiceApiTest.Util.*;
 import static io.restassured.RestAssured.given;
 
 public class RepairControllerMethods {
-
-    public String testCreateRepairAPI(String businessOwnerToken, Integer repairCategoryId) throws JsonProcessingException {
+    @Test
+    public String testCreateRepairAPI(String businessOwnerToken, Integer repairCategoryId,Integer propertyId) throws JsonProcessingException {
         // Prepare the request body
         Map<String, Object> requestBody = new HashMap<>();
-        requestBody.put("property_id", 1033); // Replace with the desired property ID
+        requestBody.put("property_id", propertyId); // Replace with the desired property ID
         requestBody.put("repair_category_id", repairCategoryId); // Replace with the desired repair category ID
         requestBody.put("item_description", "item_description");
         requestBody.put("price", "10");
