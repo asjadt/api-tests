@@ -303,6 +303,7 @@ public class AllInOne {
             restaurantController.testDeleteRestaurantForceDeleteAPI(superadminToken,restaurantInfo.getRestaurantEmail());
 
         } catch(Exception e)  {
+            System.out.println(e);
             restaurantController.testDeleteRestaurantForceDeleteAPI(superadminToken,restaurantInfo.getRestaurantEmail());
 
             Assert.fail("Test failed intentionally");
@@ -323,8 +324,6 @@ public class AllInOne {
 
 
             Integer   starId = 1;
-
-
 
 
 

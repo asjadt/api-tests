@@ -379,7 +379,7 @@ public class CommonFlow {
             JsonNode jsonNodeOfInvoice = objectMapper.readTree(invoice);
             String invoiceGeneratedId = jsonNodeOfInvoice.get("generated_id").asText();
             String invoiceReference = jsonNodeOfInvoice.get("invoice_reference").asText();
-            System.out.println("cccccc");
+
             invoiceControllerMethods.testUpdateInvoiceAPI(businessOwnerToken,invoiceId,invoiceReference,landlordId,propertyId,repairItemId1,saleItemId1);
 
 
