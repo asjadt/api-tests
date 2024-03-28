@@ -29,7 +29,7 @@ public class AuthController {
         clientSites.put("@@production_hrm@@", "https://prod.hrm-backend.interactivehr.co.uk");
         clientSites.put("@@demo_hrm@@", "https://hrm-backend.interactivehr.co.uk");
 
-//        clientSites.put("@@property_management_client@@", "https://invoicebackend.quickreview.app");
+        clientSites.put("@@property_management_client@@", "https://invoicebackend.quickreview.app");
 
 //        clientSites.put("Client2", "https://example.com");
         // Add more clients along with their base URLs here...
