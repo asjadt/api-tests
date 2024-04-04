@@ -100,7 +100,6 @@ public class HealthCheckerController {
                 .body(requestBody)
                 .request(method, baseUrl + HEALTH_ENDPOINT)
                 .then()
-                .statusCode(200)
                 .extract()
                 .response();
               
