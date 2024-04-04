@@ -90,6 +90,8 @@ public class HealthCheckerController {
 
         waitSeconds(1);
 
+        System.out.println("Health Check for " + clientName + " at " + baseUrl + " using " + method + ":\n");
+
         // Make the API request
         String response = given()
                 .baseUri(baseUrl)
