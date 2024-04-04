@@ -93,7 +93,7 @@ public class HealthCheckerController {
         System.out.println("Health Check for " + clientName + " at " + baseUrl + HEALTH_ENDPOINT + " using " + method + ":\n");
 
         // Make the API request
-        String response = given()
+        Response response = given()
             
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
@@ -102,13 +102,20 @@ public class HealthCheckerController {
                 .then()
                 .statusCode(200)
                 .extract()
-                .response()
-                .asString();
+                .response();
+              
 
+// Extracting status code from JSON response
+int statusCode = response.getStatusCode();
 
+// Asserting on status code
+Assert.assertEquals(200, statusCode);
+
+// You can also extract other information from the JSON response if needed
+String responseBody = response.getBody().asString();
 
         // Print the response
-        System.out.println("Health Check for " + clientName + " at " + baseUrl + " using " + method + ":\n" + response);
+        System.out.println("Health Check for " + clientName + " at " + baseUrl + " using " + method + ":\n" + responseBody);
     }
     
     
