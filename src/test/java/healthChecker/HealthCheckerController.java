@@ -113,7 +113,7 @@ public class HealthCheckerController {
 
         waitSeconds(1);
 
-        System.out.println("Health Check for " + clientName + " at " + baseUrl + HEALTH_ENDPOINT + " using " + method + ":\n");
+        System.out.println("Health Check request for " + clientName + " at " + baseUrl + HEALTH_ENDPOINT + " using " + method + ":\n");
 
         // Make the API request
         Response response = given()
@@ -130,12 +130,12 @@ public class HealthCheckerController {
 String responseBody = response.getBody().asString();
 
 // Print the response
-System.out.println("Health Check for " + clientName + " at " + baseUrl + " using " + method + ":\n" + responseBody);
+System.out.println("Health Check response for " + clientName + " at " + baseUrl + HEALTH_ENDPOINT + " using " + method + ":\n" + responseBody);
 
             JsonNode jsonNodeOfDeal = objectMapper.readTree(responseBody);
           String status = jsonNodeOfDeal.get("status").asText();
 
-          Assert.assertEquals("Server is up and running", status, "Response message is not as expected");
+          Assert.assertEquals("Server is up and runnings", status, "Response message is not as expected");
 
 
 
