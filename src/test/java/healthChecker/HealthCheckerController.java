@@ -110,7 +110,7 @@ String responseBody = response.getBody().asString();
 System.out.println("Health Check for " + clientName + " at " + baseUrl + " using " + method + ":\n" + responseBody);
 
 // Extracting status code from JSON response
-int statusCode = response.getStatusCode();
+int statusCode = response.then().extract().statusCode();
 
 // Print the response
 System.out.println("Health Check for " + clientName + " at " + baseUrl + " using " + method + ":\n" + statusCode);
