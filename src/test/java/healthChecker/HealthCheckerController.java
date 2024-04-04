@@ -37,11 +37,11 @@ public class HealthCheckerController {
         Map<String, String> clientSites = new HashMap<>();
 
 
-        clientSites.put("@@test_hrm@@", "https://retaurant.back-end.quickreview.app");
+        clientSites.put("@@restaurant@@", "https://retaurant.back-end.quickreview.app");
         clientSites.put("@@production_hrm@@", "https://prod.hrm-backend.interactivehr.co.uk");
        clientSites.put("@@demo_hrm@@", "https://hrm-backend.interactivehr.co.uk");
        clientSites.put("@@fresh_hrm@@", "https://test.hrm-backend.interactivehr.co.uk");
-       clientSites.put("@@demo_hrm@@", "https://invoicebackend.quickreview.app");
+       clientSites.put("@@invoice_client@@", "https://invoicebackend.quickreview.app");
 
         
 
