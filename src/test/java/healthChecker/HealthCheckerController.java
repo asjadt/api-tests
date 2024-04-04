@@ -102,7 +102,12 @@ public class HealthCheckerController {
                 .then()
                 .extract()
                 .response();
-              
+                
+              // You can also extract other information from the JSON response if needed
+String responseBody = response.getBody().asString();
+
+// Print the response
+System.out.println("Health Check for " + clientName + " at " + baseUrl + " using " + method + ":\n" + responseBody);
 
 // Extracting status code from JSON response
 int statusCode = response.getStatusCode();
@@ -110,11 +115,7 @@ int statusCode = response.getStatusCode();
 // Asserting on status code
 Assert.assertEquals(200, statusCode);
 
-// You can also extract other information from the JSON response if needed
-String responseBody = response.getBody().asString();
 
-        // Print the response
-        System.out.println("Health Check for " + clientName + " at " + baseUrl + " using " + method + ":\n" + responseBody);
     }
     
     
