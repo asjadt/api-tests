@@ -38,10 +38,9 @@ public class HealthCheckerController {
 
 
         clientSites.put("@@test_hrm@@", "https://retaurant.back-end.quickreview.app");
-        clientSites.put("@@fresh_hrm@@", "https://quickreview.app/hrm");
         clientSites.put("@@production_hrm@@", "https://prod.hrm-backend.interactivehr.co.uk");
        clientSites.put("@@demo_hrm@@", "https://hrm-backend.interactivehr.co.uk");
-       clientSites.put("@@test_hrm@@", "https://test.hrm-backend.interactivehr.co.uk");
+       clientSites.put("@@fresh_hrm@@", "https://test.hrm-backend.interactivehr.co.uk");
        clientSites.put("@@demo_hrm@@", "https://invoicebackend.quickreview.app");
 
         
