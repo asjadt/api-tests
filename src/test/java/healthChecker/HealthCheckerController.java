@@ -135,7 +135,7 @@ System.out.println("Health Check response for " + clientName + " at " + baseUrl 
             JsonNode jsonNodeOfDeal = objectMapper.readTree(responseBody);
           String status = jsonNodeOfDeal.get("status").asText();
 
-          Assert.assertEquals("Server is up and runnings", status, "Response message is not as expected");
+          Assert.assertEquals(status,"Server is up and running", "Response message is not as expected");
 
 
 
