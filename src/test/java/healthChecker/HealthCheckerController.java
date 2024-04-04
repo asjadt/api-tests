@@ -90,15 +90,15 @@ public class HealthCheckerController {
 
         waitSeconds(1);
 
-        System.out.println("Health Check for " + clientName + " at " + baseUrl + " using " + method + ":\n");
+        System.out.println("Health Check for " + clientName + " at " + baseUrl + HEALTH_ENDPOINT + " using " + method + ":\n");
 
         // Make the API request
         String response = given()
-                .baseUri(baseUrl)
+            
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
                 .body(requestBody)
-                .request(method, HEALTH_ENDPOINT)
+                .request(method, baseUrl + HEALTH_ENDPOINT)
                 .then()
                 .statusCode(200)
                 .extract()
