@@ -9,12 +9,28 @@ import io.restassured.RestAssured;
 import io.restassured.config.SSLConfig;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import restaunrantApiTest.DailyViewsController;
+import restaunrantApiTest.DashboardWidgetController;
+import restaunrantApiTest.DishController;
+import restaunrantApiTest.EmailTemplateController;
+import restaunrantApiTest.MenuController;
+import restaunrantApiTest.OrderController;
+import restaunrantApiTest.OwnerController;
+import restaunrantApiTest.RestaurantController;
+import restaunrantApiTest.ReviewNewController;
+import restaunrantApiTest.VariationController;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -27,9 +43,16 @@ import static org.hamcrest.Matchers.notNullValue;
 public class HealthCheckerController {
 
     private static final String HEALTH_ENDPOINT = "/api/health";
+      private static ObjectMapper objectMapper;
+    @BeforeClass
+    public void setup() {
+       
+        objectMapper = new ObjectMapper();
+    }
+
 
     @Test // Add the Test annotation
-    public void checkHealth() {
+    public void checkHealth() throws JsonProcessingException {
         // Define client site URL
         // s along with their base URLs
 
@@ -58,7 +81,7 @@ public class HealthCheckerController {
 
     }
 
-    public static void testHealthCheckAPI(String clientName, String baseUrl) {
+    public static void testHealthCheckAPI(String clientName, String baseUrl) throws JsonProcessingException {
 
         // Prepare the request body
         Map<String, Object> requestBody = new HashMap<>();
@@ -86,7 +109,7 @@ public class HealthCheckerController {
 
     }
 
-    private static void performRequest(String clientName, String baseUrl, String method, Map<String, Object> requestBody) {
+    private static void performRequest(String clientName, String baseUrl, String method, Map<String, Object> requestBody) throws JsonProcessingException {
 
         waitSeconds(1);
 
@@ -109,14 +132,12 @@ String responseBody = response.getBody().asString();
 // Print the response
 System.out.println("Health Check for " + clientName + " at " + baseUrl + " using " + method + ":\n" + responseBody);
 
-// Extracting status code from JSON response
-int statusCode = response.then().extract().statusCode();
+            JsonNode jsonNodeOfDeal = objectMapper.readTree(responseBody);
+          String status = jsonNodeOfDeal.get("status").asText();
 
-// Print the response
-System.out.println("Health Check for " + clientName + " at " + baseUrl + " using " + method + ":\n" + statusCode);
+          Assert.assertEquals("Server is up and running", status, "Response message is not as expected");
 
-// Asserting on status code
-Assert.assertEquals(statusCode,200);
+
 
 
     }
