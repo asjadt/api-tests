@@ -66,30 +66,30 @@ public class HealthCheckerController {
         
 
         performRequest(clientName, baseUrl, "GET", requestBody);
-        
 
-//
-//        // Perform a POST request
-//        performRequest(clientName, baseUrl, "POST", requestBody);
-//
-//
-//
-//        // Perform a PUT request
-//        performRequest(clientName, baseUrl, "PUT", requestBody);
-//
-//
-//        // Perform a DELETE request
-//        performRequest(clientName, baseUrl, "DELETE", requestBody);
-//
-//
-//        // Perform a PATCH request
-//        performRequest(clientName, baseUrl, "PATCH", requestBody);
+
+
+        // Perform a POST request
+        performRequest(clientName, baseUrl, "POST", requestBody);
+
+
+
+       // Perform a PUT request
+       performRequest(clientName, baseUrl, "PUT", requestBody);
+
+
+       // Perform a DELETE request
+       performRequest(clientName, baseUrl, "DELETE", requestBody);
+
+
+      // Perform a PATCH request
+      performRequest(clientName, baseUrl, "PATCH", requestBody);
 
     }
 
     private static void performRequest(String clientName, String baseUrl, String method, Map<String, Object> requestBody) {
 
-
+        waitSeconds(1);
 
         // Make the API request
         String response = given()
