@@ -6,18 +6,54 @@ import org.testng.annotations.Test;
 import java.util.*;
 
 import static hrmApiTest.Util.URL;
+import static hrmApiTest.Util.getRandomDate;
+import static hrmApiTest.Util.getRandomNumber;
 import static hrmApiTest.Util.getSuperadminToken;
 import static io.restassured.RestAssured.given;
 public class UserManagementControllerMethods {
 
     private static final String[] FIRST_NAMES = {
         "John", "Emma", "Michael", "Sophia", "William", "Olivia", "James", "Ava", "Robert", "Isabella",
-        // Add more names as needed
+        "Liam", "Mason", "Benjamin", "Elijah", "Logan", "Alexander", "Charlotte", "Amelia", "Mia", "Harper",
+        "Ethan", "Daniel", "Matthew", "Joseph", "Sebastian", "Jack", "Henry", "Lucas", "David", "Carter",
+        "Gabriel", "Samuel", "Wyatt", "Grayson", "Isaac", "Lincoln", "Anthony", "Jayden", "Johnathan", "Aiden",
+        "Victoria", "Grace", "Chloe", "Camila", "Luna", "Layla", "Lily", "Hannah", "Aria", "Zoe",
+        "Samantha", "Natalie", "Eleanor", "Hazel", "Aurora", "Savannah", "Brooklyn", "Bella", "Claire", "Skylar",
+        "Paisley", "Everly", "Anna", "Caroline", "Nova", "Genesis", "Emilia", "Kennedy", "Sofia", "Aubrey",
+        "Evelyn", "Autumn", "Mila", "Peyton", "Willow", "Aurora", "Naomi", "Ellie", "Lillian", "Addison",
+        "Lucy", "Ariana", "Stella", "Maya", "Penelope", "Madeline", "Ivy", "Vivian", "Scarlett", "Emily",
+        "Camila", "Violet", "Paisley", "Annabelle", "Madelyn", "Hailey", "Riley", "Alyssa", "Zara", "Isla",
+        "Kinsley", "Kaylee", "Sydney", "Mackenzie", "Jasmine", "Katherine", "Eliza", "Juliana", "Piper", "Alexandra",
+        "Brody", "Oliver", "Christian", "Nolan", "Parker", "Aaron", "Connor", "Josiah", "Isaiah", "Gavin",
+        "Dominic", "Brayden", "Jaxon", "Adrian", "Leo", "Adam", "Ian", "Carson", "Nathan", "Austin",
+        "Jordan", "Brandon", "Cole", "Hudson", "Easton", "Xavier", "Zachary", "Angel", "Aaron", "Eli",
+        "Ezra", "Bentley", "Sawyer", "Jason", "Evan", "Adrian", "Miles", "Wesley", "Alex", "Bryson",
+        "Ryker", "Asher", "Jeremiah", "Micah", "Caleb", "Max", "Silas", "Declan", "Jace", "River",
+        "Ryder", "Griffin", "Diego", "Kai", "Jayce", "Rowan", "Archer", "Enzo", "Jasper", "Maverick",
+        "Landon", "Gage", "Jude", "Chase", "Tucker", "Bryce", "Ronan", "Cody", "Gage", "Beau",
+        "Blake", "Colton", "Cash", "Milo", "Spencer", "Preston", "Luka", "Tristan", "Jake", "Knox",
+        "Matteo", "Kaleb", "Kane", "Myles", "Bradley", "Dean", "Anderson", "Reid", "Declan", "Killian"
     };
-
+    
     private static final String[] LAST_NAMES = {
         "Smith", "Johnson", "Williams", "Brown", "Jones", "Garcia", "Miller", "Davis", "Rodriguez", "Martinez",
-        // Add more names as needed
+        "Hernandez", "Lopez", "Gonzalez", "Wilson", "Anderson", "Thomas", "Taylor", "Moore", "Jackson", "Martin",
+        "Lee", "Perez", "Thompson", "White", "Harris", "Sanchez", "Clark", "Ramirez", "Lewis", "Robinson",
+        "Walker", "Young", "Allen", "King", "Wright", "Scott", "Torres", "Nguyen", "Hill", "Flores",
+        "Green", "Adams", "Nelson", "Baker", "Hall", "Rivera", "Campbell", "Mitchell", "Carter", "Roberts",
+        "Gomez", "Phillips", "Evans", "Turner", "Diaz", "Parker", "Cruz", "Edwards", "Collins", "Reyes",
+        "Stewart", "Morris", "Morales", "Murphy", "Cook", "Rogers", "Gutierrez", "Ortiz", "Morgan", "Cooper",
+        "Peterson", "Bailey", "Reed", "Kelly", "Howard", "Ramos", "Kim", "Cox", "Ward", "Richardson",
+        "Watson", "Brooks", "Chavez", "Wood", "James", "Bennett", "Gray", "Mendoza", "Ruiz", "Hughes",
+        "Price", "Alvarez", "Castillo", "Sanders", "Patel", "Myers", "Long", "Ross", "Foster", "Jimenez",
+        "Powell", "Jenkins", "Perry", "Russell", "Sullivan", "Bell", "Coleman", "Butler", "Henderson", "Barnes",
+        "Gonzales", "Fisher", "Vasquez", "Simmons", "Romero", "Jordan", "Patterson", "Alexander", "Hamilton", "Graham",
+        "Reynolds", "Griffin", "Wallace", "Moreno", "West", "Cole", "Hayes", "Bryant", "Herrera", "Gibson",
+        "Ellis", "Tran", "Medina", "Aguilar", "Stevens", "Murray", "Ford", "Castro", "Marshall", "Owens",
+        "Harrison", "Fernandez", "McDonald", "Woods", "Washington", "Kennedy", "Wells", "Vargas", "Henry", "Chen",
+        "Freeman", "Webb", "Tucker", "Guzman", "Burns", "Crawford", "Olson", "Simpson", "Porter", "Hunter",
+        "Gordon", "Mendez", "Silva", "Shaw", "Snyder", "Mason", "Dixon", "Muñoz", "Hunt", "Hicks",
+        "Holmes", "Palmer", "Wagner", "Black", "Robertson", "Boyd", "Rose", "Stone", "Salazar", "Fox"
     };
 
   
@@ -47,7 +83,7 @@ public class UserManagementControllerMethods {
         Map<String, Object> requestBody = new HashMap<>();
 
         
-        requestBody.put("NI_number", "12121212");
+        requestBody.put("NI_number", "" + (Math.random() * 99999));
         requestBody.put("first_Name", firstName);
         requestBody.put("last_Name", lastName);
         requestBody.put("email", (email + times + "_" + (Math.random() * 1000) + "@gmail.com"));
@@ -60,40 +96,40 @@ public class UserManagementControllerMethods {
         requestBody.put("city", "Dhaka");
         requestBody.put("lat", "23.804093");
         requestBody.put("long", "90.4152376");
-        requestBody.put("role", "business_employee#1");
+        requestBody.put("role", "business_employee#36");
         requestBody.put("gender", "male");
         requestBody.put("user_id", "FAT-0002");
         requestBody.put("postcode", "1212");
-        requestBody.put("work_shift_id", 69);
+        requestBody.put("work_shift_id", 70);
         requestBody.put("is_in_employee", 1);
-        requestBody.put("designation_id", 2);
-        requestBody.put("employment_status_id", 3);
+        requestBody.put("designation_id", getRandomNumber(1,7));
+        requestBody.put("employment_status_id", getRandomNumber(1,5));
         requestBody.put("salary_per_annum", "5000");
-        requestBody.put("work_location_id", 1);
+        requestBody.put("work_location_id", 57);
         requestBody.put("weekly_contractual_hours", "50");
         requestBody.put("minimum_working_days_per_week", "5");
-        requestBody.put("overtime_rate", "5");
+        requestBody.put("overtime_rate", "50");
         requestBody.put("recruitment_processes", Arrays.asList(
             new HashMap<String, Object>() {{
-                put("recruitment_process_id", 57);
+                put("recruitment_process_id", getRandomNumber(1,5));
                 put("description", "jobsss");
                 put("attachments", new ArrayList<>());
             }},
             new HashMap<String, Object>() {{
-                put("recruitment_process_id", 56);
+                put("recruitment_process_id", getRandomNumber(6,11));
                 put("description", "");
                 put("attachments", new ArrayList<>());
             }}
             // Add more processes here...
         ));
-        requestBody.put("joining_date", "31-05-2024");
+        requestBody.put("joining_date", getRandomDate(1991, 2023));
         requestBody.put("address_line_2", "");
-        requestBody.put("departments", Arrays.asList(1));
+        requestBody.put("departments", Arrays.asList(74));
         requestBody.put("emergency_contact_details", Arrays.asList(
             new HashMap<String, Object>() {{
                 put("relationship_of_above_to_you", "Father");
-                put("first_Name", "Sheikh");
-                put("last_Name", "muzibur Rahman");
+                put("first_Name", FIRST_NAMES[random.nextInt(FIRST_NAMES.length)]);
+                put("last_Name", LAST_NAMES[random.nextInt(LAST_NAMES.length)]);
                 put("address_line_1", "Dhaka, Bangladesh");
                 put("city", "Dhaka");
                 put("country", "Bangladesh");
@@ -149,11 +185,153 @@ public class UserManagementControllerMethods {
                 .response()
                 .asString();
 
-        System.out.println(response);
+        
         
         return response;
     }
 
+    public String createILRCitizen(String businessOwnerToken,Integer times) throws JsonProcessingException {
+        Random random = new Random();
+
+        // Generate random first name
+        String firstName = FIRST_NAMES[random.nextInt(FIRST_NAMES.length)];
+
+        // Generate random last name
+        String lastName = LAST_NAMES[random.nextInt(LAST_NAMES.length)];
+
+        // Generate email from name
+        String email = generateEmail(firstName, lastName);
+
+
+        String joiningData = getRandomDate(1991, 2023);
+        
+        // Prepare the request body
+        Map<String, Object> requestBody = new HashMap<>();
+
+        
+        
+        requestBody.put("NI_number", "" + (Math.random() * 99999));
+        requestBody.put("first_Name", firstName);
+        requestBody.put("last_Name", lastName);
+        requestBody.put("email", (email + times + "_" + (Math.random() * 1000) + "@gmail.com"));
+        requestBody.put("date_of_birth", getRandomDate(1980, 2009));
+        requestBody.put("password", "12345678#We");
+        requestBody.put("password_confirmation", "12345678#We");
+        requestBody.put("phone", "01777777777");
+        requestBody.put("address_line_1", "Dhaka, Bangladesh");
+        requestBody.put("country", "Bangladesh");
+        requestBody.put("city", "Dhaka");
+        requestBody.put("lat", "23.804093");
+        requestBody.put("long", "90.4152376");
+        requestBody.put("role", "business_employee#36");
+        requestBody.put("gender", "male");
+        requestBody.put("user_id", "FAT-0002");
+        requestBody.put("postcode", "1212");
+        requestBody.put("work_shift_id", 70);
+        requestBody.put("is_in_employee", 1);
+        requestBody.put("designation_id", getRandomNumber(1,7));
+        requestBody.put("employment_status_id", getRandomNumber(1,5));
+        requestBody.put("salary_per_annum", "5000");
+        requestBody.put("work_location_id", 57);
+        requestBody.put("weekly_contractual_hours", "50");
+        requestBody.put("minimum_working_days_per_week", "5");
+        requestBody.put("overtime_rate", "50");
+        requestBody.put("recruitment_processes", Arrays.asList(
+            new HashMap<String, Object>() {{
+                put("recruitment_process_id", getRandomNumber(1,5));
+                put("description", "jobsss");
+                put("attachments", new ArrayList<>());
+            }},
+            new HashMap<String, Object>() {{
+                put("recruitment_process_id", getRandomNumber(6,11));
+                put("description", "");
+                put("attachments", new ArrayList<>());
+            }}
+            // Add more processes here...
+        ));
+        requestBody.put("joining_date", joiningData);
+        requestBody.put("address_line_2", "");
+        requestBody.put("departments", Arrays.asList(74));
+        requestBody.put("emergency_contact_details", Arrays.asList(
+            new HashMap<String, Object>() {{
+                put("relationship_of_above_to_you", "Father");
+                put("first_Name", FIRST_NAMES[random.nextInt(FIRST_NAMES.length)]);
+                put("last_Name", LAST_NAMES[random.nextInt(LAST_NAMES.length)]);
+                put("address_line_1", "Dhaka, Bangladesh");
+                put("city", "Dhaka");
+                put("country", "Bangladesh");
+                put("postcode", "1212");
+                put("lat", "23.804093");
+                put("long", "90.4152376");
+                put("mobile_tel_number", "01777777777");
+            }},
+            new HashMap<>() // Add more emergency contacts here...
+        ));
+        requestBody.put("immigration_status", "british_citizen");
+        requestBody.put("sponsorship_details", new HashMap<String, Object>() {{
+            put("date_assigned", "");
+            put("expiry_date", "");
+            put("status", "");
+            put("note", "");
+            put("certificate_number", "");
+            put("current_certificate_status", "");
+            put("is_sponsorship_withdrawn", 0);
+        }});
+        requestBody.put("is_active_visa_details", 0);
+        requestBody.put("is_active_right_to_works", 1);
+        requestBody.put("visa_details", new HashMap<String, Object>() {{
+            put("BRP_number", "");
+            put("visa_issue_date", "");
+            put("visa_expiry_date", "");
+            put("place_of_issue", "");
+            put("visa_docs", new ArrayList<>());
+        }});
+        requestBody.put("right_to_works", new HashMap<String, Object>() {{
+            put("right_to_work_code", "" + (Math.random() * 999999));
+            put("right_to_work_check_date", getRandomDate(1991, 2010));
+            put("right_to_work_expiry_date", getRandomDate(2011, 2030));
+            put("right_to_work_docs", new ArrayList<HashMap<String, Object>>() {{
+                add(new HashMap<String, Object>() {{
+                    put("id", 0);
+                    put("file_name", "/temporary_files/1717259656_Screenshot_from_2024-06-01_18-56-57.png");
+                    put("description", "yjjty");
+                }});
+                add(new HashMap<String, Object>() {{
+                    put("id", 1);
+                    put("file_name", "/temporary_files/1717259666_Screenshot_from_2024-06-01_15-47-31.png");
+                    put("description", "dfhfhhtfghfgh");
+                }});
+            }});
+        }});
+        
+
+
+
+
+        requestBody.put("passport_details", new HashMap<String, Object>() {{
+            put("passport_number", "");
+            put("passport_issue_date", "");
+            put("passport_expiry_date", "");
+            put("place_of_issue", "");
+        }});
+
+        // Perform the API request
+        String response = given()
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .header("Authorization", "Bearer " + businessOwnerToken) // Replace with your method to get the bearer token
+                .body(requestBody)
+                .when()
+                .post(URL +"/api/v2.0/users") // Adjust the URL if needed
+                .then()
+                .extract()
+                .response()
+                .asString();
+
+        
+        
+        return response;
+    }
 
 
 
