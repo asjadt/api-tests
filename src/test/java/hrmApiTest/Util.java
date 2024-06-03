@@ -70,25 +70,28 @@ public class Util {
 
 
     
-    public static String  getBusinessOwnerToken(String email,String password) throws JsonProcessingException {
+    public static String  getUserToken(String email,String password) throws JsonProcessingException {
 
         String response =   given().contentType(ContentType.JSON)
 
                 .body("{\"email\": \""+ email +"\", \"password\": \""+password+"\"}")
                 .when()
-                .post(URL + "/api/v1.0/login")
+                .post(URL + "/api/v2.0/login")
                 .then()
                 .extract()
                 .response()
                 .body()
                 .asString();
-               
+
+         
                 ObjectMapper objectMapper = new ObjectMapper();
                 JsonNode jsonNodeOfDailyView = objectMapper.readTree(response);
         
                 String token = jsonNodeOfDailyView.get("data").get("token").asText();
                 
                 System.out.println("token retrieved");
+
+                System.out.println(token);
                 return token;
     }
 
