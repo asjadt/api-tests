@@ -6,8 +6,6 @@ import org.testng.annotations.Test;
 
 import java.util.*;
 
-import static hrmApiTest.Util.getRandomDate;
-import static hrmApiTest.Util.getRandomNumber;
 import static hrmApiTest.Util.*;
 import static io.restassured.RestAssured.given;
 
@@ -60,14 +58,36 @@ public class BusinessManagementControllerMethods {
         
           
         
-              // Method to generate email from first name and last name
-              private static String generateEmail(String firstName, String lastName) {
+            private static final String[] DOMAINS = {
+                "example.com", "mail.com", "inbox.com", "webmail.com", "email.com",
+                "gmail.com", "yahoo.com", "hotmail.com", "outlook.com", "icloud.com",
+                "aol.com", "zoho.com", "yandex.com", "protonmail.com", "gmx.com",
+                "fastmail.com", "hushmail.com", "rocketmail.com", "live.com", "msn.com",
+                "rediffmail.com", "lycos.com", "mail.ru", "att.net", "verizon.net",
+                "comcast.net", "sbcglobal.net", "bellsouth.net", "charter.net", "shaw.ca",
+                "rogers.com", "sympatico.ca", "btinternet.com", "virginmedia.com",
+                "sky.com", "talktalk.net", "tiscali.co.uk", "ntlworld.com", "btopenworld.com",
+                "blueyonder.co.uk", "orange.fr", "wanadoo.fr", "free.fr", "laposte.net",
+                "libero.it", "virgilio.it", "alice.it", "tin.it", "t-online.de", "web.de",
+                "gmx.de", "arcor.de", "seznam.cz", "centrum.cz", "volny.cz", "tiscali.cz",
+                "post.cz", "netvigator.com", "sina.com", "qq.com", "naver.com", "daum.net",
+                "hanmail.net", "nate.com", "yahoo.co.jp", "yahoo.co.in", "yahoo.co.uk",
+                "yahoo.com.br", "yahoo.com.au", "yahoo.ca", "yahoo.com.sg", "yahoo.co.id",
+                "yahoo.com.mx", "yahoo.com.hk", "yahoo.fr", "yahoo.de", "yahoo.it",
+                "yahoo.es", "yahoo.co.kr", "yahoo.se", "yahoo.com.ar", "yahoo.com.my",
+                "yahoo.com.ph", "yahoo.co.th", "yahoo.co.za"
+            };
+            private static final Random random = new Random();
+        
+            // Method to generate email from first name and last name
+            private static String generateEmail(String firstName, String lastName) {
                 // Remove any spaces and convert to lowercase
                 String cleanedFirstName = firstName.toLowerCase().trim().replaceAll("\\s", "");
                 String cleanedLastName = lastName.toLowerCase().trim().replaceAll("\\s", "");
                 
-                // Concatenate first name, last name, and domain
-                return cleanedFirstName + "." + cleanedLastName ;
+                // Concatenate first name, last name, and randomly selected domain
+                String domain = DOMAINS[random.nextInt(DOMAINS.length)];
+                return cleanedFirstName + "." + cleanedLastName + "@" + domain;
             }
 
             private static Map<String, Object> createTimeMap(int day, String startAt, String endAt, boolean isWeekend) {
@@ -79,8 +99,7 @@ public class BusinessManagementControllerMethods {
                 return timeMap;
             }
      public String createBusiness(String superAdminToken,String password) throws JsonProcessingException {
-        Random random = new Random();
-
+  
         // Generate random first name
         String firstName = FIRST_NAMES[random.nextInt(FIRST_NAMES.length)];
 
@@ -97,9 +116,9 @@ public class BusinessManagementControllerMethods {
           // User information
           Map<String, Object> user = new HashMap<>();
           user.put("image", "");
-          user.put("first_Name", "Test");
-          user.put("last_Name", "Test");
-          user.put("email", "pikajv70543@huleos.com");
+          user.put("first_Name", firstName);
+          user.put("last_Name", lastName);
+          user.put("email", email);
           user.put("phone", "01777777777");
           user.put("password", password);
           user.put("password_confirmation", "");
@@ -109,8 +128,8 @@ public class BusinessManagementControllerMethods {
           
           // Business information
           Map<String, Object> business = new HashMap<>();
-          business.put("name", "rtrth");
-          business.put("email", "rifatbilalphilips@gmail.com");
+          business.put("name", firstName + " " + lastName + "'s shop" );
+          business.put("email", email);
           business.put("phone", "01777777777");
           business.put("web_page", "");
           business.put("address_line_1", "fgjhfgn");
@@ -121,7 +140,7 @@ public class BusinessManagementControllerMethods {
           business.put("city", "fgjnxfgnxfgn");
           business.put("currency", "£");
           business.put("postcode", "xfgnxfgn");
-          business.put("start_date", "02-06-2024");
+          business.put("start_date", getRandomDate(1991, 2000));
           business.put("type", "regular");
           business.put("logo", "");
           business.put("image", "");
@@ -152,6 +171,9 @@ public class BusinessManagementControllerMethods {
           times.add(createTimeMap(6, "09:00:00", "18:00:00", false));
           
           requestBody.put("times", times);
+
+
+    
           
         // Perform the API request
         String response = given()
@@ -165,6 +187,10 @@ public class BusinessManagementControllerMethods {
                 .extract()
                 .response()
                 .asString();
+
+System.out.println(response);
+
+
 
         
         

@@ -91,7 +91,7 @@ public class Util {
                 
                 System.out.println("token retrieved");
 
-                System.out.println(token);
+            
                 return token;
     }
 
