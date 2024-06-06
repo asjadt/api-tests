@@ -134,7 +134,7 @@ public class UserManagementControllerMethods {
         requestBody.put("designation_id", getRandomId(designations));
         requestBody.put("employment_status_id", getRandomId(employmentStatuses));
         requestBody.put("salary_per_annum", "5000");
-        requestBody.put("work_location_id", getRandomId(workLocations));
+        requestBody.put("work_location_ids", Arrays.asList(getRandomId(workLocations),getRandomId(workLocations)));
         requestBody.put("weekly_contractual_hours", "50");
         requestBody.put("minimum_working_days_per_week", "5");
         requestBody.put("overtime_rate", "50");
@@ -201,6 +201,7 @@ public class UserManagementControllerMethods {
             put("place_of_issue", "");
         }});
 
+ 
         // Perform the API request
         String response = given()
                 .contentType(ContentType.JSON)
@@ -261,7 +262,9 @@ public class UserManagementControllerMethods {
         requestBody.put("designation_id", getRandomId(designations));
         requestBody.put("employment_status_id", getRandomId(employmentStatuses));
         requestBody.put("salary_per_annum", "5000");
-        requestBody.put("work_location_id", getRandomId(workLocations));
+    
+        requestBody.put("work_location_ids", Arrays.asList(getRandomId(workLocations),getRandomId(workLocations)));
+
         requestBody.put("weekly_contractual_hours", "50");
         requestBody.put("minimum_working_days_per_week", "5");
         requestBody.put("overtime_rate", "50");
@@ -343,7 +346,7 @@ public class UserManagementControllerMethods {
             put("passport_expiry_date", "");
             put("place_of_issue", "");
         }});
-
+     
         // Perform the API request
         String response = given()
                 .contentType(ContentType.JSON)
@@ -405,7 +408,7 @@ public class UserManagementControllerMethods {
         requestBody.put("designation_id", getRandomId(designations));
         requestBody.put("employment_status_id", getRandomId(employmentStatuses));
         requestBody.put("salary_per_annum", "5000");
-        requestBody.put("work_location_id", getRandomId(workLocations));
+        requestBody.put("work_location_ids", Arrays.asList(getRandomId(workLocations),getRandomId(workLocations)));
         requestBody.put("weekly_contractual_hours", "50");
         requestBody.put("minimum_working_days_per_week", "5");
         requestBody.put("overtime_rate", "50");
@@ -654,8 +657,8 @@ public class UserManagementControllerMethods {
 
         requestBody.put("passport_details", new HashMap<String, Object>() {{
             put("passport_number", "" + (Math.random() * 999999));
-            put("passport_issue_date", getRandomDate(1991, 2010));
-            put("passport_expiry_date", getRandomDate(2011, 2030));
+            put("passport_issue_date", getRandomDate(1991, 2020));
+            put("passport_expiry_date", "06-06-2024");
             put("place_of_issue", "Algeria");
         }});
 
@@ -706,8 +709,8 @@ public class UserManagementControllerMethods {
                 .response()
                 .asString();
 
-        System.out.println(response);
-        System.out.println("response............................................................");
+    
+       
         return response;
     }
 
@@ -808,7 +811,7 @@ public class UserManagementControllerMethods {
                 .response()
                 .asString();
 
-        System.out.println(response);
+       
         return response;
 
     }
@@ -872,7 +875,7 @@ public class UserManagementControllerMethods {
                 .response()
                 .asString();
 
-        System.out.println(response);
+   
     }
     @Test
     public void testUserToggleActiveAPI() throws JsonProcessingException {
@@ -895,7 +898,7 @@ public class UserManagementControllerMethods {
 
 
 
-        System.out.println(response);
+   
     }
 
     @Test
@@ -916,7 +919,7 @@ public class UserManagementControllerMethods {
                 .extract()
                 .response()
                 .asString();
-        System.out.println(response);
+  
 
     }
 

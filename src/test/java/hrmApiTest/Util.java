@@ -114,8 +114,8 @@ public class Util {
         // Generate the random date
         LocalDate randomDate = startDate.plusDays(randomDays);
 
-        // Format the random date to d-M-yyyy
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-M-yyyy");
+        // Format the random date to dd-MM-yyyy
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         return randomDate.format(formatter);
     }
 
