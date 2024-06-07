@@ -465,91 +465,13 @@ public class UserManagementControllerMethods {
                 add(new HashMap<String, Object>() {{
                     put("id", 0);
                     put("file_name", "/temporary_files/1717259656_Screenshot_from_2024-06-01_18-56-57.png");
-                    put("description", "\n" + //
-                                                "Where does it come from?\n" + //
-                                                "\n" + //
-                                                "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", comes from a line in section 1.10.32.\n" + //
-                                                "\n" + //
-                                                "The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from \"de Finibus Bonorum et Malorum\" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.\n" + //
-                                                "Where can I get some?\n" + //
-                                                "\n" + //
-                                                "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.\n" + //
-                                                "\t\n" + //
-                                                "\tparagraphs\n" + //
-                                                "\twords\n" + //
-                                                "\tbytes\n" + //
-                                                "\tlists\n" + //
-                                                "\t\tStart with 'Lorem\n" + //
-                                                "ipsum dolor sit amet...'\n" + //
-                                                "\t\n" + //
-                                                "\n" + //
-                                                "Translations: Can you help translate this site into a foreign language ? Please email us with details if you can help.\n" + //
-                                                "There is a set of mock banners available here in three colours and in a range of standard banner sizes:\n" + //
-                                                "BannersBannersBanners\n" + //
-                                                "Donate: If you use this site regularly and would like to help keep the site on the Internet, please consider donating a small sum to help pay for the hosting and bandwidth bill. There is no minimum donation, any sum is appreciated - click here to donate using PayPal. Thank you for your support.\n" + //
-                                                "Donate Bitcoin: 16UQLq1HZ3CNwhvgrarV6pMoA2CDjb4tyF\n" + //
-                                                "NodeJS Python Interface GTK Lipsum Rails .NET Groovy\n" + //
-                                                "The standard Lorem Ipsum passage, used since the 1500s\n" + //
-                                                "\n" + //
-                                                "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\"\n" + //
-                                                "Section 1.10.32 of \"de Finibus Bonorum et Malorum\", written by Cicero in 45 BC\n" + //
-                                                "\n" + //
-                                                "\"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?\"\n" + //
-                                                "1914 translation by H. Rackham\n" + //
-                                                "\n" + //
-                                                "\"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?\"\n" + //
-                                                "Section 1.10.33 of \"de Finibus Bonorum et Malorum\", written by Cicero in 45 BC\n" + //
-                                                "\n" + //
-                                                "\"At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.\"\n" + //
-                                                "1914 translation by H. Rackham\n" + //
-                                                "\n" + //
-                                                "\"On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse pains.\"\n" + //
-                                                "");
+                    put("description", "test");
                 }});
 
                 add(new HashMap<String, Object>() {{
                     put("id", 1);
                     put("file_name", "/temporary_files/1717259666_Screenshot_from_2024-06-01_15-47-31.png");
-                    put("description", "\n" + //
-                                                "Where does it come from?\n" + //
-                                                "\n" + //
-                                                "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", comes from a line in section 1.10.32.\n" + //
-                                                "\n" + //
-                                                "The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from \"de Finibus Bonorum et Malorum\" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.\n" + //
-                                                "Where can I get some?\n" + //
-                                                "\n" + //
-                                                "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.\n" + //
-                                                "\t\n" + //
-                                                "\tparagraphs\n" + //
-                                                "\twords\n" + //
-                                                "\tbytes\n" + //
-                                                "\tlists\n" + //
-                                                "\t\tStart with 'Lorem\n" + //
-                                                "ipsum dolor sit amet...'\n" + //
-                                                "\t\n" + //
-                                                "\n" + //
-                                                "Translations: Can you help translate this site into a foreign language ? Please email us with details if you can help.\n" + //
-                                                "There is a set of mock banners available here in three colours and in a range of standard banner sizes:\n" + //
-                                                "BannersBannersBanners\n" + //
-                                                "Donate: If you use this site regularly and would like to help keep the site on the Internet, please consider donating a small sum to help pay for the hosting and bandwidth bill. There is no minimum donation, any sum is appreciated - click here to donate using PayPal. Thank you for your support.\n" + //
-                                                "Donate Bitcoin: 16UQLq1HZ3CNwhvgrarV6pMoA2CDjb4tyF\n" + //
-                                                "NodeJS Python Interface GTK Lipsum Rails .NET Groovy\n" + //
-                                                "The standard Lorem Ipsum passage, used since the 1500s\n" + //
-                                                "\n" + //
-                                                "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\"\n" + //
-                                                "Section 1.10.32 of \"de Finibus Bonorum et Malorum\", written by Cicero in 45 BC\n" + //
-                                                "\n" + //
-                                                "\"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?\"\n" + //
-                                                "1914 translation by H. Rackham\n" + //
-                                                "\n" + //
-                                                "\"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?\"\n" + //
-                                                "Section 1.10.33 of \"de Finibus Bonorum et Malorum\", written by Cicero in 45 BC\n" + //
-                                                "\n" + //
-                                                "\"At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.\"\n" + //
-                                                "1914 translation by H. Rackham\n" + //
-                                                "\n" + //
-                                                "\"On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse pains.\"\n" + //
-                                                "");
+                    put("description", "test");
                 }});
             }});
         }});
@@ -563,90 +485,12 @@ public class UserManagementControllerMethods {
                 add(new HashMap<String, Object>() {{
                     put("id", 0);
                     put("file_name", "/temporary_files/1717259656_Screenshot_from_2024-06-01_18-56-57.png");
-                    put("description", "\n" + //
-                                                "Where does it come from?\n" + //
-                                                "\n" + //
-                                                "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", comes from a line in section 1.10.32.\n" + //
-                                                "\n" + //
-                                                "The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from \"de Finibus Bonorum et Malorum\" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.\n" + //
-                                                "Where can I get some?\n" + //
-                                                "\n" + //
-                                                "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.\n" + //
-                                                "\t\n" + //
-                                                "\tparagraphs\n" + //
-                                                "\twords\n" + //
-                                                "\tbytes\n" + //
-                                                "\tlists\n" + //
-                                                "\t\tStart with 'Lorem\n" + //
-                                                "ipsum dolor sit amet...'\n" + //
-                                                "\t\n" + //
-                                                "\n" + //
-                                                "Translations: Can you help translate this site into a foreign language ? Please email us with details if you can help.\n" + //
-                                                "There is a set of mock banners available here in three colours and in a range of standard banner sizes:\n" + //
-                                                "BannersBannersBanners\n" + //
-                                                "Donate: If you use this site regularly and would like to help keep the site on the Internet, please consider donating a small sum to help pay for the hosting and bandwidth bill. There is no minimum donation, any sum is appreciated - click here to donate using PayPal. Thank you for your support.\n" + //
-                                                "Donate Bitcoin: 16UQLq1HZ3CNwhvgrarV6pMoA2CDjb4tyF\n" + //
-                                                "NodeJS Python Interface GTK Lipsum Rails .NET Groovy\n" + //
-                                                "The standard Lorem Ipsum passage, used since the 1500s\n" + //
-                                                "\n" + //
-                                                "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\"\n" + //
-                                                "Section 1.10.32 of \"de Finibus Bonorum et Malorum\", written by Cicero in 45 BC\n" + //
-                                                "\n" + //
-                                                "\"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?\"\n" + //
-                                                "1914 translation by H. Rackham\n" + //
-                                                "\n" + //
-                                                "\"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?\"\n" + //
-                                                "Section 1.10.33 of \"de Finibus Bonorum et Malorum\", written by Cicero in 45 BC\n" + //
-                                                "\n" + //
-                                                "\"At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.\"\n" + //
-                                                "1914 translation by H. Rackham\n" + //
-                                                "\n" + //
-                                                "\"On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse pains.\"\n" + //
-                                                "");
+                    put("description", "test");
                 }});
                 add(new HashMap<String, Object>() {{
                     put("id", 1);
                     put("file_name", "/temporary_files/1717259666_Screenshot_from_2024-06-01_15-47-31.png");
-                    put("description", "\n" + //
-                                                "Where does it come from?\n" + //
-                                                "\n" + //
-                                                "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", comes from a line in section 1.10.32.\n" + //
-                                                "\n" + //
-                                                "The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from \"de Finibus Bonorum et Malorum\" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.\n" + //
-                                                "Where can I get some?\n" + //
-                                                "\n" + //
-                                                "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.\n" + //
-                                                "\t\n" + //
-                                                "\tparagraphs\n" + //
-                                                "\twords\n" + //
-                                                "\tbytes\n" + //
-                                                "\tlists\n" + //
-                                                "\t\tStart with 'Lorem\n" + //
-                                                "ipsum dolor sit amet...'\n" + //
-                                                "\t\n" + //
-                                                "\n" + //
-                                                "Translations: Can you help translate this site into a foreign language ? Please email us with details if you can help.\n" + //
-                                                "There is a set of mock banners available here in three colours and in a range of standard banner sizes:\n" + //
-                                                "BannersBannersBanners\n" + //
-                                                "Donate: If you use this site regularly and would like to help keep the site on the Internet, please consider donating a small sum to help pay for the hosting and bandwidth bill. There is no minimum donation, any sum is appreciated - click here to donate using PayPal. Thank you for your support.\n" + //
-                                                "Donate Bitcoin: 16UQLq1HZ3CNwhvgrarV6pMoA2CDjb4tyF\n" + //
-                                                "NodeJS Python Interface GTK Lipsum Rails .NET Groovy\n" + //
-                                                "The standard Lorem Ipsum passage, used since the 1500s\n" + //
-                                                "\n" + //
-                                                "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\"\n" + //
-                                                "Section 1.10.32 of \"de Finibus Bonorum et Malorum\", written by Cicero in 45 BC\n" + //
-                                                "\n" + //
-                                                "\"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?\"\n" + //
-                                                "1914 translation by H. Rackham\n" + //
-                                                "\n" + //
-                                                "\"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?\"\n" + //
-                                                "Section 1.10.33 of \"de Finibus Bonorum et Malorum\", written by Cicero in 45 BC\n" + //
-                                                "\n" + //
-                                                "\"At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.\"\n" + //
-                                                "1914 translation by H. Rackham\n" + //
-                                                "\n" + //
-                                                "\"On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse pains.\"\n" + //
-                                                "");
+                    put("description", " test  ");
                 }});
             }});
         }});
@@ -681,7 +525,165 @@ public class UserManagementControllerMethods {
     }
 
 
+    
+    public String createSponsoredEmployee(String businessOwnerToken,Integer businessId,List workLocations,List designations,List employmentStatuses,List workShifts, List departments, Integer times) throws JsonProcessingException {
+        Random random = new Random();
+        String[] current_certificate_statuses = {"unassigned", "assigned", "visa_applied", "visa_rejected", "visa_granted", "withdrawal"};
 
+        // Generate random first name
+        String firstName = FIRST_NAMES[random.nextInt(FIRST_NAMES.length)];
+
+        // Generate random last name
+        String lastName = LAST_NAMES[random.nextInt(LAST_NAMES.length)];
+
+        // Generate email from name
+        String email = generateEmail(firstName, lastName);
+
+
+      
+        
+        // Prepare the request body
+        Map<String, Object> requestBody = new HashMap<>();
+
+        
+        
+        requestBody.put("NI_number", "" + (Math.random() * 99999));
+        requestBody.put("first_Name", firstName);
+        requestBody.put("last_Name", lastName);
+        requestBody.put("email", email);
+        requestBody.put("date_of_birth", getRandomDate(1980, 2009));
+        requestBody.put("password", "12345678#We");
+        requestBody.put("password_confirmation", "12345678#We");
+        requestBody.put("phone", "01777777777");
+        requestBody.put("address_line_1", "Dhaka, Bangladesh");
+        requestBody.put("country", "Bangladesh");
+        requestBody.put("city", "Dhaka");
+        requestBody.put("lat", "23.804093");
+        requestBody.put("long", "90.4152376");
+        requestBody.put("role", ("business_employee#" + businessId));
+        requestBody.put("gender", "male");
+        requestBody.put("user_id", "FAT-0002");
+        requestBody.put("postcode", "1212");
+        requestBody.put("work_shift_id", getRandomId(workShifts));
+        requestBody.put("is_in_employee", 1);
+        requestBody.put("designation_id", getRandomId(designations));
+        requestBody.put("employment_status_id", getRandomId(employmentStatuses));
+        requestBody.put("salary_per_annum", "5000");
+        requestBody.put("work_location_ids", Arrays.asList(getRandomId(workLocations),getRandomId(workLocations)));
+        requestBody.put("weekly_contractual_hours", "50");
+        requestBody.put("minimum_working_days_per_week", "5");
+        requestBody.put("overtime_rate", "50");
+        requestBody.put("recruitment_processes", Arrays.asList(
+            new HashMap<String, Object>() {{
+                put("recruitment_process_id", getRandomNumber(1,5));
+                put("description", "jobsss");
+                put("attachments", new ArrayList<>());
+            }},
+            new HashMap<String, Object>() {{
+                put("recruitment_process_id", getRandomNumber(6,11));
+                put("description", "");
+                put("attachments", new ArrayList<>());
+            }}
+            // Add more processes here...
+        ));
+        requestBody.put("joining_date", getRandomDate(2001, 2023));
+        requestBody.put("address_line_2", "");
+        requestBody.put("departments", Arrays.asList(getRandomId(departments)));
+        requestBody.put("emergency_contact_details", Arrays.asList(
+            new HashMap<String, Object>() {{
+                put("relationship_of_above_to_you", "Father");
+                put("first_Name", FIRST_NAMES[random.nextInt(FIRST_NAMES.length)]);
+                put("last_Name", LAST_NAMES[random.nextInt(LAST_NAMES.length)]);
+                put("address_line_1", "Dhaka, Bangladesh");
+                put("city", "Dhaka");
+                put("country", "Bangladesh");
+                put("postcode", "1212");
+                put("lat", "23.804093");
+                put("long", "90.4152376");
+                put("mobile_tel_number", "01777777777");
+            }},
+            new HashMap<>() // Add more emergency contacts here...
+        ));
+        requestBody.put("immigration_status", "sponsored");
+        requestBody.put("sponsorship_details", new HashMap<String, Object>() {{
+            put("date_assigned", getRandomDate(1991, 2010));
+            put("expiry_date", getRandomDate(2011, 2030));
+            put("status", "hh");
+            put("note", "test");
+            put("certificate_number", "" + (Math.random() * 999999));
+            put("current_certificate_status", current_certificate_statuses[random.nextInt(current_certificate_statuses.length)]);
+            put("is_sponsorship_withdrawn", Math.random() < 0.5);
+        }});
+        requestBody.put("is_active_visa_details", 1);
+        requestBody.put("is_active_right_to_works", 1);
+        requestBody.put("visa_details", new HashMap<String, Object>() {{
+            put("BRP_number",  "" + (Math.random() * 999999));
+            put("visa_issue_date",  getRandomDate(1991, 2010));
+            put("visa_expiry_date", getRandomDate(2011, 2030));
+            put("place_of_issue", "Algeria");
+         
+            put("visa_docs", new ArrayList<HashMap<String, Object>>() {{
+                add(new HashMap<String, Object>() {{
+                    put("id", 0);
+                    put("file_name", "/temporary_files/1717259656_Screenshot_from_2024-06-01_18-56-57.png");
+                    put("description", "test");
+                }});
+
+                add(new HashMap<String, Object>() {{
+                    put("id", 1);
+                    put("file_name", "/temporary_files/1717259666_Screenshot_from_2024-06-01_15-47-31.png");
+                    put("description", "test");
+                }});
+            }});
+        }});
+
+
+        requestBody.put("right_to_works", new HashMap<String, Object>() {{
+            put("right_to_work_code", "" + (Math.random() * 999999));
+            put("right_to_work_check_date", getRandomDate(1991, 2010));
+            put("right_to_work_expiry_date", getRandomDate(2011, 2030));
+            put("right_to_work_docs", new ArrayList<HashMap<String, Object>>() {{
+                add(new HashMap<String, Object>() {{
+                    put("id", 0);
+                    put("file_name", "/temporary_files/1717259656_Screenshot_from_2024-06-01_18-56-57.png");
+                    put("description", "test");
+                }});
+                add(new HashMap<String, Object>() {{
+                    put("id", 1);
+                    put("file_name", "/temporary_files/1717259666_Screenshot_from_2024-06-01_15-47-31.png");
+                    put("description", " test  ");
+                }});
+            }});
+        }});
+        
+
+
+
+
+        requestBody.put("passport_details", new HashMap<String, Object>() {{
+            put("passport_number", "" + (Math.random() * 999999));
+            put("passport_issue_date", getRandomDate(1991, 2020));
+            put("passport_expiry_date", "06-06-2024");
+            put("place_of_issue", "Algeria");
+        }});
+
+        // Perform the API request
+        String response = given()
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .header("Authorization", "Bearer " + businessOwnerToken) // Replace with your method to get the bearer token
+                .body(requestBody)
+                .when()
+                .post(URL +"/api/v2.0/users") // Adjust the URL if needed
+                .then()
+                .extract()
+                .response()
+                .asString();
+
+        
+        
+        return response;
+    }
 
 
 
