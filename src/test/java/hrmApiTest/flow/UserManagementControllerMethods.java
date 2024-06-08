@@ -716,6 +716,27 @@ public class UserManagementControllerMethods {
         return response;
     }
 
+    public String getEmployees(String businessOwnerToken) throws JsonProcessingException {
+        
+        // Perform the API request
+        String response = given()
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .header("Authorization", "Bearer " + businessOwnerToken) // Replace with your method to get the bearer token
+          
+                .when()
+                .get(URL +"/api/v5.0/users") // Adjust the URL if needed
+                .then()
+                .extract()
+                .response()
+                .asString();
+
+             
+
+    
+       
+        return response;
+    }
 
 
 
@@ -923,6 +944,39 @@ public class UserManagementControllerMethods {
                 .asString();
   
 
+    }
+
+
+    public String createAttendance(String businessOwnerToken,List userIds,List workLocations,String startDate,String endDate) throws JsonProcessingException {
+       
+        
+        // Prepare the request body
+        Map<String, Object> requestBody = new HashMap<>();
+
+        
+        requestBody.put("user_ids", userIds); // Setting the value of "user_ids" to a list of user IDs
+requestBody.put("start_date", startDate); // Setting the value of "start_date" to the start date
+requestBody.put("end_date", endDate); // 
+        
+requestBody.put("work_location_id", getRandomId(workLocations)); // 
+
+ 
+        // Perform the API request
+        String response = given()
+                .contentType(ContentType.JSON)
+                .accept(ContentType.JSON)
+                .header("Authorization", "Bearer " + businessOwnerToken) // Replace with your method to get the bearer token
+                .body(requestBody)
+                .when()
+                .post(URL +"/api/v1.0/attendances/bypass/multiple") // Adjust the URL if needed
+                .then()
+                .extract()
+                .response()
+                .asString();
+
+        
+        
+        return response;
     }
 
 }

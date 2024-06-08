@@ -96,7 +96,25 @@ public class Util {
     }
 
 
+    public static String  getUser(String email,String password) throws JsonProcessingException {
 
+        String response =   given().contentType(ContentType.JSON)
+
+                .body("{\"email\": \""+ email +"\", \"password\": \""+password+"\"}")
+                .when()
+                .post(URL + "/api/v2.0/login")
+                .then()
+                .extract()
+                .response()
+                .body()
+                .asString();
+
+         
+           
+
+            
+                return response;
+    }
 
    
 
